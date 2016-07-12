@@ -12,6 +12,7 @@
 		8284C9B61D34290000A08EEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8284C9B51D34290000A08EEF /* Assets.xcassets */; };
 		8284C9B91D34290000A08EEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8284C9B71D34290000A08EEF /* LaunchScreen.storyboard */; };
 		8284C9C11D342AF500A08EEF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284C9C01D342AF500A08EEF /* HomeViewController.swift */; };
+		8284C9C31D358DE600A08EEF /* RunTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284C9C21D358DE600A08EEF /* RunTrackerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		8284C9B81D34290000A08EEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8284C9BA1D34290000A08EEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8284C9C01D342AF500A08EEF /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		8284C9C21D358DE600A08EEF /* RunTrackerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunTrackerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				8284C9AE1D34290000A08EEF /* AppDelegate.swift */,
 				8284C9C01D342AF500A08EEF /* HomeViewController.swift */,
+				8284C9C21D358DE600A08EEF /* RunTrackerViewController.swift */,
 				8284C9B21D34290000A08EEF /* Main.storyboard */,
 				8284C9B51D34290000A08EEF /* Assets.xcassets */,
 				8284C9B71D34290000A08EEF /* LaunchScreen.storyboard */,
@@ -138,6 +141,7 @@
 			files = (
 				8284C9AF1D34290000A08EEF /* AppDelegate.swift in Sources */,
 				8284C9C11D342AF500A08EEF /* HomeViewController.swift in Sources */,
+				8284C9C31D358DE600A08EEF /* RunTrackerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +291,7 @@
 				8284C9BF1D34290000A08EEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
