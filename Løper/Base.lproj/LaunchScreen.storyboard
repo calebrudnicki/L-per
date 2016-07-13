@@ -18,24 +18,31 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Løper" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rG-GQ-ecM">
-                                <rect key="frame" x="210" y="242" width="179.5" height="115.5"/>
+                                <rect key="frame" x="210" y="334.5" width="179.5" height="115.5"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="72"/>
                                 <color key="textColor" red="0.92549020049999997" green="0.94117647410000005" blue="0.94509804249999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="a Caleb Rudnicki production" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BTE-Fh-cfX">
-                                <rect key="frame" x="420.5" y="565.5" width="159.5" height="14.5"/>
+                                <rect key="frame" x="420" y="565" width="159.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.92549020049999997" green="0.94117647410000005" blue="0.94509804249999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo-1427384906349-30452365b5e8" translatesAutoresizingMaskIntoConstraints="NO" id="6q8-rK-Rcg">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.2666666667" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="6rG-GQ-ecM" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="bcj-7X-M52"/>
+                            <constraint firstItem="6q8-rK-Rcg" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="EFU-Bm-23G"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="6rG-GQ-ecM" secondAttribute="bottom" constant="150" id="PRb-XC-ms7"/>
                             <constraint firstAttribute="trailing" secondItem="BTE-Fh-cfX" secondAttribute="trailing" constant="20" id="fWj-jB-5wo"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="6q8-rK-Rcg" secondAttribute="bottom" id="gyo-jM-RPk"/>
+                            <constraint firstItem="6q8-rK-Rcg" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="jUB-XF-6UR"/>
                             <constraint firstItem="6rG-GQ-ecM" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="lGf-eN-SfP"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="BTE-Fh-cfX" secondAttribute="bottom" constant="20" id="urR-dv-8Xr"/>
+                            <constraint firstAttribute="trailing" secondItem="6q8-rK-Rcg" secondAttribute="trailing" id="wYx-ZY-NIx"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -44,4 +51,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="photo-1427384906349-30452365b5e8" width="4241" height="3181"/>
+    </resources>
 </document>

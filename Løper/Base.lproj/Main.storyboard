@@ -126,12 +126,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RunTrackerViewController" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6M-dF-BX3">
-                                <rect key="frame" x="201" y="289" width="198.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.17254902422428131" green="0.24313725531101227" blue="0.31372550129890442" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3c-nf-9ku">
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <color key="barTintColor" red="1" green="0.2666666667" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -143,14 +137,57 @@
                                     <navigationItem title="løper" id="SpV-lJ-68z"/>
                                 </items>
                             </navigationBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UCC-Of-chg">
+                                <rect key="frame" x="0.0" y="72" width="600" height="330"/>
+                            </mapView>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="q80-7W-iQc">
+                                <rect key="frame" x="269" y="425" width="63" height="167"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2JM-3g-p59">
+                                        <rect key="frame" x="0.0" y="0.0" width="63" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ui2-Qm-Xvg">
+                                        <rect key="frame" x="0.0" y="46" width="63" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="niG-3d-jqa">
+                                        <rect key="frame" x="0.0" y="91" width="63" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PNf-VB-z4g">
+                                        <rect key="frame" x="0.0" y="137" width="63" height="30"/>
+                                        <state key="normal" title="Stop Run">
+                                            <color key="titleColor" red="0.92549020049999997" green="0.94117647410000005" blue="0.94509804249999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="stopRunButtonTapped:" destination="eWl-Ps-11e" eventType="touchUpInside" id="4th-ej-SEv"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.2666666667" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="J6M-dF-BX3" firstAttribute="centerY" secondItem="M5K-78-xAQ" secondAttribute="centerY" id="Lip-8k-48a"/>
+                            <constraint firstItem="q80-7W-iQc" firstAttribute="top" secondItem="UCC-Of-chg" secondAttribute="bottom" constant="18" id="8zY-Gm-ur8"/>
                             <constraint firstItem="v3c-nf-9ku" firstAttribute="centerX" secondItem="M5K-78-xAQ" secondAttribute="centerX" id="PsY-pI-b0q"/>
-                            <constraint firstItem="J6M-dF-BX3" firstAttribute="centerX" secondItem="M5K-78-xAQ" secondAttribute="centerX" id="yc2-sI-sJF"/>
+                            <constraint firstItem="q80-7W-iQc" firstAttribute="centerX" secondItem="M5K-78-xAQ" secondAttribute="centerX" id="UCB-LI-pqq"/>
+                            <constraint firstItem="UCC-Of-chg" firstAttribute="top" secondItem="v3c-nf-9ku" secondAttribute="bottom" id="j3S-Qb-ZJ1"/>
+                            <constraint firstItem="UCC-Of-chg" firstAttribute="centerX" secondItem="M5K-78-xAQ" secondAttribute="centerX" id="qsj-Oi-bVo"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="averagePaceLabel" destination="niG-3d-jqa" id="bbH-Sv-QA0"/>
+                        <outlet property="distanceLabel" destination="ui2-Qm-Xvg" id="Q0v-Q6-wv9"/>
+                        <outlet property="mapView" destination="UCC-Of-chg" id="1aQ-vk-XB4"/>
+                        <outlet property="overallTimeLabel" destination="2JM-3g-p59" id="Otz-EQ-Wgc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8iQ-9w-V3L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

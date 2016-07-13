@@ -10,7 +10,6 @@
 
 import UIKit
 import MapKit
-import CoreLocation
 
 class HomeViewController: UIViewController, CLLocationManagerDelegate {
 
@@ -74,6 +73,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         let noAction = UIAlertAction(title: "No wait, I need a minute", style: .Cancel, handler: nil)
         alertController.addAction(yesAction)
         alertController.addAction(noAction)
+        alertController.view.tintColor = UIColor(red: 0.44, green: 0.62, blue: 0.80, alpha: 1.0)
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
@@ -109,6 +109,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         if let identifier = segue.identifier {
             if identifier == "startRunSegue" {
                 let runTrackerViewController = segue.destinationViewController as! RunTrackerViewController
+                
             }
         }
     }
