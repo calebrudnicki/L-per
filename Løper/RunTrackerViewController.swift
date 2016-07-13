@@ -86,8 +86,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate {
     
 //MARK: Actions
     
-    @IBAction func stopRunButtonTapped(sender: AnyObject) {
-        print("Stop run button selected")
+    @IBAction func unwindToHomeViewController(segue: UIStoryboardSegue) {
     }
     
     
@@ -99,6 +98,15 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate {
         let coord2D = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let coordinateRegion = MKCoordinateRegion(center: coord2D, span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
         mapView.setRegion(coordinateRegion, animated: false)
+        
+        for location in locations {
+            if location.horizontalAccuracy < 20 {
+                if self.locations.count > 0 {
+                    distance = distance + location.distanceFromLocation(self.locations.last!)
+                }
+                self.locations.append(location)
+            }
+        }
     }
     
     //This function updates the user's location

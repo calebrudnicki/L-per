@@ -31,7 +31,6 @@
                                             <color key="tintColor" red="0.92549020049999997" green="0.94117647410000005" blue="0.94509804249999996" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="pastRunsButtonTapped:" destination="SLS-Xv-c4M" id="uaV-V1-wFp"/>
-                                                <segue destination="ilo-a5-hhE" kind="show" id="2SR-w0-SwX"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -167,7 +166,7 @@
                                             <color key="titleColor" red="0.92549020049999997" green="0.94117647410000005" blue="0.94509804249999996" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="stopRunButtonTapped:" destination="eWl-Ps-11e" eventType="touchUpInside" id="4th-ej-SEv"/>
+                                            <segue destination="4dw-o4-Lb1" kind="unwind" identifier="exitSegue" unwindAction="unwindToHomeViewController:" id="3Yy-cd-h0u"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -190,6 +189,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8iQ-9w-V3L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="4dw-o4-Lb1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="780" y="89"/>
         </scene>

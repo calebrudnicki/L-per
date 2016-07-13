@@ -66,7 +66,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     //This function for the run button activates an alert controller that either segues into the next view controller or returns back to the home screen
     @IBAction func runButtonTapped(sender: AnyObject) {
-        let alertController = UIAlertController(title: nil, message: "Are you sure you're ready to start your run. If you proceed the timer will begin?", preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title: nil, message: "Are you sure you're ready to start your run? If you proceed the timer will begin.", preferredStyle: .ActionSheet)
         let yesAction = UIAlertAction(title: "Yes, I am ready", style: .Default) { (action) in
             self.performSegueWithIdentifier("startRunSegue", sender: self)
         }
@@ -79,6 +79,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func pastRunsButtonTapped(sender: AnyObject) {
         //To be edited at a later date
+        print("Past runs button tapped")
     }
     
     
@@ -104,12 +105,14 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
 //MARK: Segues
     
+    func unwindToHomeViewController(segue: UIStoryboardSegue) {
+    }
+    
     //This function recognizes the segue called in code based on the user's action and performs the correct segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             if identifier == "startRunSegue" {
                 let runTrackerViewController = segue.destinationViewController as! RunTrackerViewController
-                
             }
         }
     }
