@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		820132781D36E15A003B1C2C /* ListRunsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820132771D36E15A003B1C2C /* ListRunsTableViewController.swift */; };
 		8284C9AF1D34290000A08EEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284C9AE1D34290000A08EEF /* AppDelegate.swift */; };
 		8284C9B41D34290000A08EEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8284C9B21D34290000A08EEF /* Main.storyboard */; };
 		8284C9B61D34290000A08EEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8284C9B51D34290000A08EEF /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		820132771D36E15A003B1C2C /* ListRunsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRunsTableViewController.swift; sourceTree = "<group>"; };
 		8284C9AB1D34290000A08EEF /* Løper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Løper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8284C9AE1D34290000A08EEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8284C9B31D34290000A08EEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				8284C9AE1D34290000A08EEF /* AppDelegate.swift */,
 				8284C9C01D342AF500A08EEF /* HomeViewController.swift */,
 				8284C9C21D358DE600A08EEF /* RunTrackerViewController.swift */,
+				820132771D36E15A003B1C2C /* ListRunsTableViewController.swift */,
 				8284C9B21D34290000A08EEF /* Main.storyboard */,
 				8284C9B51D34290000A08EEF /* Assets.xcassets */,
 				8284C9B71D34290000A08EEF /* LaunchScreen.storyboard */,
@@ -145,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8284C9AF1D34290000A08EEF /* AppDelegate.swift in Sources */,
+				820132781D36E15A003B1C2C /* ListRunsTableViewController.swift in Sources */,
 				8284C9C11D342AF500A08EEF /* HomeViewController.swift in Sources */,
 				8284C9C31D358DE600A08EEF /* RunTrackerViewController.swift in Sources */,
 			);
