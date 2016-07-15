@@ -5,7 +5,7 @@
 //  Created by Caleb Rudnicki on 7/11/16.
 //  Copyright © 2016 Caleb Rudnicki. All rights reserved.
 //
-//  Reverse runner icon in top left created by Freepik at http://www.freepik.com
+//  Runner icon in top left created by Freepik at http://www.freepik.com
 //
 
 import UIKit
@@ -16,33 +16,38 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
 //MARK: Outlets
     
     @IBOutlet weak var mapView: MKMapView!
-    
+    @IBOutlet weak var runButton: UIButton!
     
 //MARK: Variables
     
     var locationManager = CLLocationManager()
+    var distance: Double!
+    var time: Double!
+    var pace: Double!
+    var locations: [CLLocation]!
     
     
 //MARK: viewDidLoad()
     
-    //This function loads the view and sets up the location manager settings
+    //This function loads the view and sets up the location manager settings and changes the settings for the button
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         mapView.tintColor = UIColor(red: 0.44, green: 0.62, blue: 0.80, alpha: 1.0)
+        runButton.layer.shadowColor = UIColor(red: 0.44, green: 0.62, blue: 0.80, alpha: 1.0).CGColor
+        runButton.layer.shadowOffset = CGSizeMake(5, 5)
+        runButton.layer.shadowRadius = 5
+        runButton.layer.shadowOpacity = 1.0
     }
     
     
 //MARK: viewDidAppear()
     
-    //This function disables the map features before checking for authorization status
+    //This function checkes the authorization status
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        mapView.zoomEnabled = false
-        mapView.scrollEnabled = false
-        mapView.rotateEnabled = false
         self.checkLocationAuthorizationStatus()
     }
     
@@ -78,8 +83,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func pastRunsButtonTapped(sender: AnyObject) {
-        //To be edited at a later date
-        print("Past runs button tapped")
+        self.performSegueWithIdentifier("seeListSegue", sender: self)
     }
     
     
@@ -105,16 +109,23 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
 //MARK: Segues
     
-    func unwindToHomeViewController(segue: UIStoryboardSegue) {
-    }
-    
     //This function recognizes the segue called in code based on the user's action and performs the correct segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
-            if identifier == "startRunSegue" {
+            if identifier == "seeListSegue" {
+                let listRunsTableViewController = segue.destinationViewController as! ListRunsTableViewController
+                listRunsTableViewController.distance = distance
+                listRunsTableViewController.duration = time
+                listRunsTableViewController.pace = pace
+                listRunsTableViewController.locations = locations
+            } else if identifier == "startRunSegue" {
                 let runTrackerViewController = segue.destinationViewController as! RunTrackerViewController
             }
         }
     }
     
+    //This function can be connected to another view controller to unwind a segue
+    @IBAction func unwindToHomeViewController(segue: UIStoryboardSegue) {
+    }
+
 }

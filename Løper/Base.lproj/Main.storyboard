@@ -30,14 +30,13 @@
                                         <barButtonItem key="leftBarButtonItem" image="runner-0" style="plain" id="wlc-4J-BqL">
                                             <color key="tintColor" red="0.92549020049999997" green="0.94117647410000005" blue="0.94509804249999996" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
-                                                <action selector="pastRunsButtonTapped:" destination="SLS-Xv-c4M" id="uaV-V1-wFp"/>
-                                                <segue destination="HJp-DH-CHo" kind="show" id="LYj-gb-bOF"/>
+                                                <action selector="pastRunsButtonTapped:" destination="SLS-Xv-c4M" id="sLY-eQ-vSg"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UTu-Ex-aTk">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UTu-Ex-aTk">
                                 <rect key="frame" x="0.0" y="72" width="600" height="528"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nUn-8X-UM0">
@@ -49,6 +48,7 @@
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="52"/>
                                 <state key="normal" title="run">
                                     <color key="titleColor" red="0.92549020049999997" green="0.94117647410000005" blue="0.94509804249999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
@@ -77,17 +77,19 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="UTu-Ex-aTk" id="4Dr-YB-LpD"/>
+                        <outlet property="runButton" destination="nUn-8X-UM0" id="JDf-ha-ZKt"/>
                         <segue destination="eWl-Ps-11e" kind="show" identifier="startRunSegue" id="f14-9D-O3b"/>
+                        <segue destination="HJp-DH-CHo" kind="show" identifier="seeListSegue" id="Y3R-TC-mTO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="As1-6m-luO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="32" y="89"/>
         </scene>
-        <!--List Runs Table View Controller-->
+        <!--ListRunsTableViewController-->
         <scene sceneID="qHG-6r-PMm">
             <objects>
-                <tableViewController id="HJp-DH-CHo" customClass="ListRunsTableViewController" customModule="Løper" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="ListRunsTableViewController" id="HJp-DH-CHo" customClass="ListRunsTableViewController" customModule="Løper" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kUn-oe-Yjy">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -95,6 +97,16 @@
                         <color key="tintColor" red="0.086274512110000007" green="0.62745100259999997" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexColor" red="0.17254902420000001" green="0.24313725529999999" blue="0.31372550129999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4Mr-5j-Xrz">
+                            <rect key="frame" x="0.0" y="72" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Go Back">
+                                <color key="titleColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="goBackButtonTapped:" destination="HJp-DH-CHo" eventType="touchUpInside" id="vFF-ys-QAF"/>
+                            </connections>
+                        </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellIdentifier" textLabel="1nu-g4-H6t" style="IBUITableViewCellStyleDefault" id="DdE-7k-Bj2">
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
@@ -119,8 +131,12 @@
                             <outlet property="delegate" destination="HJp-DH-CHo" id="nvL-KM-2TD"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="oPO-fp-hvs" kind="unwind" identifier="exitSegue" unwindAction="unwindToHomeViewController:" id="tzA-Xi-JH8"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RAc-l1-1HB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="oPO-fp-hvs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="32" y="820"/>
         </scene>
@@ -153,6 +169,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PNf-VB-z4g">
                                 <rect key="frame" x="150" y="532" width="300" height="48"/>
                                 <color key="backgroundColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="x0y-ml-CtG"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="22"/>
                                 <state key="normal" title="Stop Run">
                                     <color key="titleColor" red="0.92549020049999997" green="0.94117647410000005" blue="0.94509804249999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -175,8 +194,8 @@
                                         <color key="textColor" red="0.92549020049999997" green="0.94117647410000005" blue="0.94509804249999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Overall Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2JM-3g-p59">
-                                        <rect key="frame" x="5" y="31" width="80" height="28"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2JM-3g-p59">
+                                        <rect key="frame" x="29" y="31" width="31" height="28"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                         <color key="textColor" red="0.92549020049999997" green="0.94117647410000005" blue="0.94509804249999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -207,10 +226,12 @@
                         <outlet property="averagePaceLabel" destination="niG-3d-jqa" id="bbH-Sv-QA0"/>
                         <outlet property="distanceLabel" destination="ui2-Qm-Xvg" id="Q0v-Q6-wv9"/>
                         <outlet property="mapView" destination="UCC-Of-chg" id="1aQ-vk-XB4"/>
-                        <outlet property="overallTimeLabel" destination="2JM-3g-p59" id="Otz-EQ-Wgc"/>
+                        <outlet property="timeLabel" destination="2JM-3g-p59" id="3kq-WR-ExV"/>
+                        <segue destination="axB-8V-l3a" kind="unwind" identifier="exitSegue" unwindAction="unwindToHomeViewController:" id="V2t-gY-6M6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8iQ-9w-V3L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="axB-8V-l3a" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="780" y="89"/>
         </scene>

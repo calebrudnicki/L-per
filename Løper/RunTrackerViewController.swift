@@ -16,8 +16,8 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
 //MARK: Outlets
     
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var overallTimeLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var averagePaceLabel: UILabel!
     
     
@@ -25,6 +25,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     
     var seconds: Double!
     var distance: Double!
+    var pace: Double!
     lazy var userLocationManager: CLLocationManager = {
         var locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -35,6 +36,9 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     }()
     lazy var locations = [CLLocation]()
     lazy var timer = NSTimer()
+    var run: Run!
+    var runArray: [Run]!
+    let lengthFormatter = NSLengthFormatter()
     
 
 //MARK: viewDidLoad()
@@ -49,6 +53,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         locations.removeAll(keepCapacity: false)
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecond(_:)), userInfo: nil, repeats: true)
         startLocationUpdates()
+        runArray = []
     }
 
     
@@ -78,15 +83,44 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     
 //MARK: Actions
     
-    //This function alerts that runs once the stop run button is tapped stops locatiing the user and invalidates the timer
+    //This function
     @IBAction func stopRunButtonTapped(sender: AnyObject) {
         userLocationManager.stopUpdatingLocation()
         timer.invalidate()
-        print("Time: \(seconds) seconds")
-        print("Distance: \(distance) meters")
-        print("Pace: \(distance / seconds) meters per second")
+        let run = Run(distance: distance, time: seconds, pace: pace, locations: locations)
+        runArray.append(run)
+        stopRunAlert()
     }
     
+
+//MARK: Alerts
+    
+    //This function alerts the user to make sure he or she is done with his or her run
+    func stopRunAlert() {
+        let alertController = UIAlertController(title: nil, message: "Are you are sure you're done with your run?", preferredStyle: .ActionSheet)
+        let yesAction = UIAlertAction(title: "Yes, I'm done", style: .Default) { (action) in
+            self.performSegueWithIdentifier("exitSegue", sender: self)
+        }
+        let noAction = UIAlertAction(title: "No", style: .Cancel, handler: nil)
+        alertController.addAction(yesAction)
+        alertController.addAction(noAction)
+        alertController.view.tintColor = UIColor(red: 0.44, green: 0.62, blue: 0.80, alpha: 1.0)
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    
+//MARK: Segues
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            if identifier == "exitSegue" {
+                let homeViewController = segue.destinationViewController as! HomeViewController
+                homeViewController.distance = distance
+                homeViewController.time = seconds
+            }
+        }
+    }
+
 
 //MARK: Map / Location Functionalities
     
@@ -106,6 +140,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
             if location.horizontalAccuracy < 20 {
                 if self.locations.count > 0 {
                     distance = distance + location.distanceFromLocation(self.locations.last!)
+                    pace = distance / seconds
                 }
                 self.locations.append(location)
             }
@@ -126,7 +161,6 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         return MKPolyline(coordinates: &coords, count: locations.count)
     }
 
-    
     //This function draws the line of the path of the run
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         if !overlay.isKindOfClass(MKPolyline) {
@@ -146,13 +180,23 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     func eachSecond(timer: NSTimer) {
         mapView.addOverlay(polyline())
         seconds = seconds + 1
-        let secondsQuantity = HKQuantity(unit: HKUnit.secondUnit(), doubleValue: seconds)
         let distanceQuantity = HKQuantity(unit: HKUnit.meterUnit(), doubleValue: distance)
-        let paceUnit = HKUnit.meterUnit().unitDividedByUnit(HKUnit.secondUnit())
-        let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: distance / seconds)
-        overallTimeLabel.text = "Time: " + secondsQuantity.description
-        distanceLabel.text = "Distance: " + distanceQuantity.description
-        averagePaceLabel.text = "Pace: " + paceQuantity.description
+        let distanceMiles = distanceQuantity.doubleValueForUnit(HKUnit.mileUnit())
+        
+        let timeQuantity = HKQuantity(unit: HKUnit.secondUnit(), doubleValue: seconds)
+        
+        let paceUnit = HKUnit.secondUnit().unitDividedByUnit(HKUnit.mileUnit())
+        let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: seconds / distance)
+        let paceSecondsPerMile = (paceQuantity.doubleValueForUnit(paceUnit))
+        let paceMinutesPerMile = paceSecondsPerMile / 60
+        
+        
+        let distanceString = lengthFormatter.stringFromValue(distanceMiles, unit: .Mile)
+        let paceString = lengthFormatter.stringFromValue(paceMinutesPerMile, unit: .Mile)
+        
+        distanceLabel.text = "Distance: " + distanceString
+        timeLabel.text = "Time: " + seconds.description + " secs"
+        averagePaceLabel.text = "Pace: " + paceString + "/sec"
     }
 
 }
