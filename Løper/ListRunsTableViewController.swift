@@ -28,7 +28,7 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
             print("\(distance) miles")
         }
         if duration != nil {
-            print("\(duration) seconds")
+            print("\(duration) minutes")
         }
         if duration != nil {
             print("\(pace) pace")

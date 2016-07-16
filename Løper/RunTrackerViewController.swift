@@ -87,8 +87,10 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     @IBAction func stopRunButtonTapped(sender: AnyObject) {
         userLocationManager.stopUpdatingLocation()
         timer.invalidate()
+        distance = distance * 0.000621371
+        seconds = seconds / 60
+        pace = seconds / distance
         let run = Run(distance: distance, time: seconds, pace: pace, locations: locations)
-        runArray.append(run)
         stopRunAlert()
     }
     
@@ -117,6 +119,8 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
                 let homeViewController = segue.destinationViewController as! HomeViewController
                 homeViewController.distance = distance
                 homeViewController.time = seconds
+                homeViewController.pace = pace
+                homeViewController.locations = locations
             }
         }
     }
@@ -140,7 +144,6 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
             if location.horizontalAccuracy < 20 {
                 if self.locations.count > 0 {
                     distance = distance + location.distanceFromLocation(self.locations.last!)
-                    pace = distance / seconds
                 }
                 self.locations.append(location)
             }
@@ -187,6 +190,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: seconds / distanceMiles)
         let paceSecondsPerMile = (paceQuantity.doubleValueForUnit(paceUnit))
         let paceMinutesPerMile = paceSecondsPerMile / 60
+        pace = paceMinutesPerMile
         let distanceString = lengthFormatter.stringFromValue(distanceMiles, unit: .Mile)
         
         distanceLabel.text = "Distance: " + distanceString
