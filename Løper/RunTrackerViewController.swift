@@ -182,21 +182,16 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         seconds = seconds + 1
         let distanceQuantity = HKQuantity(unit: HKUnit.meterUnit(), doubleValue: distance)
         let distanceMiles = distanceQuantity.doubleValueForUnit(HKUnit.mileUnit())
-        
         let timeQuantity = HKQuantity(unit: HKUnit.secondUnit(), doubleValue: seconds)
-        
         let paceUnit = HKUnit.secondUnit().unitDividedByUnit(HKUnit.mileUnit())
-        let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: seconds / distance)
+        let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: seconds / distanceMiles)
         let paceSecondsPerMile = (paceQuantity.doubleValueForUnit(paceUnit))
         let paceMinutesPerMile = paceSecondsPerMile / 60
-        
-        
         let distanceString = lengthFormatter.stringFromValue(distanceMiles, unit: .Mile)
-        let paceString = lengthFormatter.stringFromValue(paceMinutesPerMile, unit: .Mile)
         
         distanceLabel.text = "Distance: " + distanceString
         timeLabel.text = "Time: " + seconds.description + " secs"
-        averagePaceLabel.text = "Pace: " + paceString + "/sec"
+        averagePaceLabel.text = "Pace: \(paceMinutesPerMile) minutes per mile"
     }
 
 }
