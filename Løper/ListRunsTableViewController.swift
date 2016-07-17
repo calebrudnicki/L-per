@@ -14,46 +14,42 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
 //MARK: Variables
 
     var distance: Double!
-    var duration: Double!
+    var time: Double!
     var pace: Double!
     var locations: [CLLocation]!
-    var runs = ["a", "b", "c", "d", "e", "f"]
+    var runs : [(Double,Double,Double,[CLLocation])] {
+        get {
+            return [
+                (distance, time, pace, locations)
+            ]
+            
+        }
+    }
+  
     
+//MARK: Boilerplate Functions
     
-//MARK: viewDidLoad()
-    
+    //This functions prints out the value for the variables distance, time, pace, and locations as long as they are not nil
     override func viewDidLoad() {
         super.viewDidLoad()
         if distance != nil {
             print("\(distance) miles")
         }
-        if duration != nil {
-            print("\(duration) minutes")
+        if time != nil {
+            print("\(time) minutes")
         }
-        if duration != nil {
+        if pace != nil {
             print("\(pace) pace")
         }
-        if duration != nil {
+        if locations != nil {
             print("\(locations) pins")
         }
-        
     }
-
     
-//MARK: didReceiveMemoryWarning
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
     
-//MARK: Style Settings
-    
-    //This function sets the status bar to white
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
-    }
-   
     
 //MARK: Actions
     
@@ -78,7 +74,7 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
     //This function sets each cell to a object from each respective place in the array
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cellIdentifier", forIndexPath: indexPath)
-        cell.textLabel?.text = runs[indexPath.row]
+        cell.textLabel?.text = String(runs[indexPath.row])
         return cell
     }
     

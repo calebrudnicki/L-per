@@ -11,11 +11,16 @@ import MapKit
 
 class Run: CLLocationManager {
     
+//MARK: Varbiables
+
     var distance: Double!
     var time: Double!
     var pace: Double!
     var locations: [CLLocation]!
     
+    
+//MARK: Initializers
+
     init(distance: Double, time: Double, pace: Double, locations: [CLLocation]) {
         self.distance = distance
         self.time = time

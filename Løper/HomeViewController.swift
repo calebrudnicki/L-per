@@ -18,6 +18,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var runButton: UIButton!
     
+    
 //MARK: Variables
     
     var locationManager = CLLocationManager()
@@ -27,32 +28,22 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     var locations: [CLLocation]!
     
     
-//MARK: viewDidLoad()
+//MARK: Boilerplate Functions
     
-    //This function loads the view and sets up the location manager settings and changes the settings for the button
+    //This function loads the view, calls the viewControllerLayoutChanges function, and sets up the location manager settings
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.viewControllerLayoutChanges()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
-        mapView.tintColor = UIColor(red: 0.44, green: 0.62, blue: 0.80, alpha: 1.0)
-        runButton.layer.shadowColor = UIColor(red: 0.44, green: 0.62, blue: 0.80, alpha: 1.0).CGColor
-        runButton.layer.shadowOffset = CGSizeMake(5, 5)
-        runButton.layer.shadowRadius = 5
-        runButton.layer.shadowOpacity = 1.0
     }
-    
-    
-//MARK: viewDidAppear()
     
     //This function checkes the authorization status
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.checkLocationAuthorizationStatus()
     }
-    
-    
-//MARK: didReceiveMemoryWarning()
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -66,10 +57,19 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         return UIStatusBarStyle.LightContent
     }
     
+    //This functions changes preset properties for the map and the button
+    func viewControllerLayoutChanges() {
+        mapView.tintColor = UIColor(red: 0.44, green: 0.62, blue: 0.80, alpha: 1.0)
+        runButton.layer.shadowColor = UIColor(red: 0.44, green: 0.62, blue: 0.80, alpha: 1.0).CGColor
+        runButton.layer.shadowOffset = CGSizeMake(5, 5)
+        runButton.layer.shadowRadius = 5
+        runButton.layer.shadowOpacity = 1.0
+    }
+    
     
 //MARK: Actions
     
-    //This function for the run button activates an alert controller that either segues into the next view controller or returns back to the home screen
+    //This function for the run button activates an alert controller that either segues into the RunTrackerViewController or returns back to the home screen
     @IBAction func runButtonTapped(sender: AnyObject) {
         let alertController = UIAlertController(title: nil, message: "Are you sure you're ready to start your run? If you proceed the timer will begin.", preferredStyle: .ActionSheet)
         let yesAction = UIAlertAction(title: "Yes, I am ready", style: .Default) { (action) in
@@ -82,12 +82,13 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    //This function for the running man icon segues to the ListRunsTableViewController
     @IBAction func pastRunsButtonTapped(sender: AnyObject) {
         self.performSegueWithIdentifier("seeListSegue", sender: self)
     }
     
     
-//MARK: Map Settings
+//MARK: Location Functions
     
     //This functions checks to see the users authorization status and either allows the app to acces their location or sends an authorization request
     func checkLocationAuthorizationStatus() {
@@ -109,13 +110,13 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
 //MARK: Segues
     
-    //This function recognizes the segue called in code based on the user's action and performs the correct segue
+    //This function recognizes the segue called in code based on the user's action and send the appropriate set of data along the segue too
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             if identifier == "seeListSegue" {
                 let listRunsTableViewController = segue.destinationViewController as! ListRunsTableViewController
                 listRunsTableViewController.distance = distance
-                listRunsTableViewController.duration = time
+                listRunsTableViewController.time = time
                 listRunsTableViewController.pace = pace
                 listRunsTableViewController.locations = locations
             } else if identifier == "startRunSegue" {
