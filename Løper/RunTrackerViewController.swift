@@ -40,8 +40,8 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     }()
     //Variables used to pass the data to the other ViewControllers
     var finalDistance: Double!
-    var finalTime: Double!
-    var finalPace: Double!
+    var finalTime: String!
+    var finalPace: String!
     var run: Run!
     var runArray: [Run]! = []
     
@@ -82,14 +82,41 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     }
     
     
-//MARK: Data Conversion
+//MARK: Conversion Functions
     
     //This function converts all of the data's preset values from meters and seconds to the more convenient values of miles and minutes
-    func convertUnits(distance: Double, time: Double) -> (distance: Double, time: Double, pace: Double) {
+    func convertUnits(distance: Double, time: Double) -> (distance: Double, time: String, pace: String) {
         let distance = distance * 0.000621371
+        let distanceRounded = Double(round(100 * distance) / 100)
         let time = time / 60
+        let timeRounded = secondsToClockFormat(time)
         let pace = time / distance
-        return (distance, time, pace)
+        let paceRounded = minutesToClockFormat(pace)
+        return (distanceRounded, timeRounded, paceRounded)
+    }
+    
+    //This function converts a double value for seconds into a string format for hour:minute:second
+    func secondsToClockFormat(seconds: Double) -> String {
+        let hourPlace = Int(floor(seconds * 3600) % 60)
+        let minutePlace = Int(floor(seconds * 60) % 60)
+        let secondPlace = Int(floor(seconds))
+        return String(format: "%d:%02d:%02d", hourPlace, secondPlace, minutePlace)
+    }
+    
+    //This function converts a double value for minutes into a string format minute:second
+    func minutesToClockFormat(minutes: Double) -> String {
+        var infinity = Double.infinity
+        let minutePlace: Int!
+        let secondPlace: Int!
+        if minutes == infinity {
+            print("Its infinity")
+            minutePlace = 0
+            secondPlace = 0
+        } else {
+            minutePlace = Int(floor(minutes))
+            secondPlace = Int(floor(minutes * 60) % 60)
+        }
+        return String(format: "%02d:%02d", minutePlace, secondPlace)
     }
     
     
@@ -198,9 +225,10 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         mapView.addOverlay(polyline())
         time = time + 1
         let (d, t, p) = self.convertUnits(distance, time: time)
-        distanceLabel.text = "Distance: \(d) miles"
-        timeLabel.text = "Time: \(t)  mins"
-        averagePaceLabel.text = "Pace: \(p) minutes per mile"
+        var y = Double(round(100*d)/100)
+        distanceLabel.text = "Distance: \(y) miles"
+        timeLabel.text = "Time: \(t)"
+        averagePaceLabel.text = "Pace: \(p) min / mile"
     }
 
 }

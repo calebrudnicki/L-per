@@ -23,8 +23,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     var locationManager = CLLocationManager()
     var distance: Double!
-    var time: Double!
-    var pace: Double!
+    var time: String!
+    var pace: String!
     var locations: [CLLocation]!
     
     

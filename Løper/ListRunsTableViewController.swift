@@ -14,8 +14,8 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
 //MARK: Variables
 
     var distance: Double!
-    var time: Double!
-    var pace: Double!
+    var time: String!
+    var pace: String!
     var locations: [CLLocation]!
     let section = ["Run 1"]
     var items = [String]!()
