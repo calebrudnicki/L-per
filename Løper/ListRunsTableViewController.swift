@@ -17,21 +17,16 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
     var time: Double!
     var pace: Double!
     var locations: [CLLocation]!
-    var runs : [(Double,Double,Double,[CLLocation])] {
-        get {
-            return [
-                (distance, time, pace, locations)
-            ]
-            
-        }
-    }
-  
+    let section = ["Run 1"]
+    var items = [String]!()
+
     
 //MARK: Boilerplate Functions
     
     //This functions prints out the value for the variables distance, time, pace, and locations as long as they are not nil
     override func viewDidLoad() {
         super.viewDidLoad()
+        items = ["\(distance) miles", "\(time) minutes", "\(pace) min per mile"]
         if distance != nil {
             print("\(distance) miles")
         }
@@ -61,20 +56,25 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
     
 //MARK: Table View Functions
     
+    //This function sets the title for each section
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.section[section]
+    }
+    
     //This function sets the number of sections in each cell
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return self.section.count
     }
 
     //This function sets the number of cells in the table view
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return runs.count
+        return self.items.count
     }
 
     //This function sets each cell to a object from each respective place in the array
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cellIdentifier", forIndexPath: indexPath)
-        cell.textLabel?.text = String(runs[indexPath.row])
+        cell.textLabel?.text = self.items[indexPath.row]
         return cell
     }
     
