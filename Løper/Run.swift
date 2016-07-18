@@ -17,6 +17,7 @@ class Run: CLLocationManager {
     var time: String!
     var pace: String!
     var locations: [CLLocation]!
+    static var runArray: [Run]! = []
     
     
 //MARK: Initializers
@@ -26,6 +27,25 @@ class Run: CLLocationManager {
         self.time = time
         self.pace = pace
         self.locations = locations
+    }
+    
+    
+//MARK: Get Functions
+    
+    func getDistance() -> Double {
+        return distance
+    }
+    
+    func getTime() -> String {
+        return time
+    }
+
+    func getPace() -> String {
+        return pace
+    }
+    
+    func getLocations() -> [CLLocation] {
+        return locations
     }
     
 }

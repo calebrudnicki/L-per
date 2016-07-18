@@ -22,10 +22,6 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
 //MARK: Variables
     
     var locationManager = CLLocationManager()
-    var distance: Double!
-    var time: String!
-    var pace: String!
-    var locations: [CLLocation]!
     
     
 //MARK: Boilerplate Functions
@@ -115,10 +111,6 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         if let identifier = segue.identifier {
             if identifier == "seeListSegue" {
                 let listRunsTableViewController = segue.destinationViewController as! ListRunsTableViewController
-                listRunsTableViewController.distance = distance
-                listRunsTableViewController.time = time
-                listRunsTableViewController.pace = pace
-                listRunsTableViewController.locations = locations
             } else if identifier == "startRunSegue" {
                 let runTrackerViewController = segue.destinationViewController as! RunTrackerViewController
             }

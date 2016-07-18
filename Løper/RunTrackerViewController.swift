@@ -43,7 +43,6 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     var finalTime: String!
     var finalPace: String!
     var run: Run!
-    var runArray: [Run]! = []
     
 
 //MARK: Boilerplate Functions
@@ -105,14 +104,9 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     
     //This function converts a double value for minutes into a string format minute:second
     func minutesToClockFormat(minutes: Double) -> String {
-        var infinity = Double.infinity
-        let minutePlace: Int!
-        let secondPlace: Int!
-        if minutes == infinity {
-            print("Its infinity")
-            minutePlace = 0
-            secondPlace = 0
-        } else {
+        var minutePlace: Int! = 0
+        var secondPlace: Int! = 0
+        if minutes != Double.infinity {
             minutePlace = Int(floor(minutes))
             secondPlace = Int(floor(minutes * 60) % 60)
         }
@@ -131,6 +125,8 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         finalTime = t
         finalPace = p
         let run = Run(distance: finalDistance, time: finalTime, pace: finalPace, locations: locations)
+        Run.runArray.append(run)
+        //print(Run.runArray.count)
         stopRunAlert()
     }
     
@@ -158,10 +154,6 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         if let identifier = segue.identifier {
             if identifier == "exitSegue" {
                 let homeViewController = segue.destinationViewController as! HomeViewController
-                homeViewController.distance = finalDistance
-                homeViewController.time = finalTime
-                homeViewController.pace = finalPace
-                homeViewController.locations = locations
             }
         }
     }
