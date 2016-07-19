@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import HealthKit
+import CoreData
 
 class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
@@ -19,6 +20,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var averagePaceLabel: UILabel!
+    @IBOutlet weak var navigationBar: UINavigationItem!
     
     
 //MARK: Variables
@@ -38,6 +40,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         locationManager.distanceFilter = 10.0
         return locationManager
     }()
+    
     //Variables used to pass the data to the other ViewControllers
     var finalDistance: Double!
     var finalTime: String!
@@ -70,14 +73,10 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
 
 //MARK: Style Settings
     
-    //This function sets the status bar to white
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
-    }
-    
     //This function changes the preset properties for the map
     func viewControllerLayoutChanges() {
         mapView.tintColor = UIColor(red: 0.44, green: 0.62, blue: 0.80, alpha: 1.0)
+        navigationBar.hidesBackButton = true
     }
     
     
@@ -116,18 +115,13 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     
 //MARK: Actions
     
-    //This function that runs when the stop button is tapped stops locating the user, stops the timer, and creates an instance of a Run using the convertUnits function before calling the stopRunAlert function
+    //This function that runs when the stop button is tapped stops locating the user, stops the timer, and calls the saveRun function before calling the stopRunAlert function
     @IBAction func stopRunButtonTapped(sender: AnyObject) {
         userLocationManager.stopUpdatingLocation()
         timer.invalidate()
-        let (d, t, p) = self.convertUnits(distance, time: time)
-        finalDistance = d
-        finalTime = t
-        finalPace = p
-        let run = Run(distance: finalDistance, time: finalTime, pace: finalPace, locations: locations)
-        Run.runArray.append(run)
-        //print(Run.runArray.count)
+        saveRun()
         stopRunAlert()
+
     }
     
 
@@ -157,6 +151,37 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
             }
         }
     }
+    
+    
+//MARK: CoreData Functions
+    
+    //This function saves a run object (newRun) and a locations object (savedLocations) to Core Data
+    func saveRun() {
+        let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        let (d, t, p) = self.convertUnits(distance, time: time)
+        finalDistance = d
+        finalTime = t
+        finalPace = p
+        let newRun = NSEntityDescription.insertNewObjectForEntityForName("Run",inManagedObjectContext: managedObjectContext) as! Run
+        newRun.pace = finalPace
+        newRun.distance = finalDistance
+        newRun.time = finalTime
+        var savedLocations = [Location]()
+        for location in locations {
+            let savedLocation = NSEntityDescription.insertNewObjectForEntityForName("Location",inManagedObjectContext: managedObjectContext) as! Location
+            savedLocation.latitude = location.coordinate.latitude
+            savedLocation.longitude = location.coordinate.longitude
+            savedLocations.append(savedLocation)
+        }
+        newRun.locations = NSOrderedSet(array: savedLocations)
+        run = newRun
+        do {
+            try managedObjectContext.save()
+        }
+        catch let error as NSError {
+            print("\(error) and info \(error.userInfo)")
+        }
+    }
 
 
 //MARK: Location Functionalities
@@ -174,12 +199,10 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         mapView.setRegion(coordinateRegion, animated: false)
         
         for location in locations {
-            if location.horizontalAccuracy < 20 {
-                if self.locations.count > 0 {
-                    distance = distance + location.distanceFromLocation(self.locations.last!)
-                }
-                self.locations.append(location)
+            if self.locations.count > 0 {
+                distance = distance + location.distanceFromLocation(self.locations.last!)
             }
+            self.locations.append(location)
         }
     }
     
@@ -193,11 +216,11 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         for location in locations {
             coords.append(CLLocationCoordinate2D(latitude: location.coordinate.latitude,
                 longitude:location.coordinate.longitude))
-        }
+        }        
         return MKPolyline(coordinates: &coords, count: locations.count)
     }
 
-    //This function draws the line for the path of the run
+    // This function draws the line for the path of the run
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         if !overlay.isKindOfClass(MKPolyline) {
             return MKPolylineRenderer()
@@ -214,10 +237,10 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     
     //This functions adds to the seconds variable while it updates all of the labels on the screen
     func eachSecond(timer: NSTimer) {
-        mapView.addOverlay(polyline())
+        mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveLabels)
         time = time + 1
         let (d, t, p) = self.convertUnits(distance, time: time)
-        var y = Double(round(100*d)/100)
+        let y = Double(round(100*d)/100)
         distanceLabel.text = "Distance: \(y) miles"
         timeLabel.text = "Time: \(t)"
         averagePaceLabel.text = "Pace: \(p) min / mile"

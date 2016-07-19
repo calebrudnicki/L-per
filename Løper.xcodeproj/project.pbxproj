@@ -8,8 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		820132781D36E15A003B1C2C /* ListRunsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820132771D36E15A003B1C2C /* ListRunsTableViewController.swift */; };
-		820132821D3828BF003B1C2C /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820132811D3828BF003B1C2C /* Run.swift */; };
 		821067041D3D249D00694447 /* RunDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821067031D3D249D00694447 /* RunDataCell.swift */; };
+		821067061D3D489300694447 /* RunDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821067051D3D489300694447 /* RunDataViewController.swift */; };
+		821067091D3D562600694447 /* Løper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 821067071D3D562600694447 /* Løper.xcdatamodeld */; };
+		8210670E1D3D591D00694447 /* Run+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210670A1D3D591D00694447 /* Run+CoreDataProperties.swift */; };
+		8210670F1D3D591D00694447 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210670B1D3D591D00694447 /* Run.swift */; };
+		821067101D3D591D00694447 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210670C1D3D591D00694447 /* Location+CoreDataProperties.swift */; };
+		821067111D3D591D00694447 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210670D1D3D591D00694447 /* Location.swift */; };
 		8284C9AF1D34290000A08EEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284C9AE1D34290000A08EEF /* AppDelegate.swift */; };
 		8284C9B41D34290000A08EEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8284C9B21D34290000A08EEF /* Main.storyboard */; };
 		8284C9B61D34290000A08EEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8284C9B51D34290000A08EEF /* Assets.xcassets */; };
@@ -20,8 +25,13 @@
 
 /* Begin PBXFileReference section */
 		820132771D36E15A003B1C2C /* ListRunsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRunsTableViewController.swift; sourceTree = "<group>"; };
-		820132811D3828BF003B1C2C /* Run.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
 		821067031D3D249D00694447 /* RunDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunDataCell.swift; sourceTree = "<group>"; };
+		821067051D3D489300694447 /* RunDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunDataViewController.swift; sourceTree = "<group>"; };
+		821067081D3D562600694447 /* Løper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Løper.xcdatamodel"; sourceTree = "<group>"; };
+		8210670A1D3D591D00694447 /* Run+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Run+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8210670B1D3D591D00694447 /* Run.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
+		8210670C1D3D591D00694447 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8210670D1D3D591D00694447 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		8284C9AB1D34290000A08EEF /* Løper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Løper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8284C9AE1D34290000A08EEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8284C9B31D34290000A08EEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -43,6 +53,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		821067121D3D5B3500694447 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8210670A1D3D591D00694447 /* Run+CoreDataProperties.swift */,
+				8210670B1D3D591D00694447 /* Run.swift */,
+				8210670C1D3D591D00694447 /* Location+CoreDataProperties.swift */,
+				8210670D1D3D591D00694447 /* Location.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		8284C9A21D34290000A08EEF = {
 			isa = PBXGroup;
 			children = (
@@ -62,11 +83,13 @@
 		8284C9AD1D34290000A08EEF /* Løper */ = {
 			isa = PBXGroup;
 			children = (
+				821067121D3D5B3500694447 /* Models */,
+				821067071D3D562600694447 /* Løper.xcdatamodeld */,
 				8284C9AE1D34290000A08EEF /* AppDelegate.swift */,
-				820132811D3828BF003B1C2C /* Run.swift */,
 				8284C9C01D342AF500A08EEF /* HomeViewController.swift */,
 				8284C9C21D358DE600A08EEF /* RunTrackerViewController.swift */,
 				820132771D36E15A003B1C2C /* ListRunsTableViewController.swift */,
+				821067051D3D489300694447 /* RunDataViewController.swift */,
 				821067031D3D249D00694447 /* RunDataCell.swift */,
 				8284C9B21D34290000A08EEF /* Main.storyboard */,
 				8284C9B51D34290000A08EEF /* Assets.xcassets */,
@@ -154,10 +177,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8284C9AF1D34290000A08EEF /* AppDelegate.swift in Sources */,
+				821067061D3D489300694447 /* RunDataViewController.swift in Sources */,
+				821067101D3D591D00694447 /* Location+CoreDataProperties.swift in Sources */,
 				820132781D36E15A003B1C2C /* ListRunsTableViewController.swift in Sources */,
+				8210670F1D3D591D00694447 /* Run.swift in Sources */,
+				821067091D3D562600694447 /* Løper.xcdatamodeld in Sources */,
 				8284C9C11D342AF500A08EEF /* HomeViewController.swift in Sources */,
 				821067041D3D249D00694447 /* RunDataCell.swift in Sources */,
-				820132821D3828BF003B1C2C /* Run.swift in Sources */,
+				8210670E1D3D591D00694447 /* Run+CoreDataProperties.swift in Sources */,
+				821067111D3D591D00694447 /* Location.swift in Sources */,
 				8284C9C31D358DE600A08EEF /* RunTrackerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,6 +339,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		821067071D3D562600694447 /* Løper.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				821067081D3D562600694447 /* Løper.xcdatamodel */,
+			);
+			currentVersion = 821067081D3D562600694447 /* Løper.xcdatamodel */;
+			path = "Løper.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8284C9A31D34290000A08EEF /* Project object */;
 }

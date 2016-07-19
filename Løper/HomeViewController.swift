@@ -48,11 +48,6 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
 //MARK: Style Functions
     
-    //This function sets the status bar to white
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
-    }
-    
     //This functions changes preset properties for the map and the button
     func viewControllerLayoutChanges() {
         mapView.tintColor = UIColor(red: 0.44, green: 0.62, blue: 0.80, alpha: 1.0)

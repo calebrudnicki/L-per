@@ -7,14 +7,14 @@
 //
 
 import UIKit
+import CoreData
 import MapKit
 
 class ListRunsTableViewController: UITableViewController, CLLocationManagerDelegate {
     
 //MARK: Variables
-
-    var runArray: [Run] = Run.runArray
-
+        var runs: [Run] = []
+    
     
 //MARK: Boilerplate Functions
     
@@ -26,6 +26,28 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
         super.didReceiveMemoryWarning()
     }
     
+    //This functions loads the info from Core Data after the view appears
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        loadInfo()
+    }
+    
+    
+//MARK: Core Data Functions
+    
+    //This function loads the info from Core Data and appends it to the array of Run objects called runs
+    func loadInfo() {
+        let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        let runFetch = NSFetchRequest(entityName: "Run")
+        do {
+            let fetchedRuns = try managedObjectContext.executeFetchRequest(runFetch) as! [Run]
+            for run in fetchedRuns {
+                self.runs.append(run)
+            }
+        } catch {
+            fatalError("Failed to fetch person: \(error)")
+        }
+    }
 
 //MARK: Table View Functions
     
@@ -36,15 +58,15 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
 
     //This function sets the number of cells in the table view
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.runArray.count
+        return runs.count
     }
 
-    //This function sets each cell to a object from each respective place in the array
+    //This function sets the labels of the RunDataCell to the correct data from the run array
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cellIdentifier", forIndexPath: indexPath) as! RunDataCell
-        cell.distanceLabel.text = String(self.runArray[indexPath.row].getDistance()) + "mi"
-        cell.timeLabel.text = String(self.runArray[indexPath.row].getTime())
-        cell.paceLabel.text = String(self.runArray[indexPath.row].getPace()) + "min / mi"
+        cell.distanceLabel.text = String(runs[indexPath.row].distance!) + " mi"
+        cell.timeLabel.text = String(runs[indexPath.row].time!)
+        cell.paceLabel.text = String(runs[indexPath.row].pace!) + " min / mi"
         return cell
     }
     

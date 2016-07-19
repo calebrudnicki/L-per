@@ -56,6 +56,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="løper" id="Jqs-ZA-Jet">
+                        <barButtonItem key="backBarButtonItem" title=" " id="y5m-Pa-iVW"/>
                         <barButtonItem key="leftBarButtonItem" image="runner-0" id="oGF-Ig-y5V">
                             <color key="tintColor" red="0.92549020049999997" green="0.94117647410000005" blue="0.94509804249999996" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -83,8 +84,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.086274512110000007" green="0.62745100259999997" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="separatorColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="sectionIndexColor" red="0.17254902420000001" green="0.24313725529999999" blue="0.31372550129999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="separatorColor" red="1" green="0.2666666667" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellIdentifier" rowHeight="83" id="DdE-7k-Bj2" customClass="RunDataCell" customModule="Løper" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="83"/>
@@ -99,13 +99,13 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kle-03-t7S">
                                                     <rect key="frame" x="55" y="0.0" width="72" height="31"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="0:00 min / mi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyc-CL-yYm">
                                                     <rect key="frame" x="40" y="46" width="101" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -113,7 +113,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00 mi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mye-bf-Cys">
                                             <rect key="frame" x="20" y="31" width="57" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -130,6 +130,7 @@
                                     <outlet property="distanceLabel" destination="Mye-bf-Cys" id="f5y-0j-sQw"/>
                                     <outlet property="paceLabel" destination="gyc-CL-yYm" id="ggQ-cE-dNK"/>
                                     <outlet property="timeLabel" destination="Kle-03-t7S" id="X28-aG-rk2"/>
+                                    <segue destination="kcZ-5M-7ZK" kind="show" identifier="displayRunSegue" id="8bu-7U-OpV"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -138,7 +139,9 @@
                             <outlet property="delegate" destination="HJp-DH-CHo" id="nvL-KM-2TD"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="løper" id="JhX-wC-81v"/>
+                    <navigationItem key="navigationItem" title="løper" id="JhX-wC-81v">
+                        <barButtonItem key="backBarButtonItem" title=" " id="KnU-cQ-tU3"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="oPO-fp-hvs" kind="unwind" identifier="exitSegue" unwindAction="unwindToHomeViewController:" id="tzA-Xi-JH8"/>
                     </connections>
@@ -160,62 +163,68 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UCC-Of-chg">
-                                <rect key="frame" x="0.0" y="64" width="600" height="338"/>
-                            </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PNf-VB-z4g">
-                                <rect key="frame" x="150" y="468" width="300" height="48"/>
-                                <color key="backgroundColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UCC-Of-chg">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="337"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="x0y-ml-CtG"/>
+                                    <constraint firstAttribute="height" constant="337" id="hWf-ci-Rpd"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="22"/>
-                                <state key="normal" title="Stop Run">
-                                    <color key="titleColor" red="0.92549020049999997" green="0.94117647410000005" blue="0.94509804249999996" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
-                                        <integer key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="stopRunButtonTapped:" destination="eWl-Ps-11e" eventType="touchUpInside" id="1Ap-dg-Uir"/>
-                                </connections>
-                            </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="bVF-Sy-nzT">
-                                <rect key="frame" x="255" y="426" width="90" height="89"/>
+                            </mapView>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bVF-Sy-nzT">
+                                <rect key="frame" x="149" y="357" width="301" height="159"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Distance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ui2-Qm-Xvg">
-                                        <rect key="frame" x="17" y="0.0" width="56" height="28"/>
+                                        <rect key="frame" x="123" y="0.0" width="56" height="26"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                         <color key="textColor" red="0.92549020049999997" green="0.94117647410000005" blue="0.94509804249999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2JM-3g-p59">
-                                        <rect key="frame" x="29" y="31" width="31" height="28"/>
+                                        <rect key="frame" x="135" y="36" width="31" height="28"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                         <color key="textColor" red="0.92549020049999997" green="0.94117647410000005" blue="0.94509804249999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Average Pace" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="niG-3d-jqa">
-                                        <rect key="frame" x="0.0" y="61" width="90" height="28"/>
+                                        <rect key="frame" x="106" y="74" width="90" height="28"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                         <color key="textColor" red="0.92549020049999997" green="0.94117647410000005" blue="0.94509804249999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PNf-VB-z4g">
+                                        <rect key="frame" x="0.0" y="111" width="301" height="48"/>
+                                        <color key="backgroundColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="x0y-ml-CtG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="22"/>
+                                        <state key="normal" title="Stop Run">
+                                            <color key="titleColor" red="0.92549020049999997" green="0.94117647410000005" blue="0.94509804249999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="stopRunButtonTapped:" destination="eWl-Ps-11e" eventType="touchUpInside" id="1Ap-dg-Uir"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="PNf-VB-z4g" firstAttribute="width" secondItem="bVF-Sy-nzT" secondAttribute="width" id="TO0-wQ-050"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.2666666667" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="PNf-VB-z4g" firstAttribute="top" secondItem="bVF-Sy-nzT" secondAttribute="bottom" constant="23" id="0Rb-S1-aU8"/>
-                            <constraint firstItem="PNf-VB-z4g" firstAttribute="width" secondItem="M5K-78-xAQ" secondAttribute="width" multiplier="0.5" id="9Dc-Wc-QEH"/>
-                            <constraint firstItem="PNf-VB-z4g" firstAttribute="centerX" secondItem="M5K-78-xAQ" secondAttribute="centerX" id="FYb-Tc-Jdq"/>
-                            <constraint firstItem="bVF-Sy-nzT" firstAttribute="centerX" secondItem="M5K-78-xAQ" secondAttribute="centerX" id="ZS0-AH-Mhk"/>
-                            <constraint firstItem="UCC-Of-chg" firstAttribute="top" secondItem="0uF-QP-0hL" secondAttribute="bottom" id="aA2-y7-qrV"/>
-                            <constraint firstItem="PRY-aw-AJK" firstAttribute="top" secondItem="PNf-VB-z4g" secondAttribute="bottom" constant="20" id="f94-ou-aYD"/>
-                            <constraint firstItem="UCC-Of-chg" firstAttribute="centerX" secondItem="M5K-78-xAQ" secondAttribute="centerX" id="qsj-Oi-bVo"/>
-                            <constraint firstItem="bVF-Sy-nzT" firstAttribute="top" secondItem="UCC-Of-chg" secondAttribute="bottom" constant="24" id="ulN-LQ-mOX"/>
+                            <constraint firstAttribute="trailing" secondItem="UCC-Of-chg" secondAttribute="trailing" id="FdP-Iv-mf6"/>
+                            <constraint firstItem="UCC-Of-chg" firstAttribute="top" secondItem="0uF-QP-0hL" secondAttribute="bottom" id="JZv-zA-mhn"/>
+                            <constraint firstItem="PRY-aw-AJK" firstAttribute="top" secondItem="bVF-Sy-nzT" secondAttribute="bottom" constant="20" id="dS3-YX-RcZ"/>
+                            <constraint firstItem="bVF-Sy-nzT" firstAttribute="width" secondItem="M5K-78-xAQ" secondAttribute="width" multiplier="0.5" constant="1" id="dpv-cK-1EC"/>
+                            <constraint firstItem="UCC-Of-chg" firstAttribute="centerX" secondItem="M5K-78-xAQ" secondAttribute="centerX" id="hFi-Mn-eUr"/>
+                            <constraint firstItem="bVF-Sy-nzT" firstAttribute="centerX" secondItem="M5K-78-xAQ" secondAttribute="centerX" id="uaj-u7-H5F"/>
+                            <constraint firstItem="bVF-Sy-nzT" firstAttribute="top" secondItem="UCC-Of-chg" secondAttribute="bottom" constant="20" id="vf2-ba-m86"/>
+                            <constraint firstItem="UCC-Of-chg" firstAttribute="leading" secondItem="M5K-78-xAQ" secondAttribute="leading" id="vuU-NK-685"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="løper" id="bHu-08-FZK"/>
@@ -223,6 +232,7 @@
                         <outlet property="averagePaceLabel" destination="niG-3d-jqa" id="bbH-Sv-QA0"/>
                         <outlet property="distanceLabel" destination="ui2-Qm-Xvg" id="Q0v-Q6-wv9"/>
                         <outlet property="mapView" destination="UCC-Of-chg" id="1aQ-vk-XB4"/>
+                        <outlet property="navigationBar" destination="bHu-08-FZK" id="OXj-pb-WED"/>
                         <outlet property="timeLabel" destination="2JM-3g-p59" id="3kq-WR-ExV"/>
                         <segue destination="axB-8V-l3a" kind="unwind" identifier="exitSegue" unwindAction="unwindToHomeViewController:" id="V2t-gY-6M6"/>
                     </connections>
@@ -232,19 +242,65 @@
             </objects>
             <point key="canvasLocation" x="1592" y="89"/>
         </scene>
-        <!--RunInformationViewController-->
+        <!--RunDataViewController-->
         <scene sceneID="6U6-7o-ma9">
             <objects>
-                <viewController title="RunInformationViewController" id="kcZ-5M-7ZK" sceneMemberID="viewController">
+                <viewController title="RunDataViewController" id="kcZ-5M-7ZK" customClass="RunDataViewController" customModule="Løper" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PpY-yI-UZb"/>
                         <viewControllerLayoutGuide type="bottom" id="Fcl-6U-l15"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NLj-ku-d6g">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="0.2666666667" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BnQ-Fw-XQ5">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="337"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="337" id="vLG-Ks-FNH"/>
+                                </constraints>
+                            </mapView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5Sr-Lt-Gnv">
+                                <rect key="frame" x="279" y="357" width="42" height="159"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bn7-GA-NIg">
+                                        <rect key="frame" x="0.0" y="0.0" width="42" height="78"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sL-qb-TRd">
+                                        <rect key="frame" x="0.0" y="98" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBB-4Y-Gql">
+                                        <rect key="frame" x="0.0" y="139" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92549020049999997" green="0.94117647410000005" blue="0.94509804249999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="BnQ-Fw-XQ5" firstAttribute="centerX" secondItem="NLj-ku-d6g" secondAttribute="centerX" id="8d6-h4-jgH"/>
+                            <constraint firstItem="BnQ-Fw-XQ5" firstAttribute="top" secondItem="PpY-yI-UZb" secondAttribute="bottom" id="LVn-Zs-3wN"/>
+                            <constraint firstItem="5Sr-Lt-Gnv" firstAttribute="centerX" secondItem="NLj-ku-d6g" secondAttribute="centerX" id="O3I-Eq-J29"/>
+                            <constraint firstItem="5Sr-Lt-Gnv" firstAttribute="top" secondItem="BnQ-Fw-XQ5" secondAttribute="bottom" constant="20" id="csB-ij-1Fq"/>
+                            <constraint firstAttribute="trailing" secondItem="BnQ-Fw-XQ5" secondAttribute="trailing" id="hKV-Me-gsj"/>
+                            <constraint firstItem="Fcl-6U-l15" firstAttribute="top" secondItem="5Sr-Lt-Gnv" secondAttribute="bottom" constant="20" id="hOY-md-eXt"/>
+                            <constraint firstItem="BnQ-Fw-XQ5" firstAttribute="leading" secondItem="NLj-ku-d6g" secondAttribute="leading" id="o5g-R0-0bI"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="løper" id="HFx-y4-ibb"/>
+                    <connections>
+                        <outlet property="distanceLabel" destination="Bn7-GA-NIg" id="MrN-ux-f9X"/>
+                        <outlet property="paceLabel" destination="LBB-4Y-Gql" id="lbU-y3-ES9"/>
+                        <outlet property="timeLabel" destination="1sL-qb-TRd" id="heI-BB-EHX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tjH-O8-T34" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationBar contentMode="scaleToFill" translucent="NO" id="heQ-eI-4o7">
@@ -267,9 +323,10 @@
             <objects>
                 <navigationController title="NavigationBarController" automaticallyAdjustsScrollViewInsets="NO" id="7go-yZ-7kt" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="n4V-3e-3sp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="n4V-3e-3sp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.92549020049999997" green="0.94117647410000005" blue="0.94509804249999996" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" red="1" green="0.2666666667" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="28"/>
@@ -277,10 +334,6 @@
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="4gT-rC-L8V">
-                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
                     <connections>
                         <segue destination="SLS-Xv-c4M" kind="relationship" relationship="rootViewController" id="dCY-u9-ydS"/>
                     </connections>

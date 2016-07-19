@@ -1,5 +1,5 @@
 //
-//  Run.swift
+//  Location.swift
 //  Løper
 //
 //  Created by Caleb Rudnicki on 7/18/16.
@@ -7,8 +7,11 @@
 //
 
 import Foundation
+import MapKit
 import CoreData
 
-class Run: NSManagedObject {
+
+
+class Location: NSManagedObject {
 
 }
