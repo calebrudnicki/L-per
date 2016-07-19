@@ -13,6 +13,7 @@ import MapKit
 class ListRunsTableViewController: UITableViewController, CLLocationManagerDelegate {
     
 //MARK: Variables
+    
         var runs: [Run] = []
     
     
@@ -29,14 +30,14 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
     //This functions loads the info from Core Data after the view appears
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        loadInfo()
+        loadFromCoreData()
     }
     
     
 //MARK: Core Data Functions
     
-    //This function loads the info from Core Data and appends it to the array of Run objects called runs
-    func loadInfo() {
+    //This function loads the runs from Core Data and appends it to the array of Run objects called runs
+    func loadFromCoreData() {
         let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
         let runFetch = NSFetchRequest(entityName: "Run")
         do {
@@ -44,11 +45,41 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
             for run in fetchedRuns {
                 self.runs.append(run)
             }
-        } catch {
-            fatalError("Failed to fetch person: \(error)")
+        } catch let error as NSError {
+            fatalError("Failed to fetch run: \(error)")
+        }
+    }
+    
+    //This function deletes a specific run from Core Data
+    func deleteFromCoreData(indexPath: NSIndexPath) {
+//        print("Trying to delete")
+//        print("index path is \(tableView.indexPathForSelectedRow?.row)")
+//        print("index path is \(indexPath.row)")
+        let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        let previousRun = runs[indexPath.row]
+        managedObjectContext.deleteObject(previousRun)
+        do {
+            try managedObjectContext.save()
+            print("Deleted from Core Data")
+        } catch let error as NSError {
+            fatalError("Failed to delete run: \(error)")
+        }
+    }
+    
+    
+//MARK: Segues
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            if identifier == "displayRunSegue" {
+                let runDataViewController = segue.destinationViewController as! RunDataViewController
+                let selectedRun = runs[(tableView.indexPathForSelectedRow?.row)!]
+                runDataViewController.run = selectedRun
+            }
         }
     }
 
+    
 //MARK: Table View Functions
     
     //This function sets the number of sections in each cell
@@ -68,6 +99,15 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
         cell.timeLabel.text = String(runs[indexPath.row].time!)
         cell.paceLabel.text = String(runs[indexPath.row].pace!) + " min / mi"
         return cell
+    }
+    
+    //This function allows the user to delete a run from the table view
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            self.deleteFromCoreData(indexPath)
+            runs.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
     }
     
 }

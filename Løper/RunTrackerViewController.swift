@@ -241,9 +241,9 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         time = time + 1
         let (d, t, p) = self.convertUnits(distance, time: time)
         let y = Double(round(100*d)/100)
-        distanceLabel.text = "Distance: \(y) miles"
-        timeLabel.text = "Time: \(t)"
-        averagePaceLabel.text = "Pace: \(p) min / mile"
+        distanceLabel.text = "\(y) mi"
+        timeLabel.text = "\(t)"
+        averagePaceLabel.text = "\(p) min / mile"
     }
 
 }
