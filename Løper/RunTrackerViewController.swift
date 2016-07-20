@@ -11,6 +11,7 @@ import MapKit
 import CoreLocation
 import HealthKit
 import CoreData
+import AudioToolbox
 
 class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
@@ -21,6 +22,10 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var averagePaceLabel: UILabel!
     @IBOutlet weak var navigationBar: UINavigationItem!
+    @IBOutlet weak var stopRunButton: UIButton!
+    //////////////
+    @IBOutlet weak var testLabel: UILabel!
+    //////////////
     
     
 //MARK: Variables
@@ -40,7 +45,6 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         locationManager.distanceFilter = 10.0
         return locationManager
     }()
-    
     //Variables used to pass the data to the other ViewControllers
     var finalDistance: Double!
     var finalTime: String!
@@ -71,12 +75,16 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     }
     
 
-//MARK: Style Settings
+//MARK: Style Functions
     
     //This function changes the preset properties for the map
     func viewControllerLayoutChanges() {
         mapView.tintColor = UIColor(red: 0.44, green: 0.62, blue: 0.80, alpha: 1.0)
         navigationBar.hidesBackButton = true
+        stopRunButton.layer.shadowColor = UIColor(red: 0.255, green: 0.68, blue: 0.85, alpha: 1.0).CGColor
+        stopRunButton.layer.shadowOffset = CGSizeMake(5, 5)
+        stopRunButton.layer.shadowRadius = 5
+        stopRunButton.layer.shadowOpacity = 1.0
     }
     
     
@@ -119,21 +127,22 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     @IBAction func stopRunButtonTapped(sender: AnyObject) {
         userLocationManager.stopUpdatingLocation()
         timer.invalidate()
-        saveRun()
+        saveRunToCoreData()
         stopRunAlert()
-
     }
     
 
 //MARK: Alerts
     
-    //This function alerts the user to make sure he or she is done with the run
+    //This function either segues back to the HomeViewController if the user says Yes or continues the run tracker if the user says No
     func stopRunAlert() {
         let alertController = UIAlertController(title: nil, message: "Are you are sure you're done with your run?", preferredStyle: .ActionSheet)
         let yesAction = UIAlertAction(title: "Yes, I'm done", style: .Default) { (action) in
             self.performSegueWithIdentifier("exitSegue", sender: self)
         }
-        let noAction = UIAlertAction(title: "No", style: .Cancel, handler: nil)
+        let noAction = UIAlertAction(title: "No", style: .Cancel) { (action) in
+            self.viewDidLoad()
+        }
         alertController.addAction(yesAction)
         alertController.addAction(noAction)
         alertController.view.tintColor = UIColor(red: 0.44, green: 0.62, blue: 0.80, alpha: 1.0)
@@ -156,7 +165,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
 //MARK: CoreData Functions
     
     //This function saves a run object (newRun) and a locations object (savedLocations) to Core Data
-    func saveRun() {
+    func saveRunToCoreData() {
         let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
         let (d, t, p) = self.convertUnits(distance, time: time)
         finalDistance = d
@@ -184,7 +193,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     }
 
 
-//MARK: Location Functionalities
+//MARK: Location Functions
     
     //This function finds the user's location
     func startLocationUpdates() {
@@ -199,9 +208,15 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         mapView.setRegion(coordinateRegion, animated: false)
         
         for location in locations {
-            if self.locations.count > 0 {
-                distance = distance + location.distanceFromLocation(self.locations.last!)
-            }
+            //if location.horizontalAccuracy < 20 {
+                if self.locations.count > 0 {
+                    //////////////////
+                    self.testLabel.text = String(location.horizontalAccuracy)
+                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                    //////////////////
+                    distance = distance + location.distanceFromLocation(self.locations.last!)
+                }
+            //}
             self.locations.append(location)
         }
     }

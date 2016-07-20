@@ -15,7 +15,7 @@ class RunDataCell: UITableViewCell {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var paceLabel: UILabel!
-    
+
     
 //MARK: Boilerplate Functions
     

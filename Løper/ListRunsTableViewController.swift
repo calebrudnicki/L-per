@@ -52,15 +52,11 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
     
     //This function deletes a specific run from Core Data
     func deleteFromCoreData(indexPath: NSIndexPath) {
-//        print("Trying to delete")
-//        print("index path is \(tableView.indexPathForSelectedRow?.row)")
-//        print("index path is \(indexPath.row)")
         let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
         let previousRun = runs[indexPath.row]
         managedObjectContext.deleteObject(previousRun)
         do {
             try managedObjectContext.save()
-            print("Deleted from Core Data")
         } catch let error as NSError {
             fatalError("Failed to delete run: \(error)")
         }
@@ -69,6 +65,7 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
     
 //MARK: Segues
     
+    //This function allows the run object selected in the table view to pass its data through to the RunDataViewController
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             if identifier == "displayRunSegue" {
@@ -101,7 +98,7 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
         return cell
     }
     
-    //This function allows the user to delete a run from the table view
+    //This function allows the user to delete a run from the table view and also from Core Data
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             self.deleteFromCoreData(indexPath)

@@ -97,22 +97,22 @@
                                             <rect key="frame" x="210" y="8" width="180" height="66"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kle-03-t7S">
-                                                    <rect key="frame" x="55" y="0.0" width="72" height="31"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="52" y="0.0" width="77" height="24"/>
+                                                    <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                                     <color key="textColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="0:00 min / mi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyc-CL-yYm">
-                                                    <rect key="frame" x="40" y="46" width="101" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="42" y="39" width="97" height="28"/>
+                                                    <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                                     <color key="textColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </stackView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00 mi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mye-bf-Cys">
-                                            <rect key="frame" x="20" y="31" width="57" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <rect key="frame" x="20" y="26" width="75.5" height="32"/>
+                                            <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
                                             <color key="textColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -166,7 +166,7 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UCC-Of-chg">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="268"/>
                             </mapView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ui2-Qm-Xvg">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0 mi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ui2-Qm-Xvg">
                                 <rect key="frame" x="0.0" y="8" width="600" height="42"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="26"/>
                                 <color key="textColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -272,6 +272,8 @@
                         <outlet property="distanceLabel" destination="ui2-Qm-Xvg" id="Q0v-Q6-wv9"/>
                         <outlet property="mapView" destination="UCC-Of-chg" id="1aQ-vk-XB4"/>
                         <outlet property="navigationBar" destination="bHu-08-FZK" id="OXj-pb-WED"/>
+                        <outlet property="stopRunButton" destination="PNf-VB-z4g" id="1sR-Pp-hAZ"/>
+                        <outlet property="testLabel" destination="6kB-vo-22X" id="cN4-Zp-daI"/>
                         <outlet property="timeLabel" destination="2JM-3g-p59" id="3kq-WR-ExV"/>
                         <segue destination="axB-8V-l3a" kind="unwind" identifier="exitSegue" unwindAction="unwindToHomeViewController:" id="V2t-gY-6M6"/>
                     </connections>
@@ -279,7 +281,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8iQ-9w-V3L" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="axB-8V-l3a" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1892" y="57"/>
+            <point key="canvasLocation" x="1592" y="89"/>
         </scene>
         <!--RunDataViewController-->
         <scene sceneID="6U6-7o-ma9">
@@ -337,6 +339,7 @@
                     <navigationItem key="navigationItem" title="løper" id="HFx-y4-ibb"/>
                     <connections>
                         <outlet property="distanceLabel" destination="Bn7-GA-NIg" id="MrN-ux-f9X"/>
+                        <outlet property="mapView" destination="BnQ-Fw-XQ5" id="iN1-ty-nPA"/>
                         <outlet property="paceLabel" destination="LBB-4Y-Gql" id="lbU-y3-ES9"/>
                         <outlet property="timeLabel" destination="1sL-qb-TRd" id="heI-BB-EHX"/>
                     </connections>
