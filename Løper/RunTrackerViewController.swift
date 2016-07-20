@@ -25,6 +25,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     @IBOutlet weak var stopRunButton: UIButton!
     //////////////
     @IBOutlet weak var testLabel: UILabel!
+    @IBOutlet weak var testLabel2: UILabel!
     //////////////
     
     
@@ -46,9 +47,9 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         return locationManager
     }()
     //Variables used to pass the data to the other ViewControllers
-    var finalDistance: Double!
-    var finalTime: String!
-    var finalPace: String!
+    var finalDistance: Double! = 0.0
+    var finalTime: String! = "00:00:00"
+    var finalPace: String! = "0:00 min / mi"
     var run: Run!
     
 
@@ -79,7 +80,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     
     //This function changes the preset properties for the map
     func viewControllerLayoutChanges() {
-        mapView.tintColor = UIColor(red: 0.44, green: 0.62, blue: 0.80, alpha: 1.0)
+        mapView.tintColor = UIColor(red: 0.59, green: 0.59, blue: 0.59, alpha: 1.0)
         navigationBar.hidesBackButton = true
         stopRunButton.layer.shadowColor = UIColor(red: 0.255, green: 0.68, blue: 0.85, alpha: 1.0).CGColor
         stopRunButton.layer.shadowOffset = CGSizeMake(5, 5)
@@ -127,7 +128,6 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     @IBAction func stopRunButtonTapped(sender: AnyObject) {
         userLocationManager.stopUpdatingLocation()
         timer.invalidate()
-        saveRunToCoreData()
         stopRunAlert()
     }
     
@@ -138,6 +138,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     func stopRunAlert() {
         let alertController = UIAlertController(title: nil, message: "Are you are sure you're done with your run?", preferredStyle: .ActionSheet)
         let yesAction = UIAlertAction(title: "Yes, I'm done", style: .Default) { (action) in
+            self.saveRunToCoreData()
             self.performSegueWithIdentifier("exitSegue", sender: self)
         }
         let noAction = UIAlertAction(title: "No", style: .Cancel) { (action) in
@@ -206,14 +207,15 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         let coord2D = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let coordinateRegion = MKCoordinateRegion(center: coord2D, span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
         mapView.setRegion(coordinateRegion, animated: false)
-        
         for location in locations {
-            //if location.horizontalAccuracy < 20 {
+            //if location.horizontalAccuracy < 30 {
                 if self.locations.count > 0 {
+                    
                     //////////////////
                     self.testLabel.text = String(location.horizontalAccuracy)
-                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                    //AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
                     //////////////////
+                    
                     distance = distance + location.distanceFromLocation(self.locations.last!)
                 }
             //}
@@ -241,8 +243,8 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
             return MKPolylineRenderer()
         }
         let polyline = overlay as! MKPolyline
-        let renderer = MKPolylineRenderer(polyline: polyline)
-        renderer.strokeColor = UIColor(red: 0.44, green: 0.62, blue: 0.80, alpha: 1.0)
+        let renderer = MKPolylineRenderer(polyline: polyline) 
+        renderer.strokeColor = UIColor(red: 0.59, green: 0.59, blue: 0.59, alpha: 1.0)
         renderer.lineWidth = 3
         return renderer
     }

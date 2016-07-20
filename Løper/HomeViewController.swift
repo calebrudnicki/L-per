@@ -50,27 +50,15 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     //This functions changes preset properties for the map and the button
     func viewControllerLayoutChanges() {
-        mapView.tintColor = UIColor(red: 0.44, green: 0.62, blue: 0.80, alpha: 1.0)
-        runButton.layer.shadowColor = UIColor(red: 0.44, green: 0.62, blue: 0.80, alpha: 1.0).CGColor
-        runButton.layer.shadowOffset = CGSizeMake(5, 5)
-        runButton.layer.shadowRadius = 5
-        runButton.layer.shadowOpacity = 1.0
+        mapView.tintColor = UIColor(red: 0.59, green: 0.59, blue: 0.59, alpha: 1.0)
     }
     
     
 //MARK: Actions
     
-    //This function for the run button activates an alert controller that either segues into the RunTrackerViewController or returns back to the home screen
+    //This function for the run button segues to the RunTrackerViewController
     @IBAction func runButtonTapped(sender: AnyObject) {
-        let alertController = UIAlertController(title: nil, message: "Are you sure you're ready to start your run? If you proceed the timer will begin.", preferredStyle: .ActionSheet)
-        let yesAction = UIAlertAction(title: "Yes, I am ready", style: .Default) { (action) in
-            self.performSegueWithIdentifier("startRunSegue", sender: self)
-        }
-        let noAction = UIAlertAction(title: "No wait, I need a minute", style: .Cancel, handler: nil)
-        alertController.addAction(yesAction)
-        alertController.addAction(noAction)
-        alertController.view.tintColor = UIColor(red: 0.44, green: 0.62, blue: 0.80, alpha: 1.0)
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.performSegueWithIdentifier("startRunSegue", sender: self)
     }
     
     //This function for the running man icon segues to the ListRunsTableViewController

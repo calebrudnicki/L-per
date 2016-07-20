@@ -21,9 +21,11 @@
 		8284C9B91D34290000A08EEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8284C9B71D34290000A08EEF /* LaunchScreen.storyboard */; };
 		8284C9C11D342AF500A08EEF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284C9C01D342AF500A08EEF /* HomeViewController.swift */; };
 		8284C9C31D358DE600A08EEF /* RunTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284C9C21D358DE600A08EEF /* RunTrackerViewController.swift */; };
+		F0B6AAA6E938E116F3649F6E /* Pods_L_per.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB44BEE256B38A0A01EBE055 /* Pods_L_per.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E806B3241EAF30B9A1944F4 /* Pods-Løper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Løper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Løper/Pods-Løper.debug.xcconfig"; sourceTree = "<group>"; };
 		820132771D36E15A003B1C2C /* ListRunsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRunsTableViewController.swift; sourceTree = "<group>"; };
 		821067031D3D249D00694447 /* RunDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunDataCell.swift; sourceTree = "<group>"; };
 		821067051D3D489300694447 /* RunDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunDataViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +42,8 @@
 		8284C9BA1D34290000A08EEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8284C9C01D342AF500A08EEF /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8284C9C21D358DE600A08EEF /* RunTrackerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunTrackerViewController.swift; sourceTree = "<group>"; };
+		CB44BEE256B38A0A01EBE055 /* Pods_L_per.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_L_per.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEC97581B2C061E153DF6306 /* Pods-Løper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Løper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Løper/Pods-Løper.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,12 +51,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0B6AAA6E938E116F3649F6E /* Pods_L_per.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A51455C7FB24BDE6E0E639A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7E806B3241EAF30B9A1944F4 /* Pods-Løper.debug.xcconfig */,
+				CEC97581B2C061E153DF6306 /* Pods-Løper.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		821067121D3D5B3500694447 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +83,8 @@
 			children = (
 				8284C9AD1D34290000A08EEF /* Løper */,
 				8284C9AC1D34290000A08EEF /* Products */,
+				1A51455C7FB24BDE6E0E639A /* Pods */,
+				89F44B51CAF1C81EEA23A349 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +115,14 @@
 			path = "Løper";
 			sourceTree = "<group>";
 		};
+		89F44B51CAF1C81EEA23A349 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CB44BEE256B38A0A01EBE055 /* Pods_L_per.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,9 +130,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8284C9BD1D34290000A08EEF /* Build configuration list for PBXNativeTarget "Løper" */;
 			buildPhases = (
+				D14820CBADE83A609CE9BC69 /* [CP] Check Pods Manifest.lock */,
 				8284C9A71D34290000A08EEF /* Sources */,
 				8284C9A81D34290000A08EEF /* Frameworks */,
 				8284C9A91D34290000A08EEF /* Resources */,
+				50AB841B26D05DD937AF3C45 /* [CP] Embed Pods Frameworks */,
+				65C4DD2807303582383B0C3A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,6 +197,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		50AB841B26D05DD937AF3C45 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Løper/Pods-Løper-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		65C4DD2807303582383B0C3A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Løper/Pods-Løper-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D14820CBADE83A609CE9BC69 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8284C9A71D34290000A08EEF /* Sources */ = {
@@ -297,6 +372,7 @@
 		};
 		8284C9BE1D34290000A08EEF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E806B3241EAF30B9A1944F4 /* Pods-Løper.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Løper/Info.plist";
@@ -308,6 +384,7 @@
 		};
 		8284C9BF1D34290000A08EEF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEC97581B2C061E153DF6306 /* Pods-Løper.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Løper/Info.plist";
