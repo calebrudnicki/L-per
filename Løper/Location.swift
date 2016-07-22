@@ -10,8 +10,6 @@ import Foundation
 import MapKit
 import CoreData
 
-
-
 class Location: NSManagedObject {
 
 }

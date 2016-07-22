@@ -13,8 +13,7 @@ class RunDataCell: UITableViewCell {
 //MARK: Outlets
     
     @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var paceLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
 
     
 //MARK: Boilerplate Functions

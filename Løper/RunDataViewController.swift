@@ -37,7 +37,6 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
         super.didReceiveMemoryWarning()
     }
     
-    
     //This function sets the labels of the view and then loads the map
     override func viewWillAppear(animated: Bool) {
         self.distanceLabel.text = String(run.distance!) + " mi"
@@ -47,7 +46,7 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
     }
 
     
-//MARK: Location Functions
+//MARK: Map Functions
     
     //This functions either hides the map if there are no location points or shows the map and calls the addOverlay function
     func loadMap() {
@@ -62,7 +61,7 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    //This fucntions sets the region that the map shows
+    //This function sets the region that the map shows
     func mapRegion() -> MKCoordinateRegion {
         let initialLoc = run.locations!.firstObject as! Location
         var minLat = initialLoc.latitude!.doubleValue
@@ -106,7 +105,7 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
         }
         let polyline = overlay as! MKPolyline
         let renderer = MKPolylineRenderer(polyline: polyline)
-        renderer.strokeColor = UIColor(red: 0.44, green: 0.62, blue: 0.80, alpha: 1.0)
+        renderer.strokeColor = UIColor(red: 0.59, green: 0.59, blue: 0.59, alpha: 1.0)
         renderer.lineWidth = 3
         return renderer
     }

@@ -14,7 +14,8 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
     
 //MARK: Variables
     
-        var runs: [Run] = []
+    var runs: [Run] = []
+    let formatter = NSDateFormatter()
     
     
 //MARK: Boilerplate Functions
@@ -93,8 +94,9 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cellIdentifier", forIndexPath: indexPath) as! RunDataCell
         cell.distanceLabel.text = String(runs[indexPath.row].distance!) + " mi"
-        cell.timeLabel.text = String(runs[indexPath.row].time!)
-        cell.paceLabel.text = String(runs[indexPath.row].pace!) + " min / mi"
+        formatter.dateStyle = NSDateFormatterStyle.LongStyle
+        let date = formatter.stringFromDate(runs[indexPath.row].date!)
+        cell.dateLabel.text = String(date)
         return cell
     }
     

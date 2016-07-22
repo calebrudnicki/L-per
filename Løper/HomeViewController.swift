@@ -48,7 +48,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
 //MARK: Style Functions
     
-    //This functions changes preset properties for the map and the button
+    //This functions changes preset properties for the map
     func viewControllerLayoutChanges() {
         mapView.tintColor = UIColor(red: 0.59, green: 0.59, blue: 0.59, alpha: 1.0)
     }
@@ -89,7 +89,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
 //MARK: Segues
     
-    //This function recognizes the segue called in code based on the user's action and send the appropriate set of data along the segue too
+    //This function recognizes the segue called in code based on the user's action and segues to the appropriate view controller
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             if identifier == "seeListSegue" {
