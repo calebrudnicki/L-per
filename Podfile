@@ -6,6 +6,6 @@ target 'Løper' do
   use_frameworks!
 
   # Pods for Løper
-	pod 'DynamicBlurView'
+	pod 'STZPopupView'
 
 end

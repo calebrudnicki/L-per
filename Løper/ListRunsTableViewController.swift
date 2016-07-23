@@ -66,6 +66,27 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
         }
     }
     
+
+//MARK: Actions
+    
+    @IBAction func clearAllButtonsTapped(sender: AnyObject) {
+        let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        print("here")
+        for run in runs {
+            print("im here")
+            let previousRun = run
+            managedObjectContext.deleteObject(previousRun)
+        }
+        do {
+            try managedObjectContext.save()
+            self.tableView.reloadData()
+        } catch let error as NSError {
+            fatalError("Failed to delete run: \(error)")
+        }
+    }
+    
+    
+    
     
 //MARK: Segues
     

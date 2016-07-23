@@ -131,6 +131,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="løper" id="JhX-wC-81v">
                         <barButtonItem key="backBarButtonItem" title=" " id="KnU-cQ-tU3"/>
+                        <barButtonItem key="rightBarButtonItem" title="Clear all" id="DzH-MQ-CVf">
+                            <connections>
+                                <action selector="clearAllButtonsTapped:" destination="HJp-DH-CHo" id="BaK-CG-CXd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="oPO-fp-hvs" kind="unwind" identifier="exitSegue" unwindAction="unwindToHomeViewController:" id="tzA-Xi-JH8"/>
