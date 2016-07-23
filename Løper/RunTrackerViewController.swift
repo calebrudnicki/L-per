@@ -9,6 +9,9 @@
 import UIKit
 import MapKit
 import CoreLocation
+///////
+import CoreMotion
+///////
 import HealthKit
 import CoreData
 import AudioToolbox
@@ -24,24 +27,25 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     @IBOutlet weak var averagePaceLabel: UILabel!
     @IBOutlet weak var stallTimeLabel: UILabel!
     @IBOutlet weak var stopRunButton: UIButton!
-    
+    @IBOutlet weak var speedTestLabel: UILabel!
     
 //MARK: Variables
     
     //Variables used to hold data for the labels and map drawings
     var distance: Double! = 0.0
-    var time: Double! = 0.0
+    var runTime: Double! = 0.0
+    var stallTime: Double! = 0.0
     var pace: Double! = 0.0
     var date = NSDate()
-    lazy var locations = [CLLocation]()
+    var locations = [CLLocation]()
     lazy var timer = NSTimer()
     let lengthFormatter = NSLengthFormatter()
     lazy var userLocationManager: CLLocationManager = {
         var locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = 0.5
         locationManager.activityType = .Fitness
-        locationManager.distanceFilter = 10.0
         return locationManager
     }()
     
@@ -50,17 +54,21 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     var finalTime: String! = "00:00:00"
     var finalPace: String! = "0:00 min / mi"
     var run: Run!
+    var coords = [CLLocationCoordinate2D]()
+    var motionManager: CMMotionManager!
     
 
 //MARK: Boilerplate Functions
  
-    //This function loads the view, calls the viewControllerLayoutChanges function, clears the array of locations, and creates a timer before calling the startLocationUpdates function
+    //This function loads the view, calls the viewControllerLayoutChanges function, clears the array of locations, creates a timer, and creates a motion manager before calling the startLocationUpdates function
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewControllerLayoutChanges()
         self.mapView.delegate = self
         locations.removeAll(keepCapacity: false)
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecond(_:)), userInfo: nil, repeats: true)
+        motionManager = CMMotionManager()
+        motionManager.startAccelerometerUpdates()
         startLocationUpdates()
     }
 
@@ -167,7 +175,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     //This function saves a run object (newRun) and a locations object (savedLocations) to Core Data
     func saveRunToCoreData() {
         let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-        let (d, t, p) = self.convertUnits(distance, time: time)
+        let (d, t, p) = self.convertUnits(distance, time: runTime)
         finalDistance = d
         finalTime = t
         finalPace = p
@@ -201,7 +209,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         userLocationManager.startUpdatingLocation()
     }
     
-    //This function grabs the user's location, makes a 2D coordinate out of it, and then sets the view of the map onto that coordinate while it also updates the distance variable and then appends the current location to the array of locations
+    //This function grabs the user's location, makes a 2D coordinate out of it, and then sets the view of the map onto that coordinate while it also updates the distance variable and then appends the current location to the array of locations as long as the acceleration of the phone is not 0
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation: CLLocation = locations[0]
         let coord2D = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
@@ -213,7 +221,12 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
                     distance = distance + location.distanceFromLocation(self.locations.last!)
                 }
             }
-            self.locations.append(location)
+            print(motionManager.accelerometerData)
+            if motionManager.accelerometerData?.acceleration.x > 0 && motionManager.accelerometerData?.acceleration.y > 0 {
+                self.locations.append(location)
+                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                speedTestLabel.text = "acc = \(motionManager.accelerometerData?.acceleration.x)"
+            }
         }
     }
     
@@ -222,7 +235,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     
     //This function loops through the locations array and appends each location to an array of CLLocationCoordinate2D called coords
     func polyline() -> MKPolyline {
-        var coords = [CLLocationCoordinate2D]()
+        coords = [CLLocationCoordinate2D]()
         let locations = self.locations
         for location in locations {
             coords.append(CLLocationCoordinate2D(latitude: location.coordinate.latitude,
@@ -249,12 +262,12 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     //This functions calls for the line to be draw before it updates the time variable and updates all of the logos on the screen
     func eachSecond(timer: NSTimer) {
         mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveLabels)
-        time = time + 1
-        let (d, t, p) = self.convertUnits(distance, time: time)
+        runTime = runTime + 1
+        let (d, t, p) = self.convertUnits(distance, time: runTime)
         let y = Double(round(100*d)/100)
         distanceLabel.text = "\(y) mi"
-        timeLabel.text = "\(t)"
-        averagePaceLabel.text = "\(p) min/mi"
+        timeLabel.text = t
+        averagePaceLabel.text = "\(p)"
     }
 
 }

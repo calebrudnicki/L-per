@@ -42,6 +42,9 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
         let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
         let runFetch = NSFetchRequest(entityName: "Run")
         do {
+            let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
+            let sortDescriptors = [sortDescriptor]
+            runFetch.sortDescriptors = sortDescriptors
             let fetchedRuns = try managedObjectContext.executeFetchRequest(runFetch) as! [Run]
             for run in fetchedRuns {
                 self.runs.append(run)
@@ -96,7 +99,7 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
         cell.distanceLabel.text = String(runs[indexPath.row].distance!) + " mi"
         formatter.dateStyle = NSDateFormatterStyle.LongStyle
         let date = formatter.stringFromDate(runs[indexPath.row].date!)
-        cell.dateLabel.text = String(date)
+        cell.dateLabel.text = String(date)  
         return cell
     }
     

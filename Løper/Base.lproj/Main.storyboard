@@ -287,15 +287,23 @@
                                     <constraint firstItem="VSP-Xb-56L" firstAttribute="width" secondItem="ZzB-RU-h4n" secondAttribute="width" id="x7G-DA-08A"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lB0-Yz-X1A">
+                                <rect key="frame" x="538" y="495" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.23137254900000001" green="0.23137254900000001" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="PNf-VB-z4g" firstAttribute="centerX" secondItem="M5K-78-xAQ" secondAttribute="centerX" id="9U9-ph-bZE"/>
                             <constraint firstItem="PNf-VB-z4g" firstAttribute="top" secondItem="ZzB-RU-h4n" secondAttribute="bottom" constant="20" id="9hC-ld-rza"/>
+                            <constraint firstAttribute="trailing" secondItem="lB0-Yz-X1A" secondAttribute="trailing" constant="20" id="LpL-nN-H3S"/>
                             <constraint firstItem="ZzB-RU-h4n" firstAttribute="top" secondItem="UCC-Of-chg" secondAttribute="bottom" constant="10" id="NDx-YS-w1e"/>
                             <constraint firstItem="UCC-Of-chg" firstAttribute="height" secondItem="M5K-78-xAQ" secondAttribute="height" multiplier="0.55" id="QJS-SP-7CI"/>
                             <constraint firstItem="ZzB-RU-h4n" firstAttribute="width" secondItem="M5K-78-xAQ" secondAttribute="width" multiplier="0.85" id="bw1-nh-TSD"/>
                             <constraint firstItem="PNf-VB-z4g" firstAttribute="width" secondItem="M5K-78-xAQ" secondAttribute="width" multiplier="0.5" id="dlG-8s-aXC"/>
+                            <constraint firstItem="PRY-aw-AJK" firstAttribute="top" secondItem="lB0-Yz-X1A" secondAttribute="bottom" constant="20" id="iA6-ce-Wca"/>
                             <constraint firstItem="PRY-aw-AJK" firstAttribute="top" secondItem="PNf-VB-z4g" secondAttribute="bottom" constant="35" id="kGx-kn-jh9"/>
                             <constraint firstItem="UCC-Of-chg" firstAttribute="width" secondItem="M5K-78-xAQ" secondAttribute="width" id="qHP-u3-XKY"/>
                             <constraint firstItem="UCC-Of-chg" firstAttribute="top" secondItem="0uF-QP-0hL" secondAttribute="bottom" id="xya-qE-5Cv"/>
@@ -308,6 +316,7 @@
                         <outlet property="distanceLabel" destination="ui2-Qm-Xvg" id="Q0v-Q6-wv9"/>
                         <outlet property="mapView" destination="UCC-Of-chg" id="1aQ-vk-XB4"/>
                         <outlet property="navigationBar" destination="bHu-08-FZK" id="v1H-t6-Pst"/>
+                        <outlet property="speedTestLabel" destination="lB0-Yz-X1A" id="1Ng-Q1-rPB"/>
                         <outlet property="stallTimeLabel" destination="6kB-vo-22X" id="dAW-ys-hqV"/>
                         <outlet property="stopRunButton" destination="PNf-VB-z4g" id="1sR-Pp-hAZ"/>
                         <outlet property="timeLabel" destination="2JM-3g-p59" id="3kq-WR-ExV"/>
