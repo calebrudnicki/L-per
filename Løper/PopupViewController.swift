@@ -8,24 +8,22 @@
 
 import UIKit
 
-class PopoverViewController: UIViewController {
-
+class PopupViewController: UIViewController {
+    
 //MARK: Outlets
     
-    @IBOutlet weak var runStatusString: UILabel!
+    @IBOutlet weak var userChoiceLabel: UILabel!
     
-    
+
 //MARK: Variables
     
-    var runStatus: String!
-    
+    var choice: String!
     
 //MARK: Boilerplate Functions
     
-    //This functions sets the label to the string of the label1 variable
     override func viewDidLoad() {
         super.viewDidLoad()
-        runStatusString.text = runStatus
+        self.view.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
     }
 
     override func didReceiveMemoryWarning() {

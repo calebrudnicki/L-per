@@ -122,7 +122,6 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
     //This function sets the labels of the RunDataCell to the correct data from the run array
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cellIdentifier", forIndexPath: indexPath) as! RunDataCell
-        print("HERE")
         cell.distanceLabel.text = String(runs[indexPath.row].distance!) + " mi"
         formatter.dateStyle = NSDateFormatterStyle.LongStyle
         let date = formatter.stringFromDate(runs[indexPath.row].date!)

@@ -115,7 +115,9 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
 //MARK: Watch Connectivity
     
     func session(session: WCSession, didReceiveMessage gameStats: [String : AnyObject]) {
-        print("Whats up")
+        dispatch_async(dispatch_get_main_queue()) {
+            self.performSegueWithIdentifier("startRunSegue", sender: self)
+        }
     }
 
 }

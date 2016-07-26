@@ -24,7 +24,6 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     @IBOutlet weak var averagePaceLabel: UILabel!
     @IBOutlet weak var stallTimeLabel: UILabel!
     @IBOutlet weak var stopRunButton: UIButton!
-    @IBOutlet weak var speedTestLabel: UILabel!
     
     
 //MARK: Variables
@@ -139,15 +138,15 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
 
 //MARK: Alerts
     
-    //This function either offers the user three options: to end and save, to end and not save, or to resume the run
+    //This function either offers the user three options: to end and save, to end and not save, or to resume the run, it then shows a popup
     func stopRunAlert() {
         let alertController = UIAlertController(title: nil, message: "Are you are sure you're done with your run?", preferredStyle: .ActionSheet)
         let yesSaveAction = UIAlertAction(title: "Yes, I'm done", style: .Default) { (action) in
             self.saveRunToCoreData()
-            self.performSegueWithIdentifier("savedRunPopoverSegue", sender: self)
+            self.callSavedPopup()
         }
         let yesCancelAction = UIAlertAction(title: "Yes, but don't save it", style: .Default) { (action) in
-            self.performSegueWithIdentifier("cancelledRunPopoverSegue", sender: self)
+            self.callCancelPopup()
         }
         let noAction = UIAlertAction(title: "No", style: .Cancel) { (action) in
             self.viewDidLoad()
@@ -159,26 +158,23 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+
+//MARK: Popup Functions
     
-//MARK: Segues
+    func callSavedPopup() {
+        let popupViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PopupViewController") as! PopupViewController
+        self.addChildViewController(popupViewController)
+        popupViewController.view.frame = self.view.frame
+        self.view.addSubview(popupViewController.view)
+        popupViewController.didMoveToParentViewController(self)
+    }
     
-    //This function allows the program to segue to the PopoverViewController
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let identifier = segue.identifier {
-            if identifier == "savedRunPopoverSegue" {
-                let popoverViewController = segue.destinationViewController as! PopoverViewController
-                popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
-                popoverViewController.popoverPresentationController!.delegate = self
-                popoverViewController.runStatus = "Saved!!!"
-                popoverViewController.view.backgroundColor = UIColor.greenColor()
-            } else if identifier == "cancelledRunPopoverSegue" {
-                let popoverViewController = segue.destinationViewController as! PopoverViewController
-                popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
-                popoverViewController.popoverPresentationController!.delegate = self
-                popoverViewController.runStatus = "Cancelled!!"
-                popoverViewController.view.backgroundColor = UIColor.redColor()
-            }
-        }
+    func callCancelPopup() {
+        let popupViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PopupViewController") as! PopupViewController
+        self.addChildViewController(popupViewController)
+        popupViewController.view.frame = self.view.frame
+        self.view.addSubview(popupViewController.view)
+        popupViewController.didMoveToParentViewController(self)
     }
     
     
@@ -227,7 +223,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         let coord2D = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let coordinateRegion = MKCoordinateRegion(center: coord2D, span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
         mapView.setRegion(coordinateRegion, animated: false)
-        print(locations[0].speed)
+        //print(locations[0].speed)
         for location in locations {
             if location.horizontalAccuracy < 30 {
                 if self.locations.count > 0 {
