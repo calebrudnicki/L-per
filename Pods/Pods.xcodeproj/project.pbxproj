@@ -7,143 +7,110 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4750D0285DB9A65434D4BEDFD1B57234 /* DynamicBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AEA1828E06794FE2738D8303F2F77D /* DynamicBlurView.swift */; };
-		626842F9DD64DE2211FE4FA9B9050E3E /* DynamicBlurView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EDEA97F01B6B0C0F886B7C292588521 /* DynamicBlurView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		668A6FA02DC03296D72C13CE995E74EA /* DynamicBlurView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EBBBDA19EDF75586C18E55453E356207 /* DynamicBlurView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		816DF8D62440294C698A0DBCB21F3198 /* Pods-Løper-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE3A2ADCF12EEF53DABEE84DFE2F177 /* Pods-Løper-dummy.m */; };
-		887A7FE375C4CE21047DEA472BA88FED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09563F9A7E5CFFBB55005ADBE8B6DB88 /* Foundation.framework */; };
-		8F6B4C96388469C07A2F7F78432A1CE5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8E6273CB839814BDBB80D529DFB902E /* UIKit.framework */; };
-		918E9B5B2013FF42D3C25A113C91B29A /* Pods-Løper-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0298E6841CCF1A7D8D92FBED2738AA52 /* Pods-Løper-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A3B0BE281C192954E57C189003CC52A5 /* DynamicBlurView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A0C93AC097608152FB166E5CE6EE78 /* DynamicBlurView-dummy.m */; };
-		F6FCF8F62AF4CFB6004459CF4699C89D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09563F9A7E5CFFBB55005ADBE8B6DB88 /* Foundation.framework */; };
-		F8CC65C6FB8D41A121DBF9AE632396F2 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F57B059DE08434594D12BF3C06209FA2 /* Accelerate.framework */; };
+		1193E5271A312794AFB5C874D3CAFE1D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		1C89F252DADAF6C745B4C68FE61279E1 /* UIViewController+STZPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02B1039253AE7CF4549D92A98511160 /* UIViewController+STZPopupView.swift */; };
+		1EB292C0AF431BE68C8A7B59FCB38739 /* Pods-Løper-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE3A2ADCF12EEF53DABEE84DFE2F177 /* Pods-Løper-dummy.m */; };
+		20B5EF5AE2D488F0B41F05258B203AA4 /* STZPopupView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD60FD7B4469B9DCC7ECA7B875888E4 /* STZPopupView-dummy.m */; };
+		6D28446B964E261C4B61BAB2DB522C2E /* STZPopupView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 07ED2DAF7256C70A61C9F8CC1967F418 /* STZPopupView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ACD6182DC9C55479C66268B7E9BA4241 /* STZPopupViewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16B719305345BA7AB5AF102826ACDD6 /* STZPopupViewConfig.swift */; };
+		B595D15EE656F5FE910936E1D3E2C250 /* Pods-Løper-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0298E6841CCF1A7D8D92FBED2738AA52 /* Pods-Løper-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EE621F1D40CAFBC4ADC12F36C13C4124 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A777AF7000B455929CACC3E5313EF5E5 /* PBXContainerItemProxy */ = {
+		4498AA778BE9AEDB85511F96D8759CD9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 03986035B05D1C564D91AA910E316353;
-			remoteInfo = DynamicBlurView;
+			remoteGlobalIDString = A7297B1B78F2D30463B91DD436477740;
+			remoteInfo = STZPopupView;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0298E6841CCF1A7D8D92FBED2738AA52 /* Pods-Løper-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Løper-umbrella.h"; sourceTree = "<group>"; };
-		09563F9A7E5CFFBB55005ADBE8B6DB88 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		10E9E872958690070FF04A0CEB316558 /* DynamicBlurView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = DynamicBlurView.modulemap; sourceTree = "<group>"; };
-		334E22AD272CCA63DB5B040AED161F2E /* Pods_L_per.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_L_per.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07ED2DAF7256C70A61C9F8CC1967F418 /* STZPopupView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "STZPopupView-umbrella.h"; sourceTree = "<group>"; };
+		0BD60FD7B4469B9DCC7ECA7B875888E4 /* STZPopupView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "STZPopupView-dummy.m"; sourceTree = "<group>"; };
+		2EE1D2C8BB31B24653B386F76D39218D /* STZPopupView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = STZPopupView.modulemap; sourceTree = "<group>"; };
 		3C8AC4276351A84B8E237944D5485520 /* Pods-Løper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Løper.debug.xcconfig"; sourceTree = "<group>"; };
 		404E9AF1BEDBE374175496B81ECFADAE /* Pods-Løper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Løper.release.xcconfig"; sourceTree = "<group>"; };
-		4DA93DD606A87C399A75606E02E971BC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6AEBE341A7B2E2B8F726168C72C83EAA /* DynamicBlurView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DynamicBlurView-prefix.pch"; sourceTree = "<group>"; };
+		6E37188293FB3FDA1F4BCF3841AA2537 /* STZPopupView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = STZPopupView.xcconfig; sourceTree = "<group>"; };
 		7F00098A79346EAAEC7F70CAA1ADDD5C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9EDEA97F01B6B0C0F886B7C292588521 /* DynamicBlurView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DynamicBlurView.h; path = DynamicBlurView/DynamicBlurView.h; sourceTree = "<group>"; };
 		ADE3A2ADCF12EEF53DABEE84DFE2F177 /* Pods-Løper-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Løper-dummy.m"; sourceTree = "<group>"; };
-		AE608F341975510DE5BB64E95F60AFD2 /* DynamicBlurView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DynamicBlurView.xcconfig; sourceTree = "<group>"; };
 		B074685FE60C6CDFE711E7D41A271B0D /* Pods-Løper.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Løper.modulemap"; sourceTree = "<group>"; };
-		B1D562916A32C9446304F1695CA85821 /* DynamicBlurView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DynamicBlurView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B200F1D6FF731887D699C95F9747E7FE /* Pods-Løper-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Løper-acknowledgements.markdown"; sourceTree = "<group>"; };
 		B5708FE3FA9433F82A093572C4CAF761 /* Pods-Løper-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Løper-frameworks.sh"; sourceTree = "<group>"; };
-		C3A0C93AC097608152FB166E5CE6EE78 /* DynamicBlurView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DynamicBlurView-dummy.m"; sourceTree = "<group>"; };
-		C5AEA1828E06794FE2738D8303F2F77D /* DynamicBlurView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DynamicBlurView.swift; path = DynamicBlurView/DynamicBlurView.swift; sourceTree = "<group>"; };
-		E8E6273CB839814BDBB80D529DFB902E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		EBBBDA19EDF75586C18E55453E356207 /* DynamicBlurView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DynamicBlurView-umbrella.h"; sourceTree = "<group>"; };
-		F57B059DE08434594D12BF3C06209FA2 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
+		BC911E82E1EB5BF05AE1B555390D4CA4 /* Pods_L_per.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_L_per.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C66AE4BF570BDD07BD36BC9F51828105 /* STZPopupView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "STZPopupView-prefix.pch"; sourceTree = "<group>"; };
+		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		CF44406BBCF2B007A4AB08C7A58FD8C5 /* STZPopupView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = STZPopupView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D16B719305345BA7AB5AF102826ACDD6 /* STZPopupViewConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = STZPopupViewConfig.swift; path = Source/STZPopupViewConfig.swift; sourceTree = "<group>"; };
+		E02B1039253AE7CF4549D92A98511160 /* UIViewController+STZPopupView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+STZPopupView.swift"; path = "Source/UIViewController+STZPopupView.swift"; sourceTree = "<group>"; };
+		E964DBCB617B4699AC3460E966F360D1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FDB926DD0086F2ADDE3E7BB1DD32C384 /* Pods-Løper-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Løper-resources.sh"; sourceTree = "<group>"; };
 		FFFDB3DD04A9752EA0A0538A0349DD0C /* Pods-Løper-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Løper-acknowledgements.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A4B3C7FE34D47A453B454E9A8BF693A9 /* Frameworks */ = {
+		D3BD530408472D6B55444B5E7B2393F6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				887A7FE375C4CE21047DEA472BA88FED /* Foundation.framework in Frameworks */,
+				EE621F1D40CAFBC4ADC12F36C13C4124 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B519661A2FAA040FF0F016B5C972DB49 /* Frameworks */ = {
+		D9DE9F1978704CF35673D8A5CAF804C2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8CC65C6FB8D41A121DBF9AE632396F2 /* Accelerate.framework in Frameworks */,
-				F6FCF8F62AF4CFB6004459CF4699C89D /* Foundation.framework in Frameworks */,
-				8F6B4C96388469C07A2F7F78432A1CE5 /* UIKit.framework in Frameworks */,
+				1193E5271A312794AFB5C874D3CAFE1D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		036135E27CCF37F87A72FDADF5E842F1 /* Products */ = {
+		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				B1D562916A32C9446304F1695CA85821 /* DynamicBlurView.framework */,
-				334E22AD272CCA63DB5B040AED161F2E /* Pods_L_per.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		122DA2E5084A4393C29BE363C764795C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				7C56674AB905FEC501CE049E6907BC9F /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		16324BAD05EC4718357662AA0E661956 /* DynamicBlurView */ = {
-			isa = PBXGroup;
-			children = (
-				9EDEA97F01B6B0C0F886B7C292588521 /* DynamicBlurView.h */,
-				C5AEA1828E06794FE2738D8303F2F77D /* DynamicBlurView.swift */,
-				21695D6D11D96AFCBF39980FFED37FA5 /* Support Files */,
-			);
-			path = DynamicBlurView;
-			sourceTree = "<group>";
-		};
-		21695D6D11D96AFCBF39980FFED37FA5 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				10E9E872958690070FF04A0CEB316558 /* DynamicBlurView.modulemap */,
-				AE608F341975510DE5BB64E95F60AFD2 /* DynamicBlurView.xcconfig */,
-				C3A0C93AC097608152FB166E5CE6EE78 /* DynamicBlurView-dummy.m */,
-				6AEBE341A7B2E2B8F726168C72C83EAA /* DynamicBlurView-prefix.pch */,
-				EBBBDA19EDF75586C18E55453E356207 /* DynamicBlurView-umbrella.h */,
-				4DA93DD606A87C399A75606E02E971BC /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/DynamicBlurView";
-			sourceTree = "<group>";
-		};
-		4BB56064C5C2285B9C9C282F8B2ACFB5 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				16324BAD05EC4718357662AA0E661956 /* DynamicBlurView */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		7C56674AB905FEC501CE049E6907BC9F /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				F57B059DE08434594D12BF3C06209FA2 /* Accelerate.framework */,
-				09563F9A7E5CFFBB55005ADBE8B6DB88 /* Foundation.framework */,
-				E8E6273CB839814BDBB80D529DFB902E /* UIKit.framework */,
+				CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		50C11870494831A70C3BAD93EE43FED3 /* STZPopupView */ = {
+			isa = PBXGroup;
+			children = (
+				D16B719305345BA7AB5AF102826ACDD6 /* STZPopupViewConfig.swift */,
+				E02B1039253AE7CF4549D92A98511160 /* UIViewController+STZPopupView.swift */,
+				718B4B039D2F39080071B030960C61F5 /* Support Files */,
+			);
+			path = STZPopupView;
+			sourceTree = "<group>";
+		};
+		718B4B039D2F39080071B030960C61F5 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				E964DBCB617B4699AC3460E966F360D1 /* Info.plist */,
+				2EE1D2C8BB31B24653B386F76D39218D /* STZPopupView.modulemap */,
+				6E37188293FB3FDA1F4BCF3841AA2537 /* STZPopupView.xcconfig */,
+				0BD60FD7B4469B9DCC7ECA7B875888E4 /* STZPopupView-dummy.m */,
+				C66AE4BF570BDD07BD36BC9F51828105 /* STZPopupView-prefix.pch */,
+				07ED2DAF7256C70A61C9F8CC1967F418 /* STZPopupView-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/STZPopupView";
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
-				4BB56064C5C2285B9C9C282F8B2ACFB5 /* Pods */,
-				036135E27CCF37F87A72FDADF5E842F1 /* Products */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				F0574BFBCF68820A0A50D5051268A277 /* Pods */,
+				81A39F5A9BE240DEA703B1953D1D64CB /* Products */,
 				81332A5D2CF69B9214D459D87F62578B /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -154,6 +121,23 @@
 				EDAB8AECC81F6A3F14EF54302F6FBAB4 /* Pods-Løper */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		81A39F5A9BE240DEA703B1953D1D64CB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BC911E82E1EB5BF05AE1B555390D4CA4 /* Pods_L_per.framework */,
+				CF44406BBCF2B007A4AB08C7A58FD8C5 /* STZPopupView.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		EDAB8AECC81F6A3F14EF54302F6FBAB4 /* Pods-Løper */ = {
@@ -174,62 +158,69 @@
 			path = "Target Support Files/Pods-Løper";
 			sourceTree = "<group>";
 		};
+		F0574BFBCF68820A0A50D5051268A277 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				50C11870494831A70C3BAD93EE43FED3 /* STZPopupView */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		0164A00733CD9E5642BAE30C5D803912 /* Headers */ = {
+		34B07DCA480EA121FB79F72D10FB4733 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				918E9B5B2013FF42D3C25A113C91B29A /* Pods-Løper-umbrella.h in Headers */,
+				B595D15EE656F5FE910936E1D3E2C250 /* Pods-Løper-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FC4A04DFB0E519FD8259904A6B6CD7DC /* Headers */ = {
+		BEFA65CF008C52DE393360BD23117DD0 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				668A6FA02DC03296D72C13CE995E74EA /* DynamicBlurView-umbrella.h in Headers */,
-				626842F9DD64DE2211FE4FA9B9050E3E /* DynamicBlurView.h in Headers */,
+				6D28446B964E261C4B61BAB2DB522C2E /* STZPopupView-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		03986035B05D1C564D91AA910E316353 /* DynamicBlurView */ = {
+		A7297B1B78F2D30463B91DD436477740 /* STZPopupView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1B517304F5DAF2FF14AEE05549793925 /* Build configuration list for PBXNativeTarget "DynamicBlurView" */;
+			buildConfigurationList = A8520E0E56226121239AF494AD31DDF9 /* Build configuration list for PBXNativeTarget "STZPopupView" */;
 			buildPhases = (
-				F9292A40CAAB2EFC2EC85BA1353E31CA /* Sources */,
-				B519661A2FAA040FF0F016B5C972DB49 /* Frameworks */,
-				FC4A04DFB0E519FD8259904A6B6CD7DC /* Headers */,
+				86F342AE00F244753AD2349561487148 /* Sources */,
+				D3BD530408472D6B55444B5E7B2393F6 /* Frameworks */,
+				BEFA65CF008C52DE393360BD23117DD0 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = DynamicBlurView;
-			productName = DynamicBlurView;
-			productReference = B1D562916A32C9446304F1695CA85821 /* DynamicBlurView.framework */;
+			name = STZPopupView;
+			productName = STZPopupView;
+			productReference = CF44406BBCF2B007A4AB08C7A58FD8C5 /* STZPopupView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		BBB5E4953AE4774318C6D6E705000F8F /* Pods-Løper */ = {
+		CCDE9928469E535F1E5D89560A3A33A7 /* Pods-Løper */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5D12B95D76C8554B43AA0226EA9315A6 /* Build configuration list for PBXNativeTarget "Pods-Løper" */;
+			buildConfigurationList = E6A6B673D9550F4E374A6EA0340573C7 /* Build configuration list for PBXNativeTarget "Pods-Løper" */;
 			buildPhases = (
-				001EEE0AECEDE56432AFA73005F0867B /* Sources */,
-				A4B3C7FE34D47A453B454E9A8BF693A9 /* Frameworks */,
-				0164A00733CD9E5642BAE30C5D803912 /* Headers */,
+				38D87A35BCBEBCE29D7931216E5C6EE1 /* Sources */,
+				D9DE9F1978704CF35673D8A5CAF804C2 /* Frameworks */,
+				34B07DCA480EA121FB79F72D10FB4733 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				760A2F665D2032BE74F49AF8F095C38F /* PBXTargetDependency */,
+				48C732F92DBCF1758A8BD8393169CCB8 /* PBXTargetDependency */,
 			);
 			name = "Pods-Løper";
 			productName = "Pods-Løper";
-			productReference = 334E22AD272CCA63DB5B040AED161F2E /* Pods_L_per.framework */;
+			productReference = BC911E82E1EB5BF05AE1B555390D4CA4 /* Pods_L_per.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -249,78 +240,76 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 036135E27CCF37F87A72FDADF5E842F1 /* Products */;
+			productRefGroup = 81A39F5A9BE240DEA703B1953D1D64CB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				03986035B05D1C564D91AA910E316353 /* DynamicBlurView */,
-				BBB5E4953AE4774318C6D6E705000F8F /* Pods-Løper */,
+				CCDE9928469E535F1E5D89560A3A33A7 /* Pods-Løper */,
+				A7297B1B78F2D30463B91DD436477740 /* STZPopupView */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		001EEE0AECEDE56432AFA73005F0867B /* Sources */ = {
+		38D87A35BCBEBCE29D7931216E5C6EE1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				816DF8D62440294C698A0DBCB21F3198 /* Pods-Løper-dummy.m in Sources */,
+				1EB292C0AF431BE68C8A7B59FCB38739 /* Pods-Løper-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F9292A40CAAB2EFC2EC85BA1353E31CA /* Sources */ = {
+		86F342AE00F244753AD2349561487148 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3B0BE281C192954E57C189003CC52A5 /* DynamicBlurView-dummy.m in Sources */,
-				4750D0285DB9A65434D4BEDFD1B57234 /* DynamicBlurView.swift in Sources */,
+				20B5EF5AE2D488F0B41F05258B203AA4 /* STZPopupView-dummy.m in Sources */,
+				ACD6182DC9C55479C66268B7E9BA4241 /* STZPopupViewConfig.swift in Sources */,
+				1C89F252DADAF6C745B4C68FE61279E1 /* UIViewController+STZPopupView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		760A2F665D2032BE74F49AF8F095C38F /* PBXTargetDependency */ = {
+		48C732F92DBCF1758A8BD8393169CCB8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = DynamicBlurView;
-			target = 03986035B05D1C564D91AA910E316353 /* DynamicBlurView */;
-			targetProxy = A777AF7000B455929CACC3E5313EF5E5 /* PBXContainerItemProxy */;
+			name = STZPopupView;
+			target = A7297B1B78F2D30463B91DD436477740 /* STZPopupView */;
+			targetProxy = 4498AA778BE9AEDB85511F96D8759CD9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0A5019C85EF2497E7097D80121CF0B0E /* Release */ = {
+		3EE86347C781B2C3719781EDD015D7C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 404E9AF1BEDBE374175496B81ECFADAE /* Pods-Løper.release.xcconfig */;
+			baseConfigurationReference = 6E37188293FB3FDA1F4BCF3841AA2537 /* STZPopupView.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-Løper/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/STZPopupView/STZPopupView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/STZPopupView/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Løper/Pods-Løper.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_L_per;
+				MODULEMAP_FILE = "Target Support Files/STZPopupView/STZPopupView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = STZPopupView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		3FA451D268613890FA8A5A03801E11D5 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -359,40 +348,6 @@
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
-		};
-		4F5606BC16FA915F7FC1D8814D060000 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C8AC4276351A84B8E237944D5485520 /* Pods-Løper.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-Løper/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Løper/Pods-Løper.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_L_per;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		5E62115DE8C09934BF8D2FE5D15FED1E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -436,39 +391,9 @@
 			};
 			name = Debug;
 		};
-		9EFEC7F2C700856C1B3D8A798EFC3C12 /* Debug */ = {
+		A338E91239027FBB537FB5FD8349B036 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AE608F341975510DE5BB64E95F60AFD2 /* DynamicBlurView.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/DynamicBlurView/DynamicBlurView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/DynamicBlurView/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/DynamicBlurView/DynamicBlurView.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = DynamicBlurView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		F267AA4BE1D09F55113B333B34DA41AA /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AE608F341975510DE5BB64E95F60AFD2 /* DynamicBlurView.xcconfig */;
+			baseConfigurationReference = 6E37188293FB3FDA1F4BCF3841AA2537 /* STZPopupView.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -479,14 +404,14 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/DynamicBlurView/DynamicBlurView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/DynamicBlurView/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/STZPopupView/STZPopupView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/STZPopupView/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/DynamicBlurView/DynamicBlurView.modulemap";
+				MODULEMAP_FILE = "Target Support Files/STZPopupView/STZPopupView.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = DynamicBlurView;
+				PRODUCT_NAME = STZPopupView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -495,18 +420,76 @@
 			};
 			name = Release;
 		};
+		BAB2CACB319D31CFA4B0BE28D5B71490 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 404E9AF1BEDBE374175496B81ECFADAE /* Pods-Løper.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Løper/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Løper/Pods-Løper.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_L_per;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DE24D24538EC06F6F2B41275F51025C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C8AC4276351A84B8E237944D5485520 /* Pods-Løper.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Løper/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Løper/Pods-Løper.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_L_per;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1B517304F5DAF2FF14AEE05549793925 /* Build configuration list for PBXNativeTarget "DynamicBlurView" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9EFEC7F2C700856C1B3D8A798EFC3C12 /* Debug */,
-				F267AA4BE1D09F55113B333B34DA41AA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -516,11 +499,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5D12B95D76C8554B43AA0226EA9315A6 /* Build configuration list for PBXNativeTarget "Pods-Løper" */ = {
+		A8520E0E56226121239AF494AD31DDF9 /* Build configuration list for PBXNativeTarget "STZPopupView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4F5606BC16FA915F7FC1D8814D060000 /* Debug */,
-				0A5019C85EF2497E7097D80121CF0B0E /* Release */,
+				3EE86347C781B2C3719781EDD015D7C8 /* Debug */,
+				A338E91239027FBB537FB5FD8349B036 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E6A6B673D9550F4E374A6EA0340573C7 /* Build configuration list for PBXNativeTarget "Pods-Løper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE24D24538EC06F6F2B41275F51025C9 /* Debug */,
+				BAB2CACB319D31CFA4B0BE28D5B71490 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

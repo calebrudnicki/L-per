@@ -66,23 +66,28 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
         }
     }
     
-
-//MARK: Actions
-    
-    @IBAction func clearAllButtonsTapped(sender: AnyObject) {
+    //This function deletes all runs from Core Data
+    func clearAllFromCoreData() {
         let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-        print("here")
         for run in runs {
-            print("im here")
             let previousRun = run
             managedObjectContext.deleteObject(previousRun)
         }
         do {
             try managedObjectContext.save()
-            self.tableView.reloadData()
+            runs.removeAll()
+            tableView.reloadData()
         } catch let error as NSError {
             fatalError("Failed to delete run: \(error)")
         }
+    }
+    
+
+//MARK: Actions
+    
+    //This function calls the clearAllFromCoreData function when the clear button is tapped
+    @IBAction func clearAllButtonsTapped(sender: AnyObject) {
+        self.clearAllFromCoreData()
     }
     
     
@@ -117,6 +122,7 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
     //This function sets the labels of the RunDataCell to the correct data from the run array
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cellIdentifier", forIndexPath: indexPath) as! RunDataCell
+        print("HERE")
         cell.distanceLabel.text = String(runs[indexPath.row].distance!) + " mi"
         formatter.dateStyle = NSDateFormatterStyle.LongStyle
         let date = formatter.stringFromDate(runs[indexPath.row].date!)

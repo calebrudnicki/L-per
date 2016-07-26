@@ -23,6 +23,7 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
     
     var run: Run!
     var coordinates: [CLLocationCoordinate2D] = []
+    var annotations: [MKPointAnnotation] = []
    
     
 //MARK: Boilerplate Functions
@@ -41,7 +42,7 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
     override func viewWillAppear(animated: Bool) {
         self.distanceLabel.text = String(run.distance!) + " mi"
         self.timeLabel.text = run.time
-        self.paceLabel.text = "\(run.pace!) min / mi"
+        self.paceLabel.text = "\(run.pace!) min/mi"
         loadMap()
     }
 
@@ -52,11 +53,12 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
     func loadMap() {
         if run.locations!.count < 0 {
             mapView.hidden = true
-        }
-        else {
+        } else {
             mapView.hidden = false
             mapView.addOverlay(polyline())
             mapView.region = mapRegion()
+//            setupAnnotations()
+//            addAnnotations()
             
         }
     }
@@ -85,6 +87,21 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
     
 //MARK: Path Drawing
     
+//    func setupAnnotations() {
+//        var annotation: MKPointAnnotation
+//        for location in run!.locations!.array as! [Location] {
+//            annotation = MKPointAnnotation()
+//            annotation.coordinate = CLLocationCoordinate2D(latitude: location.latitude!.doubleValue,
+//                                                           longitude:location.longitude!.doubleValue)
+//            annotations.append(annotation)
+//        }
+//        
+//    }
+//    func addAnnotations() {
+//        self.mapView.addAnnotations(annotations)
+//        
+//    }
+    
     //This function loops through the locations array and appends each location to an array of CLLocationCoordinate2D called coords
     func polyline() -> MKPolyline {
         var coords = [CLLocationCoordinate2D]()
@@ -106,7 +123,7 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
         let polyline = overlay as! MKPolyline
         let renderer = MKPolylineRenderer(polyline: polyline)
         renderer.strokeColor = UIColor(red: 0.59, green: 0.59, blue: 0.59, alpha: 1.0)
-        renderer.lineWidth = 3
+        renderer.lineWidth = 10
         return renderer
     }
 

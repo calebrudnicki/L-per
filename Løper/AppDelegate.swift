@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        window?.tintColor = UIColor(red: 0.59, green: 0.59, blue: 0.59, alpha: 1.0)
         return true
     }
 
@@ -42,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
    
     
-// MARK: - Core Data Stack
+//MARK: Core Data Stack
     
     lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "uk.co.plymouthsoftware.core_data" in the application's documents Application Support directory.

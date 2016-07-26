@@ -4,12 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>DynamicBlurView.xcscheme</key>
+		<key>Pods-Løper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Løper.xcscheme</key>
+		<key>STZPopupView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -17,12 +17,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>03986035B05D1C564D91AA910E316353</key>
+		<key>A7297B1B78F2D30463B91DD436477740</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BBB5E4953AE4774318C6D6E705000F8F</key>
+		<key>CCDE9928469E535F1E5D89560A3A33A7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -10,8 +10,9 @@
 
 import UIKit
 import MapKit
+import WatchConnectivity
 
-class HomeViewController: UIViewController, CLLocationManagerDelegate {
+class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSessionDelegate {
 
 //MARK: Outlets
     
@@ -22,6 +23,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
 //MARK: Variables
     
     var locationManager = CLLocationManager()
+    var session: WCSession!
     
     
 //MARK: Boilerplate Functions
@@ -29,6 +31,11 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     //This function loads the view, calls the viewControllerLayoutChanges function, and sets up the location manager settings
     override func viewDidLoad() {
         super.viewDidLoad()
+        if WCSession.isSupported() {
+            session = WCSession.defaultSession()
+            session.delegate = self
+            session.activateSession()
+        }
         self.viewControllerLayoutChanges()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -102,6 +109,13 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     //This function can be connected to another view controller to unwind a segue
     @IBAction func unwindToHomeViewController(segue: UIStoryboardSegue) {
+    }
+    
+
+//MARK: Watch Connectivity
+    
+    func session(session: WCSession, didReceiveMessage gameStats: [String : AnyObject]) {
+        print("Whats up")
     }
 
 }

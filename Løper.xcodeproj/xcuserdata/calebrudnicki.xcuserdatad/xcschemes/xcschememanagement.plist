@@ -9,10 +9,40 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>LøperWatch (Complication).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>LøperWatch (Glance).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>LøperWatch (Notification).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>LøperWatch.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>824079921D45A9E6009056A8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>8284C9AA1D34290000A08EEF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>82B4769C1D46B5DF00A81A4D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -9,20 +9,74 @@
 /* Begin PBXBuildFile section */
 		820132781D36E15A003B1C2C /* ListRunsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820132771D36E15A003B1C2C /* ListRunsTableViewController.swift */; };
 		821067041D3D249D00694447 /* RunDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821067031D3D249D00694447 /* RunDataCell.swift */; };
-		821067061D3D489300694447 /* RunDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821067051D3D489300694447 /* RunDataViewController.swift */; };
 		821067091D3D562600694447 /* Løper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 821067071D3D562600694447 /* Løper.xcdatamodeld */; };
 		8210670E1D3D591D00694447 /* Run+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210670A1D3D591D00694447 /* Run+CoreDataProperties.swift */; };
 		8210670F1D3D591D00694447 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210670B1D3D591D00694447 /* Run.swift */; };
 		821067101D3D591D00694447 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210670C1D3D591D00694447 /* Location+CoreDataProperties.swift */; };
 		821067111D3D591D00694447 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210670D1D3D591D00694447 /* Location.swift */; };
+		8249EFC01D466A4C002D033E /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8249EFBF1D466A4C002D033E /* PopoverViewController.swift */; };
+		8249EFC21D469BBF002D033E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8249EFC11D469BBF002D033E /* MapKit.framework */; };
 		8284C9AF1D34290000A08EEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284C9AE1D34290000A08EEF /* AppDelegate.swift */; };
 		8284C9B41D34290000A08EEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8284C9B21D34290000A08EEF /* Main.storyboard */; };
 		8284C9B61D34290000A08EEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8284C9B51D34290000A08EEF /* Assets.xcassets */; };
 		8284C9B91D34290000A08EEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8284C9B71D34290000A08EEF /* LaunchScreen.storyboard */; };
 		8284C9C11D342AF500A08EEF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284C9C01D342AF500A08EEF /* HomeViewController.swift */; };
 		8284C9C31D358DE600A08EEF /* RunTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284C9C21D358DE600A08EEF /* RunTrackerViewController.swift */; };
+		82B476A11D46B5DF00A81A4D /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82B4769F1D46B5DF00A81A4D /* Interface.storyboard */; };
+		82B476A31D46B5DF00A81A4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82B476A21D46B5DF00A81A4D /* Assets.xcassets */; };
+		82B476AA1D46B5DF00A81A4D /* Løper WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 82B476A91D46B5DF00A81A4D /* Løper WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		82B476B31D46B5DF00A81A4D /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B476B21D46B5DF00A81A4D /* ExtensionDelegate.swift */; };
+		82B476B51D46B5DF00A81A4D /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B476B41D46B5DF00A81A4D /* NotificationController.swift */; };
+		82B476B71D46B5DF00A81A4D /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B476B61D46B5DF00A81A4D /* GlanceController.swift */; };
+		82B476B91D46B5DF00A81A4D /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B476B81D46B5DF00A81A4D /* ComplicationController.swift */; };
+		82B476BB1D46B5DF00A81A4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82B476BA1D46B5DF00A81A4D /* Assets.xcassets */; };
+		82B476BF1D46B5DF00A81A4D /* Løper WatchKit.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 82B4769D1D46B5DF00A81A4D /* Løper WatchKit.app */; };
+		82B476C81D46E01300A81A4D /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B476B01D46B5DF00A81A4D /* InterfaceController.swift */; };
+		82B476C91D46E0E800A81A4D /* RunDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821067051D3D489300694447 /* RunDataViewController.swift */; };
 		F0B6AAA6E938E116F3649F6E /* Pods_L_per.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB44BEE256B38A0A01EBE055 /* Pods_L_per.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		82B476AB1D46B5DF00A81A4D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8284C9A31D34290000A08EEF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 82B476A81D46B5DF00A81A4D;
+			remoteInfo = "Løper WatchKit Extension";
+		};
+		82B476BD1D46B5DF00A81A4D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8284C9A31D34290000A08EEF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 82B4769C1D46B5DF00A81A4D;
+			remoteInfo = "Løper WatchKit";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		824079BD1D45A9E6009056A8 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				82B476BF1D46B5DF00A81A4D /* Løper WatchKit.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82B476C51D46B5DF00A81A4D /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				82B476AA1D46B5DF00A81A4D /* Løper WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7E806B3241EAF30B9A1944F4 /* Pods-Løper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Løper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Løper/Pods-Løper.debug.xcconfig"; sourceTree = "<group>"; };
@@ -34,6 +88,8 @@
 		8210670B1D3D591D00694447 /* Run.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
 		8210670C1D3D591D00694447 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8210670D1D3D591D00694447 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		8249EFBF1D466A4C002D033E /* PopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
+		8249EFC11D469BBF002D033E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8284C9AB1D34290000A08EEF /* Løper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Løper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8284C9AE1D34290000A08EEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8284C9B31D34290000A08EEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -42,6 +98,19 @@
 		8284C9BA1D34290000A08EEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8284C9C01D342AF500A08EEF /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8284C9C21D358DE600A08EEF /* RunTrackerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunTrackerViewController.swift; sourceTree = "<group>"; };
+		82B4769D1D46B5DF00A81A4D /* Løper WatchKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Løper WatchKit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		82B476A01D46B5DF00A81A4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		82B476A21D46B5DF00A81A4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		82B476A41D46B5DF00A81A4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		82B476A91D46B5DF00A81A4D /* Løper WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Løper WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		82B476AF1D46B5DF00A81A4D /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		82B476B01D46B5DF00A81A4D /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		82B476B21D46B5DF00A81A4D /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		82B476B41D46B5DF00A81A4D /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		82B476B61D46B5DF00A81A4D /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
+		82B476B81D46B5DF00A81A4D /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		82B476BA1D46B5DF00A81A4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		82B476BC1D46B5DF00A81A4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB44BEE256B38A0A01EBE055 /* Pods_L_per.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_L_per.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC97581B2C061E153DF6306 /* Pods-Løper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Løper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Løper/Pods-Løper.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -51,7 +120,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8249EFC21D469BBF002D033E /* MapKit.framework in Frameworks */,
 				F0B6AAA6E938E116F3649F6E /* Pods_L_per.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82B476A61D46B5DF00A81A4D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				8284C9AD1D34290000A08EEF /* Løper */,
+				82B4769E1D46B5DF00A81A4D /* Løper WatchKit */,
+				82B476AD1D46B5DF00A81A4D /* Løper WatchKit Extension */,
 				8284C9AC1D34290000A08EEF /* Products */,
 				1A51455C7FB24BDE6E0E639A /* Pods */,
 				89F44B51CAF1C81EEA23A349 /* Frameworks */,
@@ -92,6 +171,8 @@
 			isa = PBXGroup;
 			children = (
 				8284C9AB1D34290000A08EEF /* Løper.app */,
+				82B4769D1D46B5DF00A81A4D /* Løper WatchKit.app */,
+				82B476A91D46B5DF00A81A4D /* Løper WatchKit Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -104,6 +185,7 @@
 				8284C9AE1D34290000A08EEF /* AppDelegate.swift */,
 				8284C9C01D342AF500A08EEF /* HomeViewController.swift */,
 				8284C9C21D358DE600A08EEF /* RunTrackerViewController.swift */,
+				8249EFBF1D466A4C002D033E /* PopoverViewController.swift */,
 				820132771D36E15A003B1C2C /* ListRunsTableViewController.swift */,
 				821067051D3D489300694447 /* RunDataViewController.swift */,
 				821067031D3D249D00694447 /* RunDataCell.swift */,
@@ -115,9 +197,43 @@
 			path = "Løper";
 			sourceTree = "<group>";
 		};
+		82B4769E1D46B5DF00A81A4D /* Løper WatchKit */ = {
+			isa = PBXGroup;
+			children = (
+				82B4769F1D46B5DF00A81A4D /* Interface.storyboard */,
+				82B476A21D46B5DF00A81A4D /* Assets.xcassets */,
+				82B476A41D46B5DF00A81A4D /* Info.plist */,
+			);
+			path = "Løper WatchKit";
+			sourceTree = "<group>";
+		};
+		82B476AD1D46B5DF00A81A4D /* Løper WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				82B476B01D46B5DF00A81A4D /* InterfaceController.swift */,
+				82B476B21D46B5DF00A81A4D /* ExtensionDelegate.swift */,
+				82B476B41D46B5DF00A81A4D /* NotificationController.swift */,
+				82B476B61D46B5DF00A81A4D /* GlanceController.swift */,
+				82B476B81D46B5DF00A81A4D /* ComplicationController.swift */,
+				82B476BA1D46B5DF00A81A4D /* Assets.xcassets */,
+				82B476BC1D46B5DF00A81A4D /* Info.plist */,
+				82B476AE1D46B5DF00A81A4D /* Supporting Files */,
+			);
+			path = "Løper WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		82B476AE1D46B5DF00A81A4D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				82B476AF1D46B5DF00A81A4D /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		89F44B51CAF1C81EEA23A349 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8249EFC11D469BBF002D033E /* MapKit.framework */,
 				CB44BEE256B38A0A01EBE055 /* Pods_L_per.framework */,
 			);
 			name = Frameworks;
@@ -136,15 +252,51 @@
 				8284C9A91D34290000A08EEF /* Resources */,
 				50AB841B26D05DD937AF3C45 /* [CP] Embed Pods Frameworks */,
 				65C4DD2807303582383B0C3A /* [CP] Copy Pods Resources */,
+				824079BD1D45A9E6009056A8 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				82B476BE1D46B5DF00A81A4D /* PBXTargetDependency */,
 			);
 			name = "Løper";
 			productName = "Løper";
 			productReference = 8284C9AB1D34290000A08EEF /* Løper.app */;
 			productType = "com.apple.product-type.application";
+		};
+		82B4769C1D46B5DF00A81A4D /* Løper WatchKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82B476C61D46B5DF00A81A4D /* Build configuration list for PBXNativeTarget "Løper WatchKit" */;
+			buildPhases = (
+				82B4769B1D46B5DF00A81A4D /* Resources */,
+				82B476C51D46B5DF00A81A4D /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				82B476AC1D46B5DF00A81A4D /* PBXTargetDependency */,
+			);
+			name = "Løper WatchKit";
+			productName = "Løper WatchKit";
+			productReference = 82B4769D1D46B5DF00A81A4D /* Løper WatchKit.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		82B476A81D46B5DF00A81A4D /* Løper WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82B476C41D46B5DF00A81A4D /* Build configuration list for PBXNativeTarget "Løper WatchKit Extension" */;
+			buildPhases = (
+				82B476A51D46B5DF00A81A4D /* Sources */,
+				82B476A61D46B5DF00A81A4D /* Frameworks */,
+				82B476A71D46B5DF00A81A4D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Løper WatchKit Extension";
+			productName = "Løper WatchKit Extension";
+			productReference = 82B476A91D46B5DF00A81A4D /* Løper WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -163,7 +315,18 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
 						};
+					};
+					82B4769C1D46B5DF00A81A4D = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = FNL2LKL956;
+					};
+					82B476A81D46B5DF00A81A4D = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = FNL2LKL956;
 					};
 				};
 			};
@@ -181,6 +344,8 @@
 			projectRoot = "";
 			targets = (
 				8284C9AA1D34290000A08EEF /* Løper */,
+				82B4769C1D46B5DF00A81A4D /* Løper WatchKit */,
+				82B476A81D46B5DF00A81A4D /* Løper WatchKit Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -193,6 +358,23 @@
 				8284C9B91D34290000A08EEF /* LaunchScreen.storyboard in Resources */,
 				8284C9B61D34290000A08EEF /* Assets.xcassets in Resources */,
 				8284C9B41D34290000A08EEF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82B4769B1D46B5DF00A81A4D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82B476A31D46B5DF00A81A4D /* Assets.xcassets in Resources */,
+				82B476A11D46B5DF00A81A4D /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82B476A71D46B5DF00A81A4D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82B476BB1D46B5DF00A81A4D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,20 +434,46 @@
 			buildActionMask = 2147483647;
 			files = (
 				8284C9AF1D34290000A08EEF /* AppDelegate.swift in Sources */,
-				821067061D3D489300694447 /* RunDataViewController.swift in Sources */,
+				82B476C91D46E0E800A81A4D /* RunDataViewController.swift in Sources */,
 				821067101D3D591D00694447 /* Location+CoreDataProperties.swift in Sources */,
 				820132781D36E15A003B1C2C /* ListRunsTableViewController.swift in Sources */,
+				8249EFC01D466A4C002D033E /* PopoverViewController.swift in Sources */,
 				8210670F1D3D591D00694447 /* Run.swift in Sources */,
 				821067091D3D562600694447 /* Løper.xcdatamodeld in Sources */,
 				8284C9C11D342AF500A08EEF /* HomeViewController.swift in Sources */,
 				821067041D3D249D00694447 /* RunDataCell.swift in Sources */,
 				8210670E1D3D591D00694447 /* Run+CoreDataProperties.swift in Sources */,
+				82B476C81D46E01300A81A4D /* InterfaceController.swift in Sources */,
 				821067111D3D591D00694447 /* Location.swift in Sources */,
 				8284C9C31D358DE600A08EEF /* RunTrackerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		82B476A51D46B5DF00A81A4D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82B476B51D46B5DF00A81A4D /* NotificationController.swift in Sources */,
+				82B476B31D46B5DF00A81A4D /* ExtensionDelegate.swift in Sources */,
+				82B476B91D46B5DF00A81A4D /* ComplicationController.swift in Sources */,
+				82B476B71D46B5DF00A81A4D /* GlanceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		82B476AC1D46B5DF00A81A4D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 82B476A81D46B5DF00A81A4D /* Løper WatchKit Extension */;
+			targetProxy = 82B476AB1D46B5DF00A81A4D /* PBXContainerItemProxy */;
+		};
+		82B476BE1D46B5DF00A81A4D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 82B4769C1D46B5DF00A81A4D /* Løper WatchKit */;
+			targetProxy = 82B476BD1D46B5DF00A81A4D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8284C9B21D34290000A08EEF /* Main.storyboard */ = {
@@ -282,6 +490,14 @@
 				8284C9B81D34290000A08EEF /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		82B4769F1D46B5DF00A81A4D /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				82B476A01D46B5DF00A81A4D /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -394,6 +610,68 @@
 			};
 			name = Release;
 		};
+		82B476C01D46B5DF00A81A4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = L_per_WatchKit_Extension;
+				INFOPLIST_FILE = "Løper WatchKit/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.L-per.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		82B476C11D46B5DF00A81A4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = L_per_WatchKit_Extension;
+				INFOPLIST_FILE = "Løper WatchKit/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.L-per.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
+		82B476C21D46B5DF00A81A4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				INFOPLIST_FILE = "Løper WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.L-per.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		82B476C31D46B5DF00A81A4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				INFOPLIST_FILE = "Løper WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.L-per.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -414,6 +692,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		82B476C41D46B5DF00A81A4D /* Build configuration list for PBXNativeTarget "Løper WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82B476C21D46B5DF00A81A4D /* Debug */,
+				82B476C31D46B5DF00A81A4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		82B476C61D46B5DF00A81A4D /* Build configuration list for PBXNativeTarget "Løper WatchKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82B476C01D46B5DF00A81A4D /* Debug */,
+				82B476C11D46B5DF00A81A4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 

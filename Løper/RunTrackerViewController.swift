@@ -1,4 +1,4 @@
-//  
+//
 //  RunTrackerViewController.swift
 //  Løper
 //
@@ -9,25 +9,23 @@
 import UIKit
 import MapKit
 import CoreLocation
-///////
 import CoreMotion
-///////
 import HealthKit
 import CoreData
-import AudioToolbox
 
-class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIPopoverPresentationControllerDelegate {
     
 //MARK: Outlets
     
     @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var runTimeLabel: UILabel!
     @IBOutlet weak var averagePaceLabel: UILabel!
     @IBOutlet weak var stallTimeLabel: UILabel!
     @IBOutlet weak var stopRunButton: UIButton!
     @IBOutlet weak var speedTestLabel: UILabel!
+    
     
 //MARK: Variables
     
@@ -91,6 +89,11 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         navigationBar.hidesBackButton = true
     }
     
+    //This function allows the popover to take up only a portion of the view and not a whole page
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.None
+    }
+    
     
 //MARK: Conversion Functions
     
@@ -98,9 +101,8 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     func convertUnits(distance: Double, time: Double) -> (distance: Double, time: String, pace: String) {
         let distance = distance * 0.000621371
         let distanceRounded = Double(round(100 * distance) / 100)
-        let time = time / 60
         let timeRounded = secondsToClockFormat(time)
-        let pace = time / distance
+        let pace = (time / 60) / distance
         let paceRounded = minutesToClockFormat(pace)
         return (distanceRounded, timeRounded, paceRounded)
     }
@@ -110,7 +112,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         let hourPlace = Int(floor(seconds * 3600) % 60)
         let minutePlace = Int(floor(seconds * 60) % 60)
         let secondPlace = Int(floor(seconds))
-        return String(format: "%d:%02d:%02d", hourPlace, secondPlace, minutePlace)
+        return String(format: "%d:%02d:%02d", hourPlace, minutePlace, secondPlace)
     }
     
     //This function converts minutes into a minute:second format
@@ -142,10 +144,10 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         let alertController = UIAlertController(title: nil, message: "Are you are sure you're done with your run?", preferredStyle: .ActionSheet)
         let yesSaveAction = UIAlertAction(title: "Yes, I'm done", style: .Default) { (action) in
             self.saveRunToCoreData()
-            self.performSegueWithIdentifier("exitSegue", sender: self)
+            self.performSegueWithIdentifier("savedRunPopoverSegue", sender: self)
         }
         let yesCancelAction = UIAlertAction(title: "Yes, but don't save it", style: .Default) { (action) in
-            self.performSegueWithIdentifier("exitSegue", sender: self)
+            self.performSegueWithIdentifier("cancelledRunPopoverSegue", sender: self)
         }
         let noAction = UIAlertAction(title: "No", style: .Cancel) { (action) in
             self.viewDidLoad()
@@ -160,11 +162,21 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     
 //MARK: Segues
     
-    //This function allows the program to unwind segue to the HomeViewController
+    //This function allows the program to segue to the PopoverViewController
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
-            if identifier == "exitSegue" {
-                let homeViewController = segue.destinationViewController as! HomeViewController
+            if identifier == "savedRunPopoverSegue" {
+                let popoverViewController = segue.destinationViewController as! PopoverViewController
+                popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
+                popoverViewController.popoverPresentationController!.delegate = self
+                popoverViewController.runStatus = "Saved!!!"
+                popoverViewController.view.backgroundColor = UIColor.greenColor()
+            } else if identifier == "cancelledRunPopoverSegue" {
+                let popoverViewController = segue.destinationViewController as! PopoverViewController
+                popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
+                popoverViewController.popoverPresentationController!.delegate = self
+                popoverViewController.runStatus = "Cancelled!!"
+                popoverViewController.view.backgroundColor = UIColor.redColor()
             }
         }
     }
@@ -215,18 +227,23 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         let coord2D = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let coordinateRegion = MKCoordinateRegion(center: coord2D, span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
         mapView.setRegion(coordinateRegion, animated: false)
+        print(locations[0].speed)
         for location in locations {
             if location.horizontalAccuracy < 30 {
                 if self.locations.count > 0 {
                     distance = distance + location.distanceFromLocation(self.locations.last!)
                 }
             }
-            print(motionManager.accelerometerData)
-            if motionManager.accelerometerData?.acceleration.x > 0 && motionManager.accelerometerData?.acceleration.y > 0 {
-                self.locations.append(location)
-                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-                speedTestLabel.text = "acc = \(motionManager.accelerometerData?.acceleration.x)"
-            }
+            self.locations.append(location)
+//            print(locations[0].speed)
+//            if locations[0].speed > 0 {
+//                print("Im here")
+//                timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondRunning(_:)), userInfo: nil, repeats: true)
+//                
+//            } else {
+//                print("im here too")
+//                timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondStanding(_:)), userInfo: nil, repeats: true)
+//            }
         }
     }
     
@@ -252,22 +269,38 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         let polyline = overlay as! MKPolyline
         let renderer = MKPolylineRenderer(polyline: polyline) 
         renderer.strokeColor = UIColor(red: 0.59, green: 0.59, blue: 0.59, alpha: 1.0)
-        renderer.lineWidth = 3
+        renderer.lineWidth = 10
         return renderer
     }
 
+
     
-//MARK: Labels Updates
+//MARK: Timer Functions
     
-    //This functions calls for the line to be draw before it updates the time variable and updates all of the logos on the screen
+//    func eachSecond(timer: NSTimer, manager: CLLocationManager) {
+//        if locations[0].speed > 0 {
+//            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondRunning(_:)), userInfo: nil, repeats: true)
+//        } else {
+//            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondStanding(_:)), userInfo: nil, repeats: true)
+//        }
+//    }
+    
+    //This function calls for the line to be draw before it updates the time variable and updates all of the logos on the screen
     func eachSecond(timer: NSTimer) {
         mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveLabels)
         runTime = runTime + 1
         let (d, t, p) = self.convertUnits(distance, time: runTime)
         let y = Double(round(100*d)/100)
         distanceLabel.text = "\(y) mi"
-        timeLabel.text = t
-        averagePaceLabel.text = "\(p)"
+        runTimeLabel.text = t
+        averagePaceLabel.text = "\(p) min/mi"
+    }
+    
+    //This function
+    func eachSecondStanding(timer: NSTimer) {
+        stallTime = stallTime + 1
+        let t = self.secondsToClockFormat(stallTime)
+        stallTimeLabel.text = t
     }
 
 }
