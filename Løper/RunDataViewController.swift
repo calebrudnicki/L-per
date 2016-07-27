@@ -101,7 +101,7 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
         let polyline = overlay as! MKPolyline
         let renderer = MKPolylineRenderer(polyline: polyline)
         renderer.strokeColor = UIColor(red: 0.59, green: 0.59, blue: 0.59, alpha: 1.0)
-        renderer.lineWidth = 10
+        renderer.lineWidth = 3
         return renderer
     }
 

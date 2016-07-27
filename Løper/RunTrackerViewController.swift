@@ -35,10 +35,13 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         var locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = 0.5
+        locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.activityType = .Fitness
         return locationManager
     }()
+    ////////
+    //var session: PhoneSession()
+    ////////
     
     //Variables for labels and run info in the view
     var distance: Double! = 0.0
@@ -46,6 +49,8 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     var stallTime: Double! = 0.0
     var pace: Double! = 0.0
     var locations = [CLLocation]()
+    var accurateLocations = [CLPlacemark]()
+    var finalLocations = [CLLocation]()
     
     //Variables for data only being passed used in Core Data
     var run: Run!
@@ -58,9 +63,13 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
 
 //MARK: Boilerplate Functions
  
-    //This function sets the map delegate, clears all the array of locations, starts a timer, and calls viewControllerLayoutChanges() and startLocationUpdates()
+    //This function sets the map delegate, starts a session with the watch, clears all the array of locations, starts a timer, and calls viewControllerLayoutChanges() and startLocationUpdates()
     override func viewDidLoad() {
         super.viewDidLoad()
+        //////////
+        //session.startSession()
+        //session.sendMessageToWatch()
+        //////////
         self.mapView.delegate = self
         locations.removeAll(keepCapacity: false)
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecond(_:)), userInfo: nil, repeats: true)
@@ -131,7 +140,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     @IBAction func stopRunButtonTapped(sender: AnyObject) {
         userLocationManager.stopUpdatingLocation()
         timer.invalidate()
-        stopRunAlert()
+        self.stopRunAlert()
     }
     
 
@@ -165,9 +174,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         let popupViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PopupViewController") as! PopupViewController
         self.addChildViewController(popupViewController)
         popupViewController.view.frame = self.view.bounds
-        let imageName = "CheckMark"
-        let image = UIImage(named: imageName)
-        popupViewController.userChoiceImage = UIImageView(image: image)
+        popupViewController.userChoiceImage.image = UIImage(named: "CheckMark.png")
         popupViewController.userChoiceLabel.text = "Congrats! Your run was saved!"
         self.view.addSubview(popupViewController.view)
         popupViewController.didMoveToParentViewController(self)
@@ -178,9 +185,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         let popupViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PopupViewController") as! PopupViewController
         self.addChildViewController(popupViewController)
         popupViewController.view.frame = self.view.bounds
-        let imageName = "XMark"
-        let image = UIImage(named: imageName)
-        popupViewController.userChoiceImage = UIImageView(image: image)
+        popupViewController.userChoiceImage.image = UIImage(named: "XMark.png")
         popupViewController.userChoiceLabel.text = "Ok. Your run was not saved."
         self.view.addSubview(popupViewController.view)
         popupViewController.didMoveToParentViewController(self)
@@ -202,7 +207,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         newRun.time = finalRunTime
         newRun.date = date
         var savedLocations = [Location]()
-        for location in locations {
+        for location in finalLocations {
             let savedLocation = NSEntityDescription.insertNewObjectForEntityForName("Location",inManagedObjectContext: managedObjectContext) as! Location
             savedLocation.latitude = location.coordinate.latitude
             savedLocation.longitude = location.coordinate.longitude
@@ -240,6 +245,19 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
             if placemarks!.count > 0 {
                 let pm = placemarks![0] as! CLPlacemark
                 self.displayLocationInfo(pm)
+                //self.mapView.addAnnotation(MKPlacemark(placemark: pm))
+                let relativeDistance = userLocation.distanceFromLocation(pm.location!)
+                print(relativeDistance)
+                if relativeDistance < 30 {
+                    print("Placemark is accurate")
+                    print("appending pm")
+                    self.accurateLocations.append(pm)
+                    self.finalLocations.append(pm.location!)
+                }
+                else {
+                    print("Using user location instead")
+                    self.finalLocations.append(userLocation)
+                }
             }
         })
         
@@ -263,7 +281,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     
     //This function print out the address of each point
     func displayLocationInfo(placemark: CLPlacemark) {
-        print(placemark.addressDictionary!)
+        //print(placemark.addressDictionary!)
     }
 
 
@@ -272,12 +290,31 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     //This function loops through the locations array and appends each location to an array of CLLocationCoordinate2D called coords
     func polyline() -> MKPolyline {
         coords = [CLLocationCoordinate2D]()
-        let locations = self.locations
-        for location in locations {
+        for location in self.locations {
             coords.append(CLLocationCoordinate2D(latitude: location.coordinate.latitude,
                 longitude:location.coordinate.longitude))
         }        
         return MKPolyline(coordinates: &coords, count: locations.count)
+    }
+    
+    //
+    func polyline1() -> MKPolyline {
+        coords = [CLLocationCoordinate2D]()
+        for accurateLocation in self.accurateLocations {
+            coords.append(CLLocationCoordinate2D(latitude: accurateLocation.location!.coordinate.latitude,
+                longitude: accurateLocation.location!.coordinate.longitude))
+        }
+        return MKPolyline(coordinates: &coords, count: self.accurateLocations.count)
+    }
+    
+    func polylineFinal() -> MKPolyline {
+        coords = [CLLocationCoordinate2D]()
+        for finalLocation in self.finalLocations {
+            coords.append(CLLocationCoordinate2D(latitude: finalLocation.coordinate.latitude,
+                longitude: finalLocation.coordinate.longitude))
+        }
+
+        return MKPolyline(coordinates: &coords, count: self.accurateLocations.count)
     }
 
     // This function draws the line for the path of the run
@@ -288,7 +325,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         let polyline = overlay as! MKPolyline
         let renderer = MKPolylineRenderer(polyline: polyline) 
         renderer.strokeColor = UIColor(red: 0.59, green: 0.59, blue: 0.59, alpha: 1.0)
-        renderer.lineWidth = 10
+        renderer.lineWidth = 3
         return renderer
     }
 
@@ -297,7 +334,9 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     
     //This function calls for the line to be draw before it updates the time variable and updates all of the logos on the screen
     func eachSecond(timer: NSTimer) {
-        mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveLabels)
+//        mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveLabels)
+//        mapView.addOverlay(polyline1(), level: MKOverlayLevel.AboveLabels)
+        mapView.addOverlay(polylineFinal(), level: MKOverlayLevel.AboveLabels)
         runTime = runTime + 1
         let (d, t, p) = self.convertUnits(distance, time: runTime)
         let y = Double(round(100*d)/100)

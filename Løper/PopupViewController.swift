@@ -15,11 +15,6 @@ class PopupViewController: UIViewController {
     @IBOutlet weak var userChoiceImage: UIImageView!
     @IBOutlet weak var userChoiceLabel: UILabel!
     
-
-//MARK: Variables
-    
-    var choice: String!
-    
     
 //MARK: Boilerplate Functions
     

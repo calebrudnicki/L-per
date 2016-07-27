@@ -25,7 +25,9 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
 //MARK: Variables
     
     var locationManager = CLLocationManager()
+    ////////
     var session: WCSession!
+    ////////
     
     
 //MARK: Boilerplate Functions
@@ -33,11 +35,13 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
     //This function sets up a session with WatchKit, establishes the locationManager settings, and calls the viewControllerLayoutChanges()
     override func viewDidLoad() {
         super.viewDidLoad()
+        ///////////
         if WCSession.isSupported() {
             session = WCSession.defaultSession()
             session.delegate = self
             session.activateSession()
         }
+        ///////////
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
@@ -117,10 +121,12 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
 //MARK: Watch Connectivity
     
     //This function runs a segue to the RunTrackerViewController on the main thread once the start run button is tapped on the watch
+    ///////////
     func session(session: WCSession, didReceiveMessage gameStats: [String : AnyObject]) {
         dispatch_async(dispatch_get_main_queue()) {
             self.performSegueWithIdentifier("startRunSegue", sender: self)
         }
     }
+    ///////////
 
 }

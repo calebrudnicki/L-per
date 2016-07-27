@@ -9,7 +9,7 @@
 import WatchKit
 import WatchConnectivity
 
-class SessionHelper: NSObject, WCSessionDelegate {
+class WatchSession: NSObject, WCSessionDelegate {
     
     var session: WCSession!
     
@@ -18,6 +18,13 @@ class SessionHelper: NSObject, WCSessionDelegate {
             session = WCSession.defaultSession()
             session.delegate = self
             session.activateSession()
+        }
+    }
+    
+    func sendMessageToPhone() {
+        let gameStats = ["Scores": [1,2,3]]
+        session.sendMessage(gameStats, replyHandler: nil) { (error: NSError) in
+            print(error)
         }
     }
 

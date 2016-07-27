@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		820132781D36E15A003B1C2C /* ListRunsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820132771D36E15A003B1C2C /* ListRunsTableViewController.swift */; };
-		8203E8981D47C313003E7268 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B476B01D46B5DF00A81A4D /* InterfaceController.swift */; };
+		8203E8981D47C313003E7268 /* HomeInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B476B01D46B5DF00A81A4D /* HomeInterfaceController.swift */; };
 		821067091D3D562600694447 /* Løper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 821067071D3D562600694447 /* Løper.xcdatamodeld */; };
 		8210670E1D3D591D00694447 /* Run+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210670A1D3D591D00694447 /* Run+CoreDataProperties.swift */; };
 		8210670F1D3D591D00694447 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210670B1D3D591D00694447 /* Run.swift */; };
 		821067101D3D591D00694447 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210670C1D3D591D00694447 /* Location+CoreDataProperties.swift */; };
 		821067111D3D591D00694447 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210670D1D3D591D00694447 /* Location.swift */; };
-		822688231D48000700BCFD46 /* SessionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822688221D48000700BCFD46 /* SessionHelper.swift */; };
+		822688231D48000700BCFD46 /* WatchSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822688221D48000700BCFD46 /* WatchSession.swift */; };
 		8249EFC01D466A4C002D033E /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8249EFBF1D466A4C002D033E /* PopupViewController.swift */; };
 		8249EFC21D469BBF002D033E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8249EFC11D469BBF002D033E /* MapKit.framework */; };
 		8284C9AF1D34290000A08EEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284C9AE1D34290000A08EEF /* AppDelegate.swift */; };
@@ -34,6 +34,9 @@
 		82B476C91D46E0E800A81A4D /* RunDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821067051D3D489300694447 /* RunDataViewController.swift */; };
 		82B476CB1D47B51400A81A4D /* RunDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821067031D3D249D00694447 /* RunDataCell.swift */; };
 		82B476CE1D47B8C200A81A4D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284C9C01D342AF500A08EEF /* HomeViewController.swift */; };
+		82BE7C511D490A9300E35A9E /* RunTrackerInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BE7C501D490A9300E35A9E /* RunTrackerInterfaceController.swift */; };
+		82BE7C551D490D3700E35A9E /* PhoneSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BE7C541D490D3700E35A9E /* PhoneSession.swift */; };
+		82BE7C581D49443800E35A9E /* CheckMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 82BE7C571D49443800E35A9E /* CheckMark.png */; };
 		F0B6AAA6E938E116F3649F6E /* Pods_L_per.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB44BEE256B38A0A01EBE055 /* Pods_L_per.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,7 +92,7 @@
 		8210670B1D3D591D00694447 /* Run.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
 		8210670C1D3D591D00694447 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8210670D1D3D591D00694447 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		822688221D48000700BCFD46 /* SessionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionHelper.swift; sourceTree = "<group>"; };
+		822688221D48000700BCFD46 /* WatchSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSession.swift; sourceTree = "<group>"; };
 		8249EFBF1D466A4C002D033E /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		8249EFC11D469BBF002D033E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8284C9AB1D34290000A08EEF /* Løper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Løper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,13 +109,16 @@
 		82B476A41D46B5DF00A81A4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82B476A91D46B5DF00A81A4D /* Løper WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Løper WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82B476AF1D46B5DF00A81A4D /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		82B476B01D46B5DF00A81A4D /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		82B476B01D46B5DF00A81A4D /* HomeInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInterfaceController.swift; sourceTree = "<group>"; };
 		82B476B21D46B5DF00A81A4D /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		82B476B41D46B5DF00A81A4D /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		82B476B61D46B5DF00A81A4D /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
 		82B476B81D46B5DF00A81A4D /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		82B476BA1D46B5DF00A81A4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82B476BC1D46B5DF00A81A4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		82BE7C501D490A9300E35A9E /* RunTrackerInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunTrackerInterfaceController.swift; sourceTree = "<group>"; };
+		82BE7C541D490D3700E35A9E /* PhoneSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneSession.swift; sourceTree = "<group>"; };
+		82BE7C571D49443800E35A9E /* CheckMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckMark.png; sourceTree = "<group>"; };
 		CB44BEE256B38A0A01EBE055 /* Pods_L_per.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_L_per.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC97581B2C061E153DF6306 /* Pods-Løper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Løper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Løper/Pods-Løper.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,6 +155,7 @@
 		821067121D3D5B3500694447 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				82BE7C571D49443800E35A9E /* CheckMark.png */,
 				8210670A1D3D591D00694447 /* Run+CoreDataProperties.swift */,
 				8210670B1D3D591D00694447 /* Run.swift */,
 				8210670C1D3D591D00694447 /* Location+CoreDataProperties.swift */,
@@ -185,6 +192,7 @@
 				821067121D3D5B3500694447 /* Models */,
 				821067071D3D562600694447 /* Løper.xcdatamodeld */,
 				8284C9AE1D34290000A08EEF /* AppDelegate.swift */,
+				82BE7C541D490D3700E35A9E /* PhoneSession.swift */,
 				8284C9C01D342AF500A08EEF /* HomeViewController.swift */,
 				8284C9C21D358DE600A08EEF /* RunTrackerViewController.swift */,
 				8249EFBF1D466A4C002D033E /* PopupViewController.swift */,
@@ -212,8 +220,9 @@
 		82B476AD1D46B5DF00A81A4D /* Løper WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				822688221D48000700BCFD46 /* SessionHelper.swift */,
-				82B476B01D46B5DF00A81A4D /* InterfaceController.swift */,
+				822688221D48000700BCFD46 /* WatchSession.swift */,
+				82B476B01D46B5DF00A81A4D /* HomeInterfaceController.swift */,
+				82BE7C501D490A9300E35A9E /* RunTrackerInterfaceController.swift */,
 				82B476B21D46B5DF00A81A4D /* ExtensionDelegate.swift */,
 				82B476B41D46B5DF00A81A4D /* NotificationController.swift */,
 				82B476B61D46B5DF00A81A4D /* GlanceController.swift */,
@@ -359,6 +368,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8284C9B91D34290000A08EEF /* LaunchScreen.storyboard in Resources */,
+				82BE7C581D49443800E35A9E /* CheckMark.png in Resources */,
 				8284C9B61D34290000A08EEF /* Assets.xcassets in Resources */,
 				8284C9B41D34290000A08EEF /* Main.storyboard in Resources */,
 			);
@@ -440,6 +450,7 @@
 				82B476C91D46E0E800A81A4D /* RunDataViewController.swift in Sources */,
 				821067101D3D591D00694447 /* Location+CoreDataProperties.swift in Sources */,
 				820132781D36E15A003B1C2C /* ListRunsTableViewController.swift in Sources */,
+				82BE7C551D490D3700E35A9E /* PhoneSession.swift in Sources */,
 				8249EFC01D466A4C002D033E /* PopupViewController.swift in Sources */,
 				82B476CB1D47B51400A81A4D /* RunDataCell.swift in Sources */,
 				8210670F1D3D591D00694447 /* Run.swift in Sources */,
@@ -455,11 +466,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8203E8981D47C313003E7268 /* InterfaceController.swift in Sources */,
+				8203E8981D47C313003E7268 /* HomeInterfaceController.swift in Sources */,
 				82B476B51D46B5DF00A81A4D /* NotificationController.swift in Sources */,
 				82B476B31D46B5DF00A81A4D /* ExtensionDelegate.swift in Sources */,
+				82BE7C511D490A9300E35A9E /* RunTrackerInterfaceController.swift in Sources */,
 				82B476B91D46B5DF00A81A4D /* ComplicationController.swift in Sources */,
-				822688231D48000700BCFD46 /* SessionHelper.swift in Sources */,
+				822688231D48000700BCFD46 /* WatchSession.swift in Sources */,
 				82B476B71D46B5DF00A81A4D /* GlanceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

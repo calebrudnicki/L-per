@@ -5,41 +5,43 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="10032"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--Home Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Løper_WatchKit_Extension">
+                <controller id="AgC-eL-Hgc" customClass="HomeInterfaceController" customModule="Løper_WatchKit_Extension">
                     <items>
-                        <button width="1" height="196.5" alignment="left" title="Start Run" id="UK9-tY-qR1">
-                            <color key="titleColor" red="0.23137254900000001" green="0.23137254900000001" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="startRunButtonTapped" destination="AgC-eL-Hgc" id="XRy-Qd-25V"/>
-                            </connections>
-                        </button>
+                        <group width="1" alignment="left" radius="70" id="bMW-j5-QyZ">
+                            <items>
+                                <button width="1" height="182" alignment="left" title="Start Run" id="UK9-tY-qR1">
+                                    <color key="titleColor" red="0.23137254900000001" green="0.23137254900000001" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <connections>
+                                        <action selector="startRunButtonTapped" destination="AgC-eL-Hgc" id="XRy-Qd-25V"/>
+                                        <segue destination="PFe-nX-Cbp" kind="push" identifier="runTrackerSegue" id="CdN-KM-HeD"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
                     </items>
+                    <connections>
+                        <outlet property="startRunButton" destination="UK9-tY-qR1" id="jIe-dm-7K7"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="235" y="347"/>
         </scene>
-        <!--Interface Controller-->
+        <!--Run Tracker Interface Controller-->
         <scene sceneID="xSG-0Y-uU7">
             <objects>
-                <controller id="PFe-nX-Cbp">
+                <controller id="PFe-nX-Cbp" customClass="RunTrackerInterfaceController" customModule="Løper_WatchKit_Extension">
                     <items>
-                        <group width="1" height="1" alignment="left" layout="vertical" spacing="35" id="LsF-cc-gTZ">
-                            <items>
-                                <label width="136" alignment="left" text="Label" textAlignment="center" id="paH-9p-h46"/>
-                                <group width="1" alignment="left" spacing="25" id="oDs-Oz-Icz">
-                                    <items>
-                                        <label alignment="left" text="Label" id="ICf-mc-aa2"/>
-                                        <label alignment="left" text="Label" id="pPY-ie-56f"/>
-                                    </items>
-                                </group>
-                                <label width="136" alignment="left" text="Label" textAlignment="center" id="w6j-Ug-HXy"/>
-                            </items>
-                        </group>
+                        <label width="136" height="272" alignment="left" text="0.00 mi" textAlignment="center" id="hZa-K2-roK">
+                            <color key="textColor" red="1" green="0.2666666667" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
                     </items>
+                    <connections>
+                        <outlet property="distanceLabel" destination="hZa-K2-roK" id="5Ov-wq-fL5"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="516" y="347"/>
