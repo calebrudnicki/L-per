@@ -23,6 +23,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         super.awakeWithContext(context)
     }
 
+    //This functions activates a session
     override func willActivate() {
         super.willActivate()
         if WCSession.isSupported() {
@@ -39,6 +40,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
 //MARK: Actions
 
+    //This functions calls sendMessageToPhone()
     @IBAction func startRunButtonTapped() {
         self.sendMessageToPhone()
     }
@@ -46,6 +48,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
 //MARK: Phone Connectivity
     
+    //This functions sends a message to the phone
     func sendMessageToPhone() {
         let gameStats = ["Scores": [1,2,3]]
         session.sendMessage(gameStats, replyHandler: nil) { (error: NSError) in

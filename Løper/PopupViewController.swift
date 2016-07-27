@@ -12,6 +12,7 @@ class PopupViewController: UIViewController {
     
 //MARK: Outlets
     
+    @IBOutlet weak var userChoiceImage: UIImageView!
     @IBOutlet weak var userChoiceLabel: UILabel!
     
 
@@ -19,15 +20,25 @@ class PopupViewController: UIViewController {
     
     var choice: String!
     
+    
 //MARK: Boilerplate Functions
     
+    //This functions calls viewControllerLayoutChanges()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
+        self.viewControllerLayoutChanges()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    
+//MARK: Style Functions
+    
+    //This function changes the preset properties of the view
+    func viewControllerLayoutChanges() {
+        self.view.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
     }
     
     

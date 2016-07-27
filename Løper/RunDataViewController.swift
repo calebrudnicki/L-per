@@ -28,7 +28,7 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
     
 //MARK: Boilerplate Functions
     
-    //This function sets the map's delegate to self
+    //This function sets the map delegate
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -38,29 +38,22 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
         super.didReceiveMemoryWarning()
     }
     
-    //This function sets the labels of the view and then loads the map
+    //This function sets the labels of the view and calls loadMap()
     override func viewWillAppear(animated: Bool) {
         self.distanceLabel.text = String(run.distance!) + " mi"
         self.timeLabel.text = run.time
         self.paceLabel.text = "\(run.pace!) min/mi"
-        loadMap()
+        self.loadMap()
     }
 
     
 //MARK: Map Functions
     
-    //This functions either hides the map if there are no location points or shows the map and calls the addOverlay function
+    //This function shows the map, calls addOverlay(), and calls mapRegion()
     func loadMap() {
-        if run.locations!.count < 0 {
-            mapView.hidden = true
-        } else {
-            mapView.hidden = false
-            mapView.addOverlay(polyline())
-            mapView.region = mapRegion()
-//            setupAnnotations()
-//            addAnnotations()
-            
-        }
+        mapView.hidden = false
+        mapView.addOverlay(polyline())
+        mapView.region = mapRegion()
     }
     
     //This function sets the region that the map shows
@@ -86,21 +79,6 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
     
     
 //MARK: Path Drawing
-    
-//    func setupAnnotations() {
-//        var annotation: MKPointAnnotation
-//        for location in run!.locations!.array as! [Location] {
-//            annotation = MKPointAnnotation()
-//            annotation.coordinate = CLLocationCoordinate2D(latitude: location.latitude!.doubleValue,
-//                                                           longitude:location.longitude!.doubleValue)
-//            annotations.append(annotation)
-//        }
-//        
-//    }
-//    func addAnnotations() {
-//        self.mapView.addAnnotations(annotations)
-//        
-//    }
     
     //This function loops through the locations array and appends each location to an array of CLLocationCoordinate2D called coords
     func polyline() -> MKPolyline {

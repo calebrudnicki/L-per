@@ -14,6 +14,7 @@
 		8210670F1D3D591D00694447 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210670B1D3D591D00694447 /* Run.swift */; };
 		821067101D3D591D00694447 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210670C1D3D591D00694447 /* Location+CoreDataProperties.swift */; };
 		821067111D3D591D00694447 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210670D1D3D591D00694447 /* Location.swift */; };
+		822688231D48000700BCFD46 /* SessionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822688221D48000700BCFD46 /* SessionHelper.swift */; };
 		8249EFC01D466A4C002D033E /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8249EFBF1D466A4C002D033E /* PopupViewController.swift */; };
 		8249EFC21D469BBF002D033E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8249EFC11D469BBF002D033E /* MapKit.framework */; };
 		8284C9AF1D34290000A08EEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284C9AE1D34290000A08EEF /* AppDelegate.swift */; };
@@ -88,6 +89,7 @@
 		8210670B1D3D591D00694447 /* Run.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
 		8210670C1D3D591D00694447 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8210670D1D3D591D00694447 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		822688221D48000700BCFD46 /* SessionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionHelper.swift; sourceTree = "<group>"; };
 		8249EFBF1D466A4C002D033E /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		8249EFC11D469BBF002D033E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8284C9AB1D34290000A08EEF /* Løper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Løper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,6 +212,7 @@
 		82B476AD1D46B5DF00A81A4D /* Løper WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				822688221D48000700BCFD46 /* SessionHelper.swift */,
 				82B476B01D46B5DF00A81A4D /* InterfaceController.swift */,
 				82B476B21D46B5DF00A81A4D /* ExtensionDelegate.swift */,
 				82B476B41D46B5DF00A81A4D /* NotificationController.swift */,
@@ -456,6 +459,7 @@
 				82B476B51D46B5DF00A81A4D /* NotificationController.swift in Sources */,
 				82B476B31D46B5DF00A81A4D /* ExtensionDelegate.swift in Sources */,
 				82B476B91D46B5DF00A81A4D /* ComplicationController.swift in Sources */,
+				822688231D48000700BCFD46 /* SessionHelper.swift in Sources */,
 				82B476B71D46B5DF00A81A4D /* GlanceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

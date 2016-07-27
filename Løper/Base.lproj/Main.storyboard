@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -339,42 +338,79 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cj8-vu-MSx">
-                                <rect key="frame" x="150" y="195" width="300" height="210"/>
+                                <rect key="frame" x="90" y="70" width="420" height="240"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Choice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3z-5q-mxo">
-                                        <rect key="frame" x="103" y="45" width="94" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnW-Js-TWq">
-                                        <rect key="frame" x="135" y="127" width="30" height="30"/>
-                                        <state key="normal" title="Ok">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="okButtonTapped:" destination="xrZ-br-pPC" eventType="touchUpInside" id="434-Q0-ram"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RAc-GC-rEn">
+                                        <rect key="frame" x="11" y="6" width="399" height="228"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="NWi-Lb-nP6">
+                                                <rect key="frame" x="0.0" y="0.0" width="399" height="228"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tbU-Yr-Q0p">
+                                                        <rect key="frame" x="0.0" y="0.0" width="399" height="228"/>
+                                                        <subviews>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="CheckMark" translatesAutoresizingMaskIntoConstraints="NO" id="Tum-78-34k">
+                                                                <rect key="frame" x="120" y="0.0" width="160" height="118"/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="User Choice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3z-5q-mxo">
+                                                                <rect key="frame" x="153" y="138" width="94" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="0.23137254900000001" green="0.23137254900000001" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnW-Js-TWq">
+                                                                <rect key="frame" x="0.0" y="178" width="399" height="50"/>
+                                                                <color key="backgroundColor" red="0.23137254900000001" green="0.23137254900000001" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="83t-UA-XIC"/>
+                                                                </constraints>
+                                                                <state key="normal" title="Ok">
+                                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                                                                        <real key="value" value="7.5"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="okButtonTapped:" destination="xrZ-br-pPC" eventType="touchUpInside" id="434-Q0-ram"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="Tum-78-34k" firstAttribute="width" secondItem="tbU-Yr-Q0p" secondAttribute="width" multiplier="0.4" id="523-tY-WLO"/>
+                                                            <constraint firstItem="TnW-Js-TWq" firstAttribute="width" secondItem="tbU-Yr-Q0p" secondAttribute="width" id="Kev-S7-rEh"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.180392161" green="0.80000001190000003" blue="0.4431372583" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottomMargin" secondItem="TnW-Js-TWq" secondAttribute="bottom" constant="45" id="bgy-eS-SKs"/>
-                                    <constraint firstItem="W3z-5q-mxo" firstAttribute="centerX" secondItem="cj8-vu-MSx" secondAttribute="centerX" id="cYQ-h2-FDz"/>
-                                    <constraint firstItem="W3z-5q-mxo" firstAttribute="top" secondItem="cj8-vu-MSx" secondAttribute="top" constant="45" id="hMw-e8-dxC"/>
-                                    <constraint firstItem="TnW-Js-TWq" firstAttribute="centerX" secondItem="cj8-vu-MSx" secondAttribute="centerX" id="qYh-bk-YPC"/>
+                                    <constraint firstItem="RAc-GC-rEn" firstAttribute="centerY" secondItem="cj8-vu-MSx" secondAttribute="centerY" id="9hh-F6-o0s"/>
+                                    <constraint firstItem="RAc-GC-rEn" firstAttribute="centerX" secondItem="cj8-vu-MSx" secondAttribute="centerX" id="KxM-1Z-1sX"/>
+                                    <constraint firstItem="RAc-GC-rEn" firstAttribute="height" secondItem="cj8-vu-MSx" secondAttribute="height" multiplier="0.95" id="P6I-2X-yo4"/>
+                                    <constraint firstItem="RAc-GC-rEn" firstAttribute="width" secondItem="cj8-vu-MSx" secondAttribute="width" multiplier="0.95" id="V4r-1W-PW8"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                                        <real key="value" value="7.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.23137254900000001" green="0.23137254900000001" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="cj8-vu-MSx" firstAttribute="centerX" secondItem="92c-4N-gbu" secondAttribute="centerX" id="T3A-Zl-Iju"/>
-                            <constraint firstItem="cj8-vu-MSx" firstAttribute="width" secondItem="92c-4N-gbu" secondAttribute="width" multiplier="0.5" id="Txl-6E-dcy"/>
-                            <constraint firstItem="cj8-vu-MSx" firstAttribute="height" secondItem="92c-4N-gbu" secondAttribute="height" multiplier="0.35" id="Zcs-8f-jXG"/>
-                            <constraint firstItem="cj8-vu-MSx" firstAttribute="centerY" secondItem="92c-4N-gbu" secondAttribute="centerY" id="pHA-G9-DwJ"/>
+                            <constraint firstItem="cj8-vu-MSx" firstAttribute="top" secondItem="fee-Me-JtB" secondAttribute="bottom" constant="50" id="9CR-R2-gom"/>
+                            <constraint firstItem="cj8-vu-MSx" firstAttribute="centerX" secondItem="92c-4N-gbu" secondAttribute="centerX" id="RMP-0R-tsW"/>
+                            <constraint firstItem="cj8-vu-MSx" firstAttribute="width" secondItem="92c-4N-gbu" secondAttribute="width" multiplier="0.7" id="Txl-6E-dcy"/>
+                            <constraint firstItem="cj8-vu-MSx" firstAttribute="height" secondItem="92c-4N-gbu" secondAttribute="height" multiplier="0.4" id="Zcs-8f-jXG"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="userChoiceImage" destination="Tum-78-34k" id="NC5-WK-X7I"/>
                         <outlet property="userChoiceLabel" destination="W3z-5q-mxo" id="KsO-9r-pRB"/>
                         <segue destination="qsF-1a-uaI" kind="unwind" identifier="exitSegue" unwindAction="unwindToHomeViewController:" id="doA-du-aMS"/>
                     </connections>
@@ -568,6 +604,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="CheckMark" width="450" height="450"/>
         <image name="runner-0" width="25" height="25"/>
     </resources>
 </document>

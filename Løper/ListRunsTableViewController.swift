@@ -28,10 +28,18 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
         super.didReceiveMemoryWarning()
     }
     
-    //This functions loads the info from Core Data after the view appears
+    //This functions calls loadFromCoreData()
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        loadFromCoreData()
+        self.loadFromCoreData()
+    }
+    
+
+//MARK: Actions
+    
+    //This function calls clearAllFromCoreData() when the clear button is tapped
+    @IBAction func clearAllButtonsTapped(sender: AnyObject) {
+        self.clearAllFromCoreData()
     }
     
     
@@ -81,16 +89,6 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
             fatalError("Failed to delete run: \(error)")
         }
     }
-    
-
-//MARK: Actions
-    
-    //This function calls the clearAllFromCoreData function when the clear button is tapped
-    @IBAction func clearAllButtonsTapped(sender: AnyObject) {
-        self.clearAllFromCoreData()
-    }
-    
-    
     
     
 //MARK: Segues

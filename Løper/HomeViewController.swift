@@ -5,7 +5,9 @@
 //  Created by Caleb Rudnicki on 7/11/16.
 //  Copyright © 2016 Caleb Rudnicki. All rights reserved.
 //
-//  Runner icon in top left created by Freepik at http://www.freepik.com
+//  Runner icon in top left corner of HomeViewController was created by Freepik at http://www.freepik.com
+//  Check mark icon in the PopupViewController was created Huu Nguyen at https://thenounproject.com/huu/
+//  X mark icon in PopupViewController was created by Huu Nguyen at https://thenounproject.com/huu/
 //
 
 import UIKit
@@ -28,7 +30,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
     
 //MARK: Boilerplate Functions
     
-    //This function loads the view, calls the viewControllerLayoutChanges function, and sets up the location manager settings
+    //This function sets up a session with WatchKit, establishes the locationManager settings, and calls the viewControllerLayoutChanges()
     override func viewDidLoad() {
         super.viewDidLoad()
         if WCSession.isSupported() {
@@ -36,13 +38,13 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
             session.delegate = self
             session.activateSession()
         }
-        self.viewControllerLayoutChanges()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
+        self.viewControllerLayoutChanges()
     }
     
-    //This function checkes the authorization status
+    //This function checks the location authorization status
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.checkLocationAuthorizationStatus()
@@ -55,7 +57,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
     
 //MARK: Style Functions
     
-    //This functions changes preset properties for the map
+    //This function changes preset properties of the view controller
     func viewControllerLayoutChanges() {
         mapView.tintColor = UIColor(red: 0.59, green: 0.59, blue: 0.59, alpha: 1.0)
     }
@@ -76,7 +78,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
     
 //MARK: Location Functions
     
-    //This functions checks to see the users authorization status and either allows the app to acces their location or sends an authorization request
+    //This functions checks to see the users authorization status and either allows the app to access their location or sends an authorization request
     func checkLocationAuthorizationStatus() {
         if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
             mapView.showsUserLocation = true
@@ -107,13 +109,14 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
         }
     }
     
-    //This function can be connected to another view controller to unwind a segue
+    //This function can be connected to by another view controller to unwind a segue
     @IBAction func unwindToHomeViewController(segue: UIStoryboardSegue) {
     }
     
 
 //MARK: Watch Connectivity
     
+    //This function runs a segue to the RunTrackerViewController on the main thread once the start run button is tapped on the watch
     func session(session: WCSession, didReceiveMessage gameStats: [String : AnyObject]) {
         dispatch_async(dispatch_get_main_queue()) {
             self.performSegueWithIdentifier("startRunSegue", sender: self)
