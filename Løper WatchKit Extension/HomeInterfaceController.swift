@@ -21,6 +21,7 @@ class HomeInterfaceController: WKInterfaceController {
     //////////
     var session = WatchSession()
     //////////
+    var currentValue = "10"
     
     
 //MARK: Boilerplate Functions
@@ -32,6 +33,7 @@ class HomeInterfaceController: WKInterfaceController {
     //This function activates a session
     override func willActivate() {
         super.willActivate()
+        //startRunButton.layer.cornerRadius = startRunButton.frame.width / 2
         session.startSession()
     }
 
@@ -40,7 +42,7 @@ class HomeInterfaceController: WKInterfaceController {
     }
     
     override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
-        return 10
+        return self.currentValue
     }
     
 

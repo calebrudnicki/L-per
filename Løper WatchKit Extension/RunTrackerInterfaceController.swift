@@ -15,21 +15,16 @@ class RunTrackerInterfaceController: WKInterfaceController, WCSessionDelegate {
 //MARK: Outlets
     
     @IBOutlet var distanceLabel: WKInterfaceLabel!
-    
-    
-//MARK: Variables
-    
-    //var session: Session()
- 
+
     
 //MARK: Boilerplate Functions
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        if let val = context {
-            self.distanceLabel.setText(val as? String)
+        if let val: String = context as? String {
+            self.distanceLabel.setText(val)
         } else {
-            self.distanceLabel.setText("no value")
+            self.distanceLabel.setText("nothing")
         }
     }
 
@@ -42,11 +37,11 @@ class RunTrackerInterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     /////////////
-    func session(session: WCSession, didReceiveMessage gameStats: [String : AnyObject]) {
-        dispatch_async(dispatch_get_main_queue()) {
-            self.distanceLabel.setText("Hi")
-        }
-    }
+//    func session(session: WCSession, didReceiveMessage gameStats: [String : AnyObject]) {
+//        dispatch_async(dispatch_get_main_queue()) {
+//            self.distanceLabel.setText("Hi")
+//        }
+//    }
     /////////////
 
 }

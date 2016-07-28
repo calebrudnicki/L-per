@@ -237,51 +237,14 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         let coord2D = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let coordinateRegion = MKCoordinateRegion(center: coord2D, span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
         mapView.setRegion(coordinateRegion, animated: false)
-        CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: { (placemarks, error) -> Void in
-            if error != nil {
-                print("Error \(error!.localizedDescription)")
-                return
-            }
-            if placemarks!.count > 0 {
-                let pm = placemarks![0] as! CLPlacemark
-                self.displayLocationInfo(pm)
-                //self.mapView.addAnnotation(MKPlacemark(placemark: pm))
-                let relativeDistance = userLocation.distanceFromLocation(pm.location!)
-                print(relativeDistance)
-                if relativeDistance < 30 {
-                    print("Placemark is accurate")
-                    print("appending pm")
-                    self.accurateLocations.append(pm)
-                    self.finalLocations.append(pm.location!)
-                }
-                else {
-                    print("Using user location instead")
-                    self.finalLocations.append(userLocation)
-                }
-            }
-        })
-        
-        //////////////////////////////////////////
-        /*Allows the line to be draw between
-            exact location, not address; change 
-            this code to allow the line to be
-            drawn between adresses*/
-        //////////////////////////////////////////
         for location in locations {
             if location.horizontalAccuracy < 30 {
                 if self.locations.count > 0 {
                     distance = distance + location.distanceFromLocation(self.locations.last!)
                 }
+                self.locations.append(location)
             }
-            self.locations.append(location)
         }
-        //////////////////////////////////////////
-        
-    }
-    
-    //This function print out the address of each point
-    func displayLocationInfo(placemark: CLPlacemark) {
-        //print(placemark.addressDictionary!)
     }
 
 
@@ -295,26 +258,6 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
                 longitude:location.coordinate.longitude))
         }        
         return MKPolyline(coordinates: &coords, count: locations.count)
-    }
-    
-    //
-    func polyline1() -> MKPolyline {
-        coords = [CLLocationCoordinate2D]()
-        for accurateLocation in self.accurateLocations {
-            coords.append(CLLocationCoordinate2D(latitude: accurateLocation.location!.coordinate.latitude,
-                longitude: accurateLocation.location!.coordinate.longitude))
-        }
-        return MKPolyline(coordinates: &coords, count: self.accurateLocations.count)
-    }
-    
-    func polylineFinal() -> MKPolyline {
-        coords = [CLLocationCoordinate2D]()
-        for finalLocation in self.finalLocations {
-            coords.append(CLLocationCoordinate2D(latitude: finalLocation.coordinate.latitude,
-                longitude: finalLocation.coordinate.longitude))
-        }
-
-        return MKPolyline(coordinates: &coords, count: self.accurateLocations.count)
     }
 
     // This function draws the line for the path of the run
@@ -334,9 +277,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     
     //This function calls for the line to be draw before it updates the time variable and updates all of the logos on the screen
     func eachSecond(timer: NSTimer) {
-//        mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveLabels)
-//        mapView.addOverlay(polyline1(), level: MKOverlayLevel.AboveLabels)
-        mapView.addOverlay(polylineFinal(), level: MKOverlayLevel.AboveLabels)
+        mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveLabels)
         runTime = runTime + 1
         let (d, t, p) = self.convertUnits(distance, time: runTime)
         let y = Double(round(100*d)/100)
