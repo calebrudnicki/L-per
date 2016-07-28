@@ -84,8 +84,10 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${PODS_ROOT}/LocationKit/LocationKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/STZPopupView/STZPopupView.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${PODS_ROOT}/LocationKit/LocationKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/STZPopupView/STZPopupView.framework"
 fi

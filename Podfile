@@ -7,5 +7,6 @@ target 'Løper' do
 
   # Pods for Løper
 	pod 'STZPopupView'
+	pod 'LocationKit', '~> 3.0'
 
 end

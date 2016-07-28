@@ -1,12 +1,15 @@
 PODS:
+  - LocationKit (3.0.3)
   - STZPopupView (1.0.2)
 
 DEPENDENCIES:
+  - LocationKit (~> 3.0)
   - STZPopupView
 
 SPEC CHECKSUMS:
+  LocationKit: 1a4146e0d6d0b93f8cf1adb592d2ae06398185bb
   STZPopupView: 4eb11a72c71d2942e23a4444d1bde40e563702e3
 
-PODFILE CHECKSUM: 5bf48fdd719930de4c43cae114d40ffddb37fa53
+PODFILE CHECKSUM: 809a62f93165fcd50f509222c99aee4d2709c1dc
 
 COCOAPODS: 1.0.1

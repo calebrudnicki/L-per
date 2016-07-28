@@ -12,10 +12,11 @@ import CoreLocation
 import CoreMotion
 import HealthKit
 import CoreData
+import LocationKit
 
-class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UIPopoverPresentationControllerDelegate {
+class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationManagerDelegate, UIPopoverPresentationControllerDelegate {
     
-//MARK: Outlets
+    //MARK: Outlets
     
     @IBOutlet weak var navigationBar: UINavigationItem!
     @IBOutlet weak var mapView: MKMapView!
@@ -26,22 +27,20 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     @IBOutlet weak var stopRunButton: UIButton!
     
     
-//MARK: Variables
+    //MARK: Variables
     
     //Variables for the functionality of the timers and the map accuracy
     var coords = [CLLocationCoordinate2D]()
     lazy var timer = NSTimer()
-    lazy var userLocationManager: CLLocationManager = {
-        var locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = kCLDistanceFilterNone
-        locationManager.activityType = .Fitness
+    lazy var userLocationManager: LKLocationManager = {
+        var locationManager =  LKLocationManager()
+        locationManager.apiToken = "464a00f4c99abf3c"
+        locationManager.debug = true
+        locationManager.advancedDelegate = self
+        let setting = LKSetting(type: .High)
+        locationManager.setOperationMode(setting)
         return locationManager
     }()
-    ////////
-    //var session: PhoneSession()
-    ////////
     
     //Variables for labels and run info in the view
     var distance: Double! = 0.0
@@ -49,8 +48,6 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     var stallTime: Double! = 0.0
     var pace: Double! = 0.0
     var locations = [CLLocation]()
-    var accurateLocations = [CLPlacemark]()
-    var finalLocations = [CLLocation]()
     
     //Variables for data only being passed used in Core Data
     var run: Run!
@@ -60,35 +57,31 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     var finalPace: String! = "0:00 min / mi"
     var date = NSDate()
     
-
-//MARK: Boilerplate Functions
- 
+    
+    //MARK: Boilerplate Functions
+    
     //This function sets the map delegate, starts a session with the watch, clears all the array of locations, starts a timer, and calls viewControllerLayoutChanges() and startLocationUpdates()
     override func viewDidLoad() {
         super.viewDidLoad()
-        //////////
-        //session.startSession()
-        //session.sendMessageToWatch()
-        //////////
         self.mapView.delegate = self
         locations.removeAll(keepCapacity: false)
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecond(_:)), userInfo: nil, repeats: true)
         self.viewControllerLayoutChanges()
         self.startLocationUpdates()
     }
-
+    
     //This function sets the showing of the user's location to true upon the view appearing
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         mapView.showsUserLocation = true
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-
-//MARK: Style Functions
+    
+    //MARK: Style Functions
     
     //This function changes the preset properties of the view
     func viewControllerLayoutChanges() {
@@ -102,7 +95,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     }
     
     
-//MARK: Conversion Functions
+    //MARK: Conversion Functions
     
     //This function converts distance and time values from meters and seconds to miles and minutes
     func convertUnits(distance: Double, time: Double) -> (distance: Double, time: String, pace: String) {
@@ -134,7 +127,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     }
     
     
-//MARK: Actions
+    //MARK: Actions
     
     //This function that runs when the stop button is tapped stops locating the user, invalidates the timer, and calls stopRunAlert()
     @IBAction func stopRunButtonTapped(sender: AnyObject) {
@@ -143,8 +136,8 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         self.stopRunAlert()
     }
     
-
-//MARK: Alerts
+    
+    //MARK: Alerts
     
     //This function offers the user three options: to end and save, to end and not save, or to resume the run, before it either shows a popup or returns to the run
     func stopRunAlert() {
@@ -166,8 +159,8 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
-
-//MARK: Popup Functions
+    
+    //MARK: Popup Functions
     
     //This function shows a popup confirming that the run has been saved
     func callSavedPopup() {
@@ -192,7 +185,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     }
     
     
-//MARK: CoreData Functions
+    //MARK: CoreData Functions
     
     //This function saves a run object (newRun) and a locations object (savedLocations) to Core Data
     func saveRunToCoreData() {
@@ -207,7 +200,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         newRun.time = finalRunTime
         newRun.date = date
         var savedLocations = [Location]()
-        for location in finalLocations {
+        for location in locations {
             let savedLocation = NSEntityDescription.insertNewObjectForEntityForName("Location",inManagedObjectContext: managedObjectContext) as! Location
             savedLocation.latitude = location.coordinate.latitude
             savedLocation.longitude = location.coordinate.longitude
@@ -222,9 +215,9 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
             print("\(error) and info \(error.userInfo)")
         }
     }
-
-
-//MARK: Location Functions
+    
+    
+    //MARK: Location Functions
     
     //This function finds the user's location
     func startLocationUpdates() {
@@ -232,7 +225,7 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
     }
     
     //This function grabs the user's location, makes a 2D coordinate out of it, sets the view of the map onto that coordinate, and then it reverse geocodes the location into an address before it calls displayLocationInfo()
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(manager: LKLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation: CLLocation = locations[0]
         let coord2D = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let coordinateRegion = MKCoordinateRegion(center: coord2D, span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
@@ -246,9 +239,9 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
             }
         }
     }
-
-
-//MARK: Path Drawing
+    
+    
+    //MARK: Path Drawing
     
     //This function loops through the locations array and appends each location to an array of CLLocationCoordinate2D called coords
     func polyline() -> MKPolyline {
@@ -256,9 +249,10 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         for location in self.locations {
             coords.append(CLLocationCoordinate2D(latitude: location.coordinate.latitude,
                 longitude:location.coordinate.longitude))
-        }        
+        }
         return MKPolyline(coordinates: &coords, count: locations.count)
     }
+    
 
     // This function draws the line for the path of the run
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
@@ -266,14 +260,14 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
             return MKPolylineRenderer()
         }
         let polyline = overlay as! MKPolyline
-        let renderer = MKPolylineRenderer(polyline: polyline) 
+        let renderer = MKPolylineRenderer(polyline: polyline)
         renderer.strokeColor = UIColor(red: 0.59, green: 0.59, blue: 0.59, alpha: 1.0)
         renderer.lineWidth = 3
         return renderer
     }
-
     
-//MARK: Timer Functions
+    
+    //MARK: Timer Functions
     
     //This function calls for the line to be draw before it updates the time variable and updates all of the logos on the screen
     func eachSecond(timer: NSTimer) {
@@ -285,5 +279,5 @@ class RunTrackerViewController: UIViewController, CLLocationManagerDelegate, MKM
         runTimeLabel.text = t
         averagePaceLabel.text = "\(p) min/mi"
     }
-
+    
 }

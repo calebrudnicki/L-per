@@ -37,6 +37,7 @@
 		82BE7C511D490A9300E35A9E /* RunTrackerInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BE7C501D490A9300E35A9E /* RunTrackerInterfaceController.swift */; };
 		82BE7C551D490D3700E35A9E /* PhoneSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BE7C541D490D3700E35A9E /* PhoneSession.swift */; };
 		82BE7C581D49443800E35A9E /* CheckMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 82BE7C571D49443800E35A9E /* CheckMark.png */; };
+		82F2E1721D4A5B1D008D513D /* XMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F2E1711D4A5B1D008D513D /* XMark.png */; };
 		F0B6AAA6E938E116F3649F6E /* Pods_L_per.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB44BEE256B38A0A01EBE055 /* Pods_L_per.framework */; };
 /* End PBXBuildFile section */
 
@@ -119,11 +120,19 @@
 		82BE7C501D490A9300E35A9E /* RunTrackerInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunTrackerInterfaceController.swift; sourceTree = "<group>"; };
 		82BE7C541D490D3700E35A9E /* PhoneSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneSession.swift; sourceTree = "<group>"; };
 		82BE7C571D49443800E35A9E /* CheckMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckMark.png; sourceTree = "<group>"; };
+		82F2E1711D4A5B1D008D513D /* XMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = XMark.png; sourceTree = "<group>"; };
 		CB44BEE256B38A0A01EBE055 /* Pods_L_per.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_L_per.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC97581B2C061E153DF6306 /* Pods-Løper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Løper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Løper/Pods-Løper.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4BB7C65659E16B9AFBD19E06 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8284C9A81D34290000A08EEF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -155,7 +164,6 @@
 		821067121D3D5B3500694447 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				82BE7C571D49443800E35A9E /* CheckMark.png */,
 				8210670A1D3D591D00694447 /* Run+CoreDataProperties.swift */,
 				8210670B1D3D591D00694447 /* Run.swift */,
 				8210670C1D3D591D00694447 /* Location+CoreDataProperties.swift */,
@@ -189,6 +197,8 @@
 		8284C9AD1D34290000A08EEF /* Løper */ = {
 			isa = PBXGroup;
 			children = (
+				82F2E1711D4A5B1D008D513D /* XMark.png */,
+				82BE7C571D49443800E35A9E /* CheckMark.png */,
 				821067121D3D5B3500694447 /* Models */,
 				821067071D3D562600694447 /* Løper.xcdatamodeld */,
 				8284C9AE1D34290000A08EEF /* AppDelegate.swift */,
@@ -282,6 +292,7 @@
 			buildPhases = (
 				82B4769B1D46B5DF00A81A4D /* Resources */,
 				82B476C51D46B5DF00A81A4D /* Embed App Extensions */,
+				4BB7C65659E16B9AFBD19E06 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -369,6 +380,7 @@
 			files = (
 				8284C9B91D34290000A08EEF /* LaunchScreen.storyboard in Resources */,
 				82BE7C581D49443800E35A9E /* CheckMark.png in Resources */,
+				82F2E1721D4A5B1D008D513D /* XMark.png in Resources */,
 				8284C9B61D34290000A08EEF /* Assets.xcassets in Resources */,
 				8284C9B41D34290000A08EEF /* Main.storyboard in Resources */,
 			);

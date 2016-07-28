@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1193E5271A312794AFB5C874D3CAFE1D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		1C89F252DADAF6C745B4C68FE61279E1 /* UIViewController+STZPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02B1039253AE7CF4549D92A98511160 /* UIViewController+STZPopupView.swift */; };
+		1C89F252DADAF6C745B4C68FE61279E1 /* UIViewController+STZPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D411E7324397254798193304A58BD7 /* UIViewController+STZPopupView.swift */; };
 		1EB292C0AF431BE68C8A7B59FCB38739 /* Pods-Løper-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE3A2ADCF12EEF53DABEE84DFE2F177 /* Pods-Løper-dummy.m */; };
-		20B5EF5AE2D488F0B41F05258B203AA4 /* STZPopupView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD60FD7B4469B9DCC7ECA7B875888E4 /* STZPopupView-dummy.m */; };
-		6D28446B964E261C4B61BAB2DB522C2E /* STZPopupView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 07ED2DAF7256C70A61C9F8CC1967F418 /* STZPopupView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ACD6182DC9C55479C66268B7E9BA4241 /* STZPopupViewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16B719305345BA7AB5AF102826ACDD6 /* STZPopupViewConfig.swift */; };
+		20B5EF5AE2D488F0B41F05258B203AA4 /* STZPopupView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A51417E34972B5625648B8FA6BE473 /* STZPopupView-dummy.m */; };
+		6D28446B964E261C4B61BAB2DB522C2E /* STZPopupView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = ADDC79248E4719ED30EAF07033077E4B /* STZPopupView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ACD6182DC9C55479C66268B7E9BA4241 /* STZPopupViewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE19D56E60FC6113A9191FB8657A3105 /* STZPopupViewConfig.swift */; };
 		B595D15EE656F5FE910936E1D3E2C250 /* Pods-Løper-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0298E6841CCF1A7D8D92FBED2738AA52 /* Pods-Løper-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE621F1D40CAFBC4ADC12F36C13C4124 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -29,25 +29,38 @@
 
 /* Begin PBXFileReference section */
 		0298E6841CCF1A7D8D92FBED2738AA52 /* Pods-Løper-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Løper-umbrella.h"; sourceTree = "<group>"; };
-		07ED2DAF7256C70A61C9F8CC1967F418 /* STZPopupView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "STZPopupView-umbrella.h"; sourceTree = "<group>"; };
-		0BD60FD7B4469B9DCC7ECA7B875888E4 /* STZPopupView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "STZPopupView-dummy.m"; sourceTree = "<group>"; };
-		2EE1D2C8BB31B24653B386F76D39218D /* STZPopupView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = STZPopupView.modulemap; sourceTree = "<group>"; };
+		02A3BA8170B914928F163EA490F7C88A /* LKVisitFilter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKVisitFilter.h; path = LocationKit.framework/Headers/LKVisitFilter.h; sourceTree = "<group>"; };
+		056E72516B6EA7657738ED096AFEB186 /* LKSetting.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKSetting.h; path = LocationKit.framework/Headers/LKSetting.h; sourceTree = "<group>"; };
+		1A6AEFFF9CCED89788766A667F8D5963 /* LocationKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LocationKit.h; path = LocationKit.framework/Headers/LocationKit.h; sourceTree = "<group>"; };
+		1F91D5F214083263F8DDB9A13B198E85 /* STZPopupView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = STZPopupView.xcconfig; sourceTree = "<group>"; };
+		2A6EE48F758DB79E6F6F6C267EFDCDB7 /* LKPerson.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKPerson.h; path = LocationKit.framework/Headers/LKPerson.h; sourceTree = "<group>"; };
 		3C8AC4276351A84B8E237944D5485520 /* Pods-Løper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Løper.debug.xcconfig"; sourceTree = "<group>"; };
 		404E9AF1BEDBE374175496B81ECFADAE /* Pods-Løper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Løper.release.xcconfig"; sourceTree = "<group>"; };
-		6E37188293FB3FDA1F4BCF3841AA2537 /* STZPopupView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = STZPopupView.xcconfig; sourceTree = "<group>"; };
+		5B16B199ABD8AE3822DBE090FEE3490B /* STZPopupView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "STZPopupView-prefix.pch"; sourceTree = "<group>"; };
+		6445D00005FDBF324D42406A178C04E0 /* LKLocationManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKLocationManager.h; path = LocationKit.framework/Headers/LKLocationManager.h; sourceTree = "<group>"; };
+		6480BC44B7633D88A3F39EBA05B549F9 /* LKVisit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKVisit.h; path = LocationKit.framework/Headers/LKVisit.h; sourceTree = "<group>"; };
+		79E933C993451FE04445BB8D3C753D9C /* LocationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LocationKit.framework; sourceTree = "<group>"; };
 		7F00098A79346EAAEC7F70CAA1ADDD5C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85FC783000AF3732AF3CE46F575CA130 /* LKUserValues.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKUserValues.h; path = LocationKit.framework/Headers/LKUserValues.h; sourceTree = "<group>"; };
+		8BCF8DD5C6AC1E149643CD2B59FB6BEE /* LKPlacemark.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKPlacemark.h; path = LocationKit.framework/Headers/LKPlacemark.h; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D51E97D0B1031DBA7DC180B033740BE /* LKEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKEvent.h; path = LocationKit.framework/Headers/LKEvent.h; sourceTree = "<group>"; };
+		A7D411E7324397254798193304A58BD7 /* UIViewController+STZPopupView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+STZPopupView.swift"; path = "Source/UIViewController+STZPopupView.swift"; sourceTree = "<group>"; };
+		ADDC79248E4719ED30EAF07033077E4B /* STZPopupView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "STZPopupView-umbrella.h"; sourceTree = "<group>"; };
 		ADE3A2ADCF12EEF53DABEE84DFE2F177 /* Pods-Løper-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Løper-dummy.m"; sourceTree = "<group>"; };
 		B074685FE60C6CDFE711E7D41A271B0D /* Pods-Løper.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Løper.modulemap"; sourceTree = "<group>"; };
 		B200F1D6FF731887D699C95F9747E7FE /* Pods-Løper-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Løper-acknowledgements.markdown"; sourceTree = "<group>"; };
 		B5708FE3FA9433F82A093572C4CAF761 /* Pods-Løper-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Løper-frameworks.sh"; sourceTree = "<group>"; };
+		B9620E5B1CBE9B82C1DA053CE0F6DF2A /* LKSearchRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKSearchRequest.h; path = LocationKit.framework/Headers/LKSearchRequest.h; sourceTree = "<group>"; };
 		BC911E82E1EB5BF05AE1B555390D4CA4 /* Pods_L_per.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_L_per.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C66AE4BF570BDD07BD36BC9F51828105 /* STZPopupView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "STZPopupView-prefix.pch"; sourceTree = "<group>"; };
+		CE19D56E60FC6113A9191FB8657A3105 /* STZPopupViewConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = STZPopupViewConfig.swift; path = Source/STZPopupViewConfig.swift; sourceTree = "<group>"; };
 		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		CF44406BBCF2B007A4AB08C7A58FD8C5 /* STZPopupView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = STZPopupView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D16B719305345BA7AB5AF102826ACDD6 /* STZPopupViewConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = STZPopupViewConfig.swift; path = Source/STZPopupViewConfig.swift; sourceTree = "<group>"; };
-		E02B1039253AE7CF4549D92A98511160 /* UIViewController+STZPopupView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+STZPopupView.swift"; path = "Source/UIViewController+STZPopupView.swift"; sourceTree = "<group>"; };
-		E964DBCB617B4699AC3460E966F360D1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E3A51417E34972B5625648B8FA6BE473 /* STZPopupView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "STZPopupView-dummy.m"; sourceTree = "<group>"; };
+		E461F1E2A2EBA06135E83BC677F92D4B /* LKVenue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKVenue.h; path = LocationKit.framework/Headers/LKVenue.h; sourceTree = "<group>"; };
+		E61572ADB0FED14A413F38069E78A5FA /* LKRegion.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LKRegion.h; path = LocationKit.framework/Headers/LKRegion.h; sourceTree = "<group>"; };
+		F96521047979FBC2ADB1152F58929952 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAC266F47F444C13FCB2968E3BFB2260 /* STZPopupView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = STZPopupView.modulemap; sourceTree = "<group>"; };
 		FDB926DD0086F2ADDE3E7BB1DD32C384 /* Pods-Løper-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Løper-resources.sh"; sourceTree = "<group>"; };
 		FFFDB3DD04A9752EA0A0538A0349DD0C /* Pods-Løper-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Løper-acknowledgements.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,6 +85,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2217059BFE55667E7A441D16D35E24F3 /* STZPopupView */ = {
+			isa = PBXGroup;
+			children = (
+				CE19D56E60FC6113A9191FB8657A3105 /* STZPopupViewConfig.swift */,
+				A7D411E7324397254798193304A58BD7 /* UIViewController+STZPopupView.swift */,
+				DE4DEA88B7C0F74F71DC16FA4125FC7E /* Support Files */,
+			);
+			path = STZPopupView;
+			sourceTree = "<group>";
+		};
+		39224C12FE95F881507418AE7428393B /* LocationKit */ = {
+			isa = PBXGroup;
+			children = (
+				9D51E97D0B1031DBA7DC180B033740BE /* LKEvent.h */,
+				6445D00005FDBF324D42406A178C04E0 /* LKLocationManager.h */,
+				2A6EE48F758DB79E6F6F6C267EFDCDB7 /* LKPerson.h */,
+				8BCF8DD5C6AC1E149643CD2B59FB6BEE /* LKPlacemark.h */,
+				E61572ADB0FED14A413F38069E78A5FA /* LKRegion.h */,
+				B9620E5B1CBE9B82C1DA053CE0F6DF2A /* LKSearchRequest.h */,
+				056E72516B6EA7657738ED096AFEB186 /* LKSetting.h */,
+				85FC783000AF3732AF3CE46F575CA130 /* LKUserValues.h */,
+				E461F1E2A2EBA06135E83BC677F92D4B /* LKVenue.h */,
+				6480BC44B7633D88A3F39EBA05B549F9 /* LKVisit.h */,
+				02A3BA8170B914928F163EA490F7C88A /* LKVisitFilter.h */,
+				1A6AEFFF9CCED89788766A667F8D5963 /* LocationKit.h */,
+				E3EB67D3829E166865B1B2AD72126CC4 /* Frameworks */,
+			);
+			path = LocationKit;
+			sourceTree = "<group>";
+		};
 		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,36 +123,12 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		50C11870494831A70C3BAD93EE43FED3 /* STZPopupView */ = {
-			isa = PBXGroup;
-			children = (
-				D16B719305345BA7AB5AF102826ACDD6 /* STZPopupViewConfig.swift */,
-				E02B1039253AE7CF4549D92A98511160 /* UIViewController+STZPopupView.swift */,
-				718B4B039D2F39080071B030960C61F5 /* Support Files */,
-			);
-			path = STZPopupView;
-			sourceTree = "<group>";
-		};
-		718B4B039D2F39080071B030960C61F5 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				E964DBCB617B4699AC3460E966F360D1 /* Info.plist */,
-				2EE1D2C8BB31B24653B386F76D39218D /* STZPopupView.modulemap */,
-				6E37188293FB3FDA1F4BCF3841AA2537 /* STZPopupView.xcconfig */,
-				0BD60FD7B4469B9DCC7ECA7B875888E4 /* STZPopupView-dummy.m */,
-				C66AE4BF570BDD07BD36BC9F51828105 /* STZPopupView-prefix.pch */,
-				07ED2DAF7256C70A61C9F8CC1967F418 /* STZPopupView-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/STZPopupView";
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				F0574BFBCF68820A0A50D5051268A277 /* Pods */,
+				B9C578B3D8AD30FE6813DDF210CB10E3 /* Pods */,
 				81A39F5A9BE240DEA703B1953D1D64CB /* Products */,
 				81332A5D2CF69B9214D459D87F62578B /* Targets Support Files */,
 			);
@@ -132,10 +151,41 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		B9C578B3D8AD30FE6813DDF210CB10E3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				39224C12FE95F881507418AE7428393B /* LocationKit */,
+				2217059BFE55667E7A441D16D35E24F3 /* STZPopupView */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DE4DEA88B7C0F74F71DC16FA4125FC7E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F96521047979FBC2ADB1152F58929952 /* Info.plist */,
+				FAC266F47F444C13FCB2968E3BFB2260 /* STZPopupView.modulemap */,
+				1F91D5F214083263F8DDB9A13B198E85 /* STZPopupView.xcconfig */,
+				E3A51417E34972B5625648B8FA6BE473 /* STZPopupView-dummy.m */,
+				5B16B199ABD8AE3822DBE090FEE3490B /* STZPopupView-prefix.pch */,
+				ADDC79248E4719ED30EAF07033077E4B /* STZPopupView-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/STZPopupView";
+			sourceTree = "<group>";
+		};
+		E3EB67D3829E166865B1B2AD72126CC4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				79E933C993451FE04445BB8D3C753D9C /* LocationKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -156,14 +206,6 @@
 			);
 			name = "Pods-Løper";
 			path = "Target Support Files/Pods-Løper";
-			sourceTree = "<group>";
-		};
-		F0574BFBCF68820A0A50D5051268A277 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				50C11870494831A70C3BAD93EE43FED3 /* STZPopupView */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,7 +325,7 @@
 /* Begin XCBuildConfiguration section */
 		3EE86347C781B2C3719781EDD015D7C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E37188293FB3FDA1F4BCF3841AA2537 /* STZPopupView.xcconfig */;
+			baseConfigurationReference = 1F91D5F214083263F8DDB9A13B198E85 /* STZPopupView.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -393,7 +435,7 @@
 		};
 		A338E91239027FBB537FB5FD8349B036 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E37188293FB3FDA1F4BCF3841AA2537 /* STZPopupView.xcconfig */;
+			baseConfigurationReference = 1F91D5F214083263F8DDB9A13B198E85 /* STZPopupView.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
