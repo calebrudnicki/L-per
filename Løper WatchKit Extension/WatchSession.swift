@@ -31,7 +31,7 @@ class WatchSession: NSObject, WCSessionDelegate {
     
 //MARK: Data Senders
     
-    //This functions sends a message to the PhoneSession with a dictionary containing a startRun value
+    //This functions sends a message to the PhoneSession with a dictionary containing a startRunToPhone value
     func makePhoneStartRun() {
         let actionDictFromWatch = ["Action": "startRunToPhone"]
         session.sendMessage(actionDictFromWatch, replyHandler: nil) { (error: NSError) in
@@ -42,7 +42,7 @@ class WatchSession: NSObject, WCSessionDelegate {
     
 //MARK: Data Getters
     
-    //This function
+    //This function receives a message from the phone and then posts a notifiction with the value of the Action key and an object with value of the Payload key
     func session(session: WCSession, didReceiveMessage actionDictFromPhone: [String : AnyObject]) {
         dispatch_async(dispatch_get_main_queue()) {
             NSNotificationCenter.defaultCenter().postNotificationName(actionDictFromPhone["Action"]! as! String, object: actionDictFromPhone["Payload"])

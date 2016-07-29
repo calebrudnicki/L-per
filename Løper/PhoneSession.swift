@@ -31,6 +31,7 @@ class PhoneSession: NSObject, WCSessionDelegate {
     
 //MARK: Data Senders
 
+    //This functions sends a message to the WatchSession with a dictionary containing a giveRunDataToWatch and payloadDictFromPhone value
     func giveWatchRunData(distance: Double, runTime: String, pace: String) {
         let payloadDictFromPhone = ["Distance": String(distance), "RunTime": runTime, "Pace": pace]
         let actionDictFromPhone = ["Action": "giveRunDataToWatch", "Payload": payloadDictFromPhone]
@@ -42,7 +43,7 @@ class PhoneSession: NSObject, WCSessionDelegate {
     
 //MARK: Data Getters
     
-    //This function receives a message from the watch and then posts a notifaction with the value of the Action key
+    //This function receives a message from the watch and then posts a notifiction with the value of the Action key
     func session(session: WCSession, didReceiveMessage actionDictFromWatch: [String : AnyObject]) {
         dispatch_async(dispatch_get_main_queue()) {
             NSNotificationCenter.defaultCenter().postNotificationName(actionDictFromWatch["Action"]! as! String, object: nil)
