@@ -27,31 +27,33 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
     var locationManager = CLLocationManager()
     var randAltitude: Double!
     var randAngle: Double!
-    var session: WCSession!
     
     
 //MARK: Boilerplate Functions
     
-    //This function sets up a session with WatchKit, establishes the locationManager settings, and calls the viewControllerLayoutChanges()
+    //This function, creates a shared instance of PhoneSession, establishes the locationManager settings, and calls the viewControllerLayoutChanges()
     override func viewDidLoad() {
         super.viewDidLoad()
-        if WCSession.isSupported() {
-            session = WCSession.defaultSession()
-            session.delegate = self
-            session.activateSession()
-        }
+        PhoneSession.sharedInstance.startSession()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.checkLocationAuthorizationStatus()
+        self.viewControllerLayoutChanges()
         locationManager.startUpdatingLocation()
     }
     
-    //This function checks the location authorization status
+    //This function establishes the class as an observer of the NSNotificationSender and also checks the location authorization status
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        randAltitude = Double(arc4random_uniform(350) + 50)
-        randAngle = Double(arc4random_uniform(360))
-        self.viewControllerLayoutChanges()
-        self.checkLocationAuthorizationStatus()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.recievedStartRunSegueNotifaction(_:)), name:"startRunToPhone", object: nil)
+//        randAltitude = Double(arc4random_uniform(350) + 50)
+//        randAngle = Double(arc4random_uniform(360))
+    }
+    
+    //This function removes the observer from the NSNotication sender when the view disappears
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -71,8 +73,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
         let mapCamera = MKMapCamera()
         mapCamera.centerCoordinate = backgroundUserPoint
         mapCamera.pitch = 45
-        mapCamera.altitude = randAltitude
-        mapCamera.heading = randAngle
+        mapCamera.altitude = 300
+        mapCamera.heading = 135
         self.mapView.camera = mapCamera
     }
     
@@ -80,7 +82,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
     
     //This function for the run button segues to the RunTrackerViewController
     @IBAction func runButtonTapped(sender: AnyObject) {
-        self.performSegueWithIdentifier("startRunSegue", sender: self)
+        self.startRunSegue()
     }
     
     //This function for the running man icon segues to the ListRunsTableViewController
@@ -103,6 +105,16 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
     
 //MARK: Segues
     
+    
+    func recievedStartRunSegueNotifaction(notification: NSNotification) {
+        self.startRunSegue()
+    }
+    
+    
+    func startRunSegue() {
+        self.performSegueWithIdentifier("startRunSegue", sender: self)
+    }
+    
     //This function recognizes the segue called in code based on the user's action and segues to the appropriate view controller
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
@@ -117,17 +129,5 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
     //This function can be connected to by another view controller to unwind a segue
     @IBAction func unwindToHomeViewController(segue: UIStoryboardSegue) {
     }
-    
-
-//MARK: Watch Connectivity
-    
-    //This function runs a segue to the RunTrackerViewController on the main thread once the start run button is tapped on the watch
-    ///////////
-    func session(session: WCSession, didReceiveMessage gameStats: [String : AnyObject]) {
-        dispatch_async(dispatch_get_main_queue()) {
-            self.performSegueWithIdentifier("startRunSegue", sender: self)
-        }
-    }
-    ///////////
 
 }

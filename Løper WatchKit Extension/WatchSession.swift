@@ -19,6 +19,7 @@ class WatchSession: NSObject, WCSessionDelegate {
     
 //MARK: Session Creation
     
+    //This function creates a session
     func startSession() {
         if WCSession.isSupported() {
             session = WCSession.defaultSession()
@@ -30,16 +31,10 @@ class WatchSession: NSObject, WCSessionDelegate {
     
 //MARK: Data Senders
     
+    //This functions sends a message to the PhoneSession with a dictionary containing a startRun value
     func makePhoneStartRun() {
-        let actionDictionary = ["Action": "startRun"]
-        session.sendMessage(actionDictionary, replyHandler: nil) { (error: NSError) in
-            print(error)
-        }
-    }
-    
-    func makePhoneStopRun() {
-        let actionDictionary = ["Action": "stopRun"]
-        session.sendMessage(actionDictionary, replyHandler: nil) { (error: NSError) in
+        let actionDictFromWatch = ["Action": "startRunToPhone"]
+        session.sendMessage(actionDictFromWatch, replyHandler: nil) { (error: NSError) in
             print(error)
         }
     }
@@ -47,9 +42,10 @@ class WatchSession: NSObject, WCSessionDelegate {
     
 //MARK: Data Getters
     
-    func session(session: WCSession, didReceiveMessage actionDictionary: [String : AnyObject]) {
+    //This function
+    func session(session: WCSession, didReceiveMessage actionDictFromPhone: [String : AnyObject]) {
         dispatch_async(dispatch_get_main_queue()) {
-            NSNotificationCenter.defaultCenter().postNotificationName("startRunSegue", object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(actionDictFromPhone["Action"]! as! String, object: actionDictFromPhone["Payload"])
         }
     }
 

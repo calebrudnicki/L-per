@@ -34,10 +34,10 @@
 		82B476C91D46E0E800A81A4D /* RunDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821067051D3D489300694447 /* RunDataViewController.swift */; };
 		82B476CB1D47B51400A81A4D /* RunDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821067031D3D249D00694447 /* RunDataCell.swift */; };
 		82B476CE1D47B8C200A81A4D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284C9C01D342AF500A08EEF /* HomeViewController.swift */; };
-		82BE7C511D490A9300E35A9E /* RunTrackerInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BE7C501D490A9300E35A9E /* RunTrackerInterfaceController.swift */; };
 		82BE7C551D490D3700E35A9E /* PhoneSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BE7C541D490D3700E35A9E /* PhoneSession.swift */; };
 		82BE7C581D49443800E35A9E /* CheckMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 82BE7C571D49443800E35A9E /* CheckMark.png */; };
 		82F2E1721D4A5B1D008D513D /* XMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F2E1711D4A5B1D008D513D /* XMark.png */; };
+		82F2E1741D4BAD55008D513D /* RunTrackerInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F2E1731D4BAD55008D513D /* RunTrackerInterfaceController.swift */; };
 		F0B6AAA6E938E116F3649F6E /* Pods_L_per.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB44BEE256B38A0A01EBE055 /* Pods_L_per.framework */; };
 /* End PBXBuildFile section */
 
@@ -117,10 +117,10 @@
 		82B476B81D46B5DF00A81A4D /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		82B476BA1D46B5DF00A81A4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82B476BC1D46B5DF00A81A4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		82BE7C501D490A9300E35A9E /* RunTrackerInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunTrackerInterfaceController.swift; sourceTree = "<group>"; };
 		82BE7C541D490D3700E35A9E /* PhoneSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneSession.swift; sourceTree = "<group>"; };
 		82BE7C571D49443800E35A9E /* CheckMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckMark.png; sourceTree = "<group>"; };
 		82F2E1711D4A5B1D008D513D /* XMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = XMark.png; sourceTree = "<group>"; };
+		82F2E1731D4BAD55008D513D /* RunTrackerInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunTrackerInterfaceController.swift; sourceTree = "<group>"; };
 		CB44BEE256B38A0A01EBE055 /* Pods_L_per.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_L_per.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC97581B2C061E153DF6306 /* Pods-Løper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Løper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Løper/Pods-Løper.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -232,7 +232,7 @@
 			children = (
 				822688221D48000700BCFD46 /* WatchSession.swift */,
 				82B476B01D46B5DF00A81A4D /* HomeInterfaceController.swift */,
-				82BE7C501D490A9300E35A9E /* RunTrackerInterfaceController.swift */,
+				82F2E1731D4BAD55008D513D /* RunTrackerInterfaceController.swift */,
 				82B476B21D46B5DF00A81A4D /* ExtensionDelegate.swift */,
 				82B476B41D46B5DF00A81A4D /* NotificationController.swift */,
 				82B476B61D46B5DF00A81A4D /* GlanceController.swift */,
@@ -481,7 +481,7 @@
 				8203E8981D47C313003E7268 /* HomeInterfaceController.swift in Sources */,
 				82B476B51D46B5DF00A81A4D /* NotificationController.swift in Sources */,
 				82B476B31D46B5DF00A81A4D /* ExtensionDelegate.swift in Sources */,
-				82BE7C511D490A9300E35A9E /* RunTrackerInterfaceController.swift in Sources */,
+				82F2E1741D4BAD55008D513D /* RunTrackerInterfaceController.swift in Sources */,
 				82B476B91D46B5DF00A81A4D /* ComplicationController.swift in Sources */,
 				822688231D48000700BCFD46 /* WatchSession.swift in Sources */,
 				82B476B71D46B5DF00A81A4D /* GlanceController.swift in Sources */,

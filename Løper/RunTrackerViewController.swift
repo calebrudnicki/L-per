@@ -291,10 +291,12 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     
     //This function calls for the line to be draw before it updates the time variable and updates all of the logos on the screen
     func eachSecond(timer: NSTimer) {
-        print("RUNNING")
         mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveLabels)
         runTime = runTime + 1
         let (d, t, p) = self.convertUnits(distance, time: runTime)
+        ///////
+        PhoneSession.sharedInstance.giveWatchRunData(d, runTime: t, pace: p)
+        ///////
         let y = Double(round(100*d)/100)
         distanceLabel.text = "\(y) mi"
         runTimeLabel.text = t

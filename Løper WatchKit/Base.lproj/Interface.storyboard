@@ -17,7 +17,7 @@
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
                                         <action selector="startRunButtonTapped" destination="AgC-eL-Hgc" id="XRy-Qd-25V"/>
-                                        <segue destination="PFe-nX-Cbp" kind="push" identifier="runTrackerSegue" id="CdN-KM-HeD"/>
+                                        <segue destination="lXv-p0-hsI" kind="modal" identifier="startRunSegue" id="Xbl-t2-Y2j"/>
                                     </connections>
                                 </button>
                             </items>
@@ -31,20 +31,24 @@
             <point key="canvasLocation" x="235" y="347"/>
         </scene>
         <!--Run Tracker Interface Controller-->
-        <scene sceneID="xSG-0Y-uU7">
+        <scene sceneID="T4Z-jO-A7h">
             <objects>
-                <controller id="PFe-nX-Cbp" customClass="RunTrackerInterfaceController" customModule="Løper_WatchKit_Extension">
+                <controller id="lXv-p0-hsI" customClass="RunTrackerInterfaceController" customModule="Løper_WatchKit_Extension">
                     <items>
-                        <label width="136" height="272" alignment="left" text="0.00 mi" textAlignment="center" id="hZa-K2-roK">
-                            <color key="textColor" red="1" green="0.2666666667" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
-                        </label>
+                        <label width="136" alignment="left" text="Label" textAlignment="center" id="vpB-MP-s7l"/>
+                        <label width="136" alignment="left" text="Label" textAlignment="center" id="1hk-iy-7Kk"/>
+                        <label width="136" alignment="left" text="Label" textAlignment="center" id="aWn-ue-5Ej"/>
+                        <label width="136" alignment="left" text="Label" textAlignment="center" id="kpI-AR-9oc"/>
                     </items>
                     <connections>
-                        <outlet property="distanceLabel" destination="hZa-K2-roK" id="5Ov-wq-fL5"/>
+                        <outlet property="distanceLabel" destination="vpB-MP-s7l" id="C06-X8-Phx"/>
+                        <outlet property="paceLabel" destination="aWn-ue-5Ej" id="U6F-CA-XxM"/>
+                        <outlet property="runTimeLabel" destination="1hk-iy-7Kk" id="M7w-6J-f1r"/>
+                        <outlet property="stallTimeLabel" destination="kpI-AR-9oc" id="E1J-ea-UuJ"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="516" y="347"/>
+            <point key="canvasLocation" x="524" y="347"/>
         </scene>
         <!--Glance Interface Controller-->
         <scene sceneID="BOz-TT-tkC">
