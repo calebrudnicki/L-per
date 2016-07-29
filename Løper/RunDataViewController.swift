@@ -41,7 +41,7 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
     //This function sets the labels of the view and calls loadMap()
     override func viewWillAppear(animated: Bool) {
         self.distanceLabel.text = String(run.distance!) + " mi"
-        self.timeLabel.text = run.time
+        self.timeLabel.text = run.runTime
         self.paceLabel.text = "\(run.pace!) min/mi"
         self.loadMap()
     }

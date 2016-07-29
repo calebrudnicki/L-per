@@ -197,8 +197,6 @@
 		8284C9AD1D34290000A08EEF /* Løper */ = {
 			isa = PBXGroup;
 			children = (
-				82F2E1711D4A5B1D008D513D /* XMark.png */,
-				82BE7C571D49443800E35A9E /* CheckMark.png */,
 				821067121D3D5B3500694447 /* Models */,
 				821067071D3D562600694447 /* Løper.xcdatamodeld */,
 				8284C9AE1D34290000A08EEF /* AppDelegate.swift */,
@@ -211,6 +209,8 @@
 				821067031D3D249D00694447 /* RunDataCell.swift */,
 				8284C9B21D34290000A08EEF /* Main.storyboard */,
 				8284C9B51D34290000A08EEF /* Assets.xcassets */,
+				82F2E1711D4A5B1D008D513D /* XMark.png */,
+				82BE7C571D49443800E35A9E /* CheckMark.png */,
 				8284C9B71D34290000A08EEF /* LaunchScreen.storyboard */,
 				8284C9BA1D34290000A08EEF /* Info.plist */,
 			);

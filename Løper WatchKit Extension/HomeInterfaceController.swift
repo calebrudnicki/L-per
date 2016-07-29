@@ -18,9 +18,6 @@ class HomeInterfaceController: WKInterfaceController {
     
 //MARK: Variables
     
-    //////////
-    var session = WatchSession()
-    //////////
     var currentValue = "10"
     
     
@@ -33,8 +30,7 @@ class HomeInterfaceController: WKInterfaceController {
     //This function activates a session
     override func willActivate() {
         super.willActivate()
-        //startRunButton.layer.cornerRadius = startRunButton.frame.width / 2
-        session.startSession()
+        WatchSession.sharedInstance.startSession()
     }
 
     override func didDeactivate() {
@@ -49,11 +45,9 @@ class HomeInterfaceController: WKInterfaceController {
 //MARK: Actions
 
     //This functions calls sendMessageToPhone()
-    ////////////
     @IBAction func startRunButtonTapped() {
-        session.sendMessageToPhone()
+        WatchSession.sharedInstance.makePhoneStopRun()
         self.contextForSegueWithIdentifier("runTrackerSegue")
     }
-    ////////////
     
 }

@@ -11,7 +11,13 @@ import WatchConnectivity
 
 class PhoneSession: NSObject, WCSessionDelegate {
     
+//MARK: Variables
+    
+    static let sharedInstance = PhoneSession()
     var session: WCSession!
+    
+    
+//MARK: Session Creation
     
     func startSession() {
         if WCSession.isSupported() {
@@ -20,17 +26,24 @@ class PhoneSession: NSObject, WCSessionDelegate {
             session.activateSession()
         }
     }
+  
     
-//    func session(session: WCSession, didReceiveMessage gameStats: [String : AnyObject]) {
-//        dispatch_async(dispatch_get_main_queue()) {
-//            self.performSegueWithIdentifier("startRunSegue", sender: self)
-//        }
-//    }
+//MARK: Data Senders
     
     func sendMessageToWatch() {
         let gameStats = ["Scores": [1]]
         session.sendMessage(gameStats, replyHandler: nil) { (error: NSError) in
             print(error)
+        }
+    }
+    
+    
+//MARK: Data Getters
+    
+    func session(session: WCSession, didReceiveMessage actionDictionary: [String : AnyObject]) {
+        dispatch_async(dispatch_get_main_queue()) {
+            NSNotificationCenter.defaultCenter().postNotificationName("startRunSegue", object: nil)
+            //self.performSegueWithIdentifier("startRunSegue", sender: self)
         }
     }
     

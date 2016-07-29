@@ -13,6 +13,7 @@ import CoreMotion
 import HealthKit
 import CoreData
 import LocationKit
+import AudioToolbox
 
 class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationManagerDelegate, UIPopoverPresentationControllerDelegate {
     
@@ -197,7 +198,8 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         let newRun = NSEntityDescription.insertNewObjectForEntityForName("Run",inManagedObjectContext: managedObjectContext) as! Run
         newRun.pace = finalPace
         newRun.distance = finalDistance
-        newRun.time = finalRunTime
+        newRun.runTime = finalRunTime
+        newRun.stallTime = finalStallTime
         newRun.date = date
         var savedLocations = [Location]()
         for location in locations {
@@ -240,6 +242,20 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         }
     }
     
+    func locationManager(manager: LKLocationManager, willChangeActivityMode mode: LKActivityMode) {
+        if (mode == LKActivityMode.Stationary) {
+            //AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+            mapView.tintColor = UIColor.redColor()
+            print("Here Stationary")
+            //timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondStanding(_:)), userInfo: nil, repeats: true)
+        } else {
+            //AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+            mapView.tintColor = UIColor(red: 0.59, green: 0.59, blue: 0.59, alpha: 1.0)
+            print("Here Running")
+            //timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondRunning(_:)), userInfo: nil, repeats: true)
+        }
+    }
+    
     
     //MARK: Path Drawing
     
@@ -269,8 +285,13 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     
     //MARK: Timer Functions
     
+    func eachSecond1(timer: NSTimer) {
+        print("Timer is going")
+    }
+    
     //This function calls for the line to be draw before it updates the time variable and updates all of the logos on the screen
     func eachSecond(timer: NSTimer) {
+        print("RUNNING")
         mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveLabels)
         runTime = runTime + 1
         let (d, t, p) = self.convertUnits(distance, time: runTime)
@@ -278,6 +299,10 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         distanceLabel.text = "\(y) mi"
         runTimeLabel.text = t
         averagePaceLabel.text = "\(p) min/mi"
+    }
+    
+    func eachSecondStanding(timer: NSTimer) {
+        print("STANDING")
     }
     
 }

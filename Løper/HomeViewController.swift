@@ -25,9 +25,9 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
 //MARK: Variables
     
     var locationManager = CLLocationManager()
-    ////////
+    var randAltitude: Double!
+    var randAngle: Double!
     var session: WCSession!
-    ////////
     
     
 //MARK: Boilerplate Functions
@@ -35,22 +35,22 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
     //This function sets up a session with WatchKit, establishes the locationManager settings, and calls the viewControllerLayoutChanges()
     override func viewDidLoad() {
         super.viewDidLoad()
-        ///////////
         if WCSession.isSupported() {
             session = WCSession.defaultSession()
             session.delegate = self
             session.activateSession()
         }
-        ///////////
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
-        self.viewControllerLayoutChanges()
     }
     
     //This function checks the location authorization status
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        randAltitude = Double(arc4random_uniform(350) + 50)
+        randAngle = Double(arc4random_uniform(360))
+        self.viewControllerLayoutChanges()
         self.checkLocationAuthorizationStatus()
     }
     
@@ -63,9 +63,18 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
     
     //This function changes preset properties of the view controller
     func viewControllerLayoutChanges() {
-        mapView.tintColor = UIColor(red: 0.59, green: 0.59, blue: 0.59, alpha: 1.0)
+        mapView.tintColor = UIColor.greenColor()
+        let backgroundUserCoords = locationManager.location?.coordinate
+        let backgroundUserPoint = CLLocationCoordinate2DMake((backgroundUserCoords?.latitude)!, (backgroundUserCoords?.longitude)!)
+        mapView.region = MKCoordinateRegionMakeWithDistance(backgroundUserPoint, 1000,1000)
+        mapView.mapType = MKMapType.SatelliteFlyover
+        let mapCamera = MKMapCamera()
+        mapCamera.centerCoordinate = backgroundUserPoint
+        mapCamera.pitch = 45
+        mapCamera.altitude = randAltitude
+        mapCamera.heading = randAngle
+        self.mapView.camera = mapCamera
     }
-    
     
 //MARK: Actions
     
@@ -89,14 +98,6 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
         } else {
             locationManager.requestWhenInUseAuthorization()
         }
-    }
-    
-    //This function grabs the user's location, makes a 2D coordinate out of it, and then sets the view of the map onto that coordinate
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let userLocation: CLLocation = locations[0]
-        let coord2D = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
-        let coordinateRegion = MKCoordinateRegion(center: coord2D, span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
-        mapView.setRegion(coordinateRegion, animated: false)
     }
     
     

@@ -15,7 +15,8 @@ import CoreData
 extension Run {
 
     @NSManaged var distance: NSNumber?
-    @NSManaged var time: String?
+    @NSManaged var runTime: String?
+    @NSManaged var stallTime: String?
     @NSManaged var pace: String?
     @NSManaged var date: NSDate?
     @NSManaged var locations: NSOrderedSet?
