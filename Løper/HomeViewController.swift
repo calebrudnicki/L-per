@@ -25,6 +25,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
 //MARK: Variables
     
     var locationManager = CLLocationManager()
+    var randAltitude: Double!
+    var randAngle: Double!
     
     
 //MARK: Boilerplate Functions
@@ -35,8 +37,6 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
         PhoneSession.sharedInstance.startSession()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.checkLocationAuthorizationStatus()
-        self.viewControllerLayoutChanges()
         locationManager.startUpdatingLocation()
     }
     
@@ -44,6 +44,10 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.recievedStartRunSegueNotifaction(_:)), name:"startRunToPhone", object: nil)
+        randAltitude = Double(arc4random_uniform(350) + 50)
+        randAngle = Double(arc4random_uniform(360))
+        self.viewControllerLayoutChanges()
+        self.checkLocationAuthorizationStatus()
     }
     
     //This function removes the observer from the NSNotication sender when the view disappears
@@ -69,8 +73,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
         let mapCamera = MKMapCamera()
         mapCamera.centerCoordinate = backgroundUserPoint
         mapCamera.pitch = 45
-        mapCamera.altitude = 300
-        mapCamera.heading = 135
+        mapCamera.altitude = randAltitude
+        mapCamera.heading = randAngle
         self.mapView.camera = mapCamera
     }
     
@@ -84,6 +88,13 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
         } else {
             locationManager.requestWhenInUseAuthorization()
         }
+    }
+    
+    //This function grabs the user's location, makes a 2D coordinate out of it, and then sets the view of the map onto that coordinate
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation: CLLocation = locations[0]
+        let coord2D = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+        let coordinateRegion = MKCoordinateRegion(center: coord2D, span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
     }
     
     

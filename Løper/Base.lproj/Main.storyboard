@@ -259,7 +259,7 @@
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="average pace" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9X-wZ-reQ">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="average pace" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9X-wZ-reQ">
                                                                 <rect key="frame" x="0.0" y="31" width="250" height="17"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -450,7 +450,7 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BnQ-Fw-XQ5">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="satellite" translatesAutoresizingMaskIntoConstraints="NO" id="BnQ-Fw-XQ5">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="375"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="337" id="vLG-Ks-FNH"/>
@@ -571,7 +571,13 @@
                             <constraint firstItem="SEt-t7-erV" firstAttribute="top" secondItem="BnQ-Fw-XQ5" secondAttribute="bottom" constant="20" id="q8F-X9-Arc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="løper" id="HFx-y4-ibb"/>
+                    <navigationItem key="navigationItem" title="løper" id="HFx-y4-ibb">
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="aPH-mU-uMW">
+                            <connections>
+                                <action selector="deleteRun:" destination="kcZ-5M-7ZK" id="jrY-wE-8HV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="distanceLabel" destination="Bn7-GA-NIg" id="MrN-ux-f9X"/>
                         <outlet property="mapView" destination="BnQ-Fw-XQ5" id="iN1-ty-nPA"/>

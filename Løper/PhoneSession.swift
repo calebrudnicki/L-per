@@ -32,8 +32,8 @@ class PhoneSession: NSObject, WCSessionDelegate {
 //MARK: Data Senders
 
     //This functions sends a message to the WatchSession with a dictionary containing a giveRunDataToWatch and payloadDictFromPhone value
-    func giveWatchRunData(distance: Double, runTime: String, pace: String) {
-        let payloadDictFromPhone = ["Distance": String(distance), "RunTime": runTime, "Pace": pace]
+    func giveWatchRunData(distance: String, runTime: String, pace: String) {
+        let payloadDictFromPhone = ["Distance": distance, "RunTime": runTime, "Pace": pace]
         let actionDictFromPhone = ["Action": "giveRunDataToWatch", "Payload": payloadDictFromPhone]
         session.sendMessage(actionDictFromPhone as! [String : AnyObject], replyHandler: nil) { (error: NSError) in
             print(error)

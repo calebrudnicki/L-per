@@ -47,6 +47,14 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
         self.paceLabel.text = "\(run.pace!) min/mi"
         self.loadMap()
     }
+    
+    
+//MARK: Actions
+    
+    @IBAction func deleteRun(sender: AnyObject) {
+        print("Trash it")
+    }
+    
 
     
 //MARK: Map Functions
@@ -103,7 +111,7 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
         let polyline = overlay as! MKPolyline
         let renderer = MKPolylineRenderer(polyline: polyline)
         renderer.strokeColor = UIColor(red: 0.59, green: 0.59, blue: 0.59, alpha: 1.0)
-        renderer.lineWidth = 3
+        renderer.lineWidth = 5
         return renderer
     }
 
