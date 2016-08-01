@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 import MapKit
 import CoreLocation
 import CoreMotion
@@ -26,19 +27,14 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     @IBOutlet weak var averagePaceLabel: UILabel!
     @IBOutlet weak var stallTimeLabel: UILabel!
     @IBOutlet weak var stopRunButton: UIButton!
-    
+    @IBOutlet weak var testLabel: UILabel!
     
 //MARK: Variables
     
     //Variables for the functionality of the timers and the map accuracy
     var coords = [CLLocationCoordinate2D]()
-//    lazy var timer = NSTimer()
-    
-    /////////
-    lazy var runningTimer = NSTimer()
-    lazy var standingTimer = NSTimer()
-    /////////
-    
+    var runningTimer = NSTimer()
+    var standingTimer = NSTimer()
     lazy var userLocationManager: LKLocationManager = {
         var locationManager =  LKLocationManager()
         locationManager.apiToken = "464a00f4c99abf3c"
@@ -77,6 +73,8 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         self.mapView.delegate = self
         locations.removeAll(keepCapacity: false)
         //timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecond(_:)), userInfo: nil, repeats: true)
+//        standingTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondStanding(_:)), userInfo: nil, repeats: true)
+//        runningTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondRunning(_:)), userInfo: nil, repeats: true)
         self.viewControllerLayoutChanges()
         self.startLocationUpdates()
     }
@@ -257,16 +255,18 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     //This function changes the tint of the map depending on whether the user is running or stationary
     func locationManager(manager: LKLocationManager, willChangeActivityMode mode: LKActivityMode) {
         if (mode == LKActivityMode.Stationary) {
-            mapView.tintColor = UIColor.redColor()
-            print("Standing")
-            //runningTimer.invalidate()
-            standingTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondStanding(_:)), userInfo: nil, repeats: true)
-            print("Called the timer")
+            testLabel.text = "Standing"
+            runningTimer.invalidate()
+            dispatch_async(dispatch_get_main_queue()) {
+                self.standingTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondStanding(_:)), userInfo: nil, repeats: true)
+            }
         } else {
             mapView.tintColor = UIColor.greenColor()
-            print("Moving")
-            //standingTimer.invalidate()
-            runningTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondRunning(_:)), userInfo: nil, repeats: true)
+            testLabel.text = "Running"
+            standingTimer.invalidate()
+            dispatch_async(dispatch_get_main_queue()) {
+                self.runningTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondRunning(_:)), userInfo: nil, repeats: true)
+            }
         }
     }
     
@@ -323,37 +323,22 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     
 //MARK: Timer Functions
     
-    //This function calls for the line to be draw before it updates the time variable, sends data to the watch through a shared instance of PhoneSession, and updates all of the labels on the screen
-//    func eachSecond(timer: NSTimer) {
-//        mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveLabels)
-//        runTime = runTime + 1
-//        let (d, t, p) = self.convertUnitsRunnig(distance, time: runTime)
-//        PhoneSession.sharedInstance.giveWatchRunData(d, runTime: t, pace: p)
-//        let y = Double(round(100*d)/100)
-//        distanceLabel.text = "\(y) mi"
-//        runTimeLabel.text = t
-//        averagePaceLabel.text = "\(p) min/mi"
-//    }
-    
-    
+    //This function runs every second that the user is running
     func eachSecondRunning(timer: NSTimer) {
         runTime = runTime + 1
         mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveRoads)
         (distanceDisplay!, runTimeDisplay!, paceDisplay!) = self.convertUnitsRunning(distance, time: runTime)
-        PhoneSession.sharedInstance.giveWatchRunData(distanceDisplay, runTime: runTimeDisplay, pace: paceDisplay)
-        //let rounded = Double(round(100*distanceDisplay)/100)
+        PhoneSession.sharedInstance.giveWatchRunData(distanceDisplay, runTime: runTimeDisplay, pace: paceDisplay, stallTime: stallTimeDisplay)
         distanceLabel.text = "\(distanceDisplay) mi"
         runTimeLabel.text = runTimeDisplay
         averagePaceLabel.text = "\(paceDisplay) min/mi"
-        stallTimeLabel.text = stallTimeDisplay
-
-        
     }
     
+    //This function runs every second the user is standing
     func eachSecondStanding(timer: NSTimer) {
-        print("Im running")
         stallTime = stallTime + 1
         stallTimeDisplay = secondsToClockFormat(stallTime)
+        PhoneSession.sharedInstance.giveWatchRunData(distanceDisplay, runTime: runTimeDisplay, pace: paceDisplay, stallTime: stallTimeDisplay)
         stallTimeLabel.text = stallTimeDisplay
     }
     

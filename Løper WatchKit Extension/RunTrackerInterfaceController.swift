@@ -53,6 +53,7 @@ class RunTrackerInterfaceController: WKInterfaceController {
         distanceLabel.setText(String(dataDict["Distance"]!))
         runTimeLabel.setText(String(dataDict["RunTime"]!))
         paceLabel.setText(String(dataDict["Pace"]!))
+        stallTimeLabel.setText(String(dataDict["StallTime"]!))
     }
 
 }
