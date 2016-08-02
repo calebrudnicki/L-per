@@ -67,26 +67,27 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     
 //MARK: Boilerplate Functions
     
-    //This function sets the map delegate, clears all the array of locations, starts a timer, and calls viewControllerLayoutChanges() and startLocationUpdates()
+    //This function sets the map delegate, clears all the array of locations, and calls viewControllerLayoutChanges() and startLocationUpdates()
     override func viewDidLoad() {
         super.viewDidLoad()
+        PhoneSession.sharedInstance.startSession()
         self.mapView.delegate = self
         locations.removeAll(keepCapacity: false)
-        //timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecond(_:)), userInfo: nil, repeats: true)
-//        standingTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondStanding(_:)), userInfo: nil, repeats: true)
-//        runningTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondRunning(_:)), userInfo: nil, repeats: true)
         self.viewControllerLayoutChanges()
         self.startLocationUpdates()
     }
     
-    //This function sets the showing of the user's location to true upon the view appearing
+    //This function sets the showing of the user's location to true upon the view appearing and establishes the class as an observer of the NSNotificationSender
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         mapView.showsUserLocation = true
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RunTrackerViewController.recievedStopRunSegueNotifaction(_:)), name:"stopRunToPhone", object: nil)
     }
     
+    //This function removes the observer from the NSNotication sender when the view disappears
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     
@@ -111,8 +112,13 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         let distance = distance * 0.000621371
         let distanceRounded = String(Double(round(100 * distance) / 100))
         let timeRounded = secondsToClockFormat(time)
-        let pace = (time / 60) / distance
-        let paceRounded = minutesToClockFormat(pace)
+        let paceRounded: String!
+        if time > 0 {
+            let pace = (time / 60) / distance
+            paceRounded = minutesToClockFormat(pace)
+        } else {
+            paceRounded = "0:00"
+        }
         return (distanceRounded, timeRounded, paceRounded)
     }
     
@@ -140,35 +146,27 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     
     //This function that runs when the stop button is tapped stops locating the user, invalidates the timer, and calls stopRunAlert()
     @IBAction func stopRunButtonTapped(sender: AnyObject) {
-        userLocationManager.stopUpdatingLocation()
-        runningTimer.invalidate()
-        standingTimer.invalidate()
-        self.stopRunAlert()
+        self.stopRunPopup()
     }
     
     
 //MARK: Alerts
     
-    //This function offers the user three options: to end and save, to end and not save, or to resume the run, before it either shows a popup or returns to the run
-    func stopRunAlert() {
-        let alertController = UIAlertController(title: nil, message: "Are you are sure you're done with your run?", preferredStyle: .ActionSheet)
-        let yesSaveAction = UIAlertAction(title: "Yes, I'm done", style: .Default) { (action) in
-            self.saveRunToCoreData()
-            self.callSavedPopup()
-        }
-        let yesCancelAction = UIAlertAction(title: "Yes, but don't save it", style: .Default) { (action) in
-            self.callCancelPopup()
-        }
-        let noAction = UIAlertAction(title: "No", style: .Cancel) { (action) in
-            self.viewDidLoad()
-        }
-        alertController.addAction(yesSaveAction)
-        alertController.addAction(yesCancelAction)
-        alertController.addAction(noAction)
-        alertController.view.tintColor = UIColor(red: 0.59, green: 0.59, blue: 0.59, alpha: 1.0)
-        self.presentViewController(alertController, animated: true, completion: nil)
+    //This function stops locating the user, invalidates both timers, and calls both saveRunToCoreData() and callSavedPopup()
+    func stopRunPopup() {
+        userLocationManager.stopUpdatingLocation()
+        runningTimer.invalidate()
+        standingTimer.invalidate()
+        self.saveRunToCoreData()
+        self.callSavedPopup()
     }
     
+    //This function 
+    func recievedStopRunSegueNotifaction(notification: NSNotification) {
+        self.saveRunToCoreData()
+        PhoneSession.sharedInstance.makeWatchStopRun()
+        self.performSegueWithIdentifier("exitSegue", sender: self)
+    }
 
 //MARK: Popup Functions
     
@@ -192,6 +190,18 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         popupViewController.userChoiceLabel.text = "Ok. Your run was not saved."
         self.view.addSubview(popupViewController.view)
         popupViewController.didMoveToParentViewController(self)
+    }
+    
+    
+//MARK: Segues
+    
+    //This functions allows the user to unwind the segue back to the HomeViewController
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            if identifier == "exitSegue" {
+                let homeViewController = segue.destinationViewController as! HomeViewController
+            }
+        }
     }
     
     

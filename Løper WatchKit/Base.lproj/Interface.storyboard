@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="10032"/>
@@ -43,9 +43,12 @@
                                 <label width="41" alignment="left" text="Pace" textAlignment="center" id="aWn-ue-5Ej"/>
                             </items>
                         </group>
-                        <button width="1" alignment="center" verticalAlignment="bottom" title="Button" id="cRR-t6-y2f">
+                        <button width="1" alignment="center" verticalAlignment="bottom" title="stop" id="cRR-t6-y2f">
                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="backgroundColor" red="0.63137254899999995" green="0.1176470588" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="stopRunButtonTapped" destination="lXv-p0-hsI" id="EiS-RX-eUD"/>
+                            </connections>
                         </button>
                     </items>
                     <connections>
@@ -53,6 +56,7 @@
                         <outlet property="paceLabel" destination="aWn-ue-5Ej" id="U6F-CA-XxM"/>
                         <outlet property="runTimeLabel" destination="1hk-iy-7Kk" id="M7w-6J-f1r"/>
                         <outlet property="stallTimeLabel" destination="kpI-AR-9oc" id="E1J-ea-UuJ"/>
+                        <outlet property="stopRunButton" destination="cRR-t6-y2f" id="EDK-k4-L4j"/>
                     </connections>
                 </controller>
             </objects>

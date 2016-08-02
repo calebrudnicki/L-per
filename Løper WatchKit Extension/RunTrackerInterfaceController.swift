@@ -17,6 +17,7 @@ class RunTrackerInterfaceController: WKInterfaceController {
     @IBOutlet var runTimeLabel: WKInterfaceLabel!
     @IBOutlet var paceLabel: WKInterfaceLabel!
     @IBOutlet var stallTimeLabel: WKInterfaceLabel!
+    @IBOutlet var stopRunButton: WKInterfaceButton!
     
     
 //MARK: Boilerplate Functions
@@ -30,7 +31,8 @@ class RunTrackerInterfaceController: WKInterfaceController {
         super.willActivate()
         WatchSession.sharedInstance.startSession()
         WatchSession.sharedInstance.makePhoneStartRun()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RunTrackerInterfaceController.receivedGiveRunDataNotifaction(_:)), name:"giveRunDataToWatch", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RunTrackerInterfaceController.receivedGiveRunDataNotification(_:)), name:"giveRunDataToWatch", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RunTrackerInterfaceController.receivedStopRunNotification(_:)), name:"stopRunToWatch", object: nil)
     }
 
     //This function removes the observer from the NSNotication sender when the view disappears
@@ -40,12 +42,26 @@ class RunTrackerInterfaceController: WKInterfaceController {
     }
     
     
+//MARK: Actions
+    
+    //This functions calls makePhoneStopRun() as a shared instance when the stop run button is tapped
+    @IBAction func stopRunButtonTapped() {
+        WatchSession.sharedInstance.makePhoneStopRun()
+    }
+    
+    
+    
 //MARK: Info Collectors
     
     //This functions is called when a giveWatchRunData notification is posted and calls displayLabels()
-    func receivedGiveRunDataNotifaction(notification: NSNotification) {
+    func receivedGiveRunDataNotification(notification: NSNotification) {
         let runDataDict = notification.object as? [String : AnyObject]
         self.displayLabels(runDataDict!)
+    }
+    
+    //This functions is called when a stopRunToWatch notification is posted and turns the button black
+    func receivedStopRunNotification(notification: NSNotification) {
+        stopRunButton.setBackgroundColor(UIColor.blackColor())
     }
     
     //This functions sets the labels of the interface controller

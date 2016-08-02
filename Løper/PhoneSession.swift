@@ -31,11 +31,19 @@ class PhoneSession: NSObject, WCSessionDelegate {
     
 //MARK: Data Senders
 
-    //This functions sends a message to the WatchSession with a dictionary containing a giveRunDataToWatch and payloadDictFromPhone value
+    //This function sends a message to the WatchSession with a dictionary containing a giveRunDataToWatch and payloadDictFromPhone value
     func giveWatchRunData(distance: String, runTime: String, pace: String, stallTime: String) {
         let payloadDictFromPhone = ["Distance": distance, "RunTime": runTime, "Pace": pace, "StallTime": stallTime]
         let actionDictFromPhone = ["Action": "giveRunDataToWatch", "Payload": payloadDictFromPhone]
         session.sendMessage(actionDictFromPhone as! [String : AnyObject], replyHandler: nil) { (error: NSError) in
+            print(error)
+        }
+    }
+    
+    //This function sends a message to the WatchSession with a dictionary containing a stopRunToWatch value
+    func makeWatchStopRun() {
+        let actionDictFromPhone = ["Action": "stopRunToWatch"]
+        session.sendMessage(actionDictFromPhone, replyHandler: nil) { (error: NSError) in
             print(error)
         }
     }

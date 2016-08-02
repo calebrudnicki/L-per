@@ -31,9 +31,17 @@ class WatchSession: NSObject, WCSessionDelegate {
     
 //MARK: Data Senders
     
-    //This functions sends a message to the PhoneSession with a dictionary containing a startRunToPhone value
+    //This function sends a message to the PhoneSession with a dictionary containing a startRunToPhone value
     func makePhoneStartRun() {
         let actionDictFromWatch = ["Action": "startRunToPhone"]
+        session.sendMessage(actionDictFromWatch, replyHandler: nil) { (error: NSError) in
+            print(error)
+        }
+    }
+    
+    //This functions sends a message to the PhoneSession with a dictionary containing a stopRunToPhone value
+    func makePhoneStopRun() {
+        let actionDictFromWatch = ["Action": "stopRunToPhone"]
         session.sendMessage(actionDictFromWatch, replyHandler: nil) { (error: NSError) in
             print(error)
         }
