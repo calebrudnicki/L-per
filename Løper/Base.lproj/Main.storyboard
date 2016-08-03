@@ -22,59 +22,69 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" red="0.23137254900000001" green="0.23137254900000001" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nUn-8X-UM0">
-                                <rect key="frame" x="0.0" y="461" width="600" height="75"/>
-                                <color key="backgroundColor" red="0.054901960784313725" green="0.63137254901960782" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="1cl-hL-Fg4">
+                                <rect key="frame" x="0.0" y="472" width="600" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cOZ-Id-Lg4">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="60"/>
+                                        <color key="backgroundColor" red="0.23137254900000001" green="0.23137254900000001" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pastRunsButtonTapped:" destination="SLS-Xv-c4M" eventType="touchUpInside" id="95C-72-uTV"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nUn-8X-UM0">
+                                        <rect key="frame" x="100" y="0.0" width="500" height="60"/>
+                                        <color key="backgroundColor" red="0.054901960784313725" green="0.63137254901960782" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="75" id="1bf-qK-3ia"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="75" id="YtQ-uI-GxG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="40"/>
+                                        <state key="normal" title="run">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="1bf-qK-3ia"/>
+                                                <exclude reference="YtQ-uI-GxG"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="runButtonTapped:" destination="SLS-Xv-c4M" eventType="touchUpInside" id="UIG-Qu-cuI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="1bf-qK-3ia"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="75" id="YtQ-uI-GxG"/>
+                                    <constraint firstItem="cOZ-Id-Lg4" firstAttribute="width" secondItem="nUn-8X-UM0" secondAttribute="width" multiplier="0.2" id="gkz-Ue-5wz"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="40"/>
-                                <state key="normal" title="run">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="YtQ-uI-GxG"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="runButtonTapped:" destination="SLS-Xv-c4M" eventType="touchUpInside" id="UIG-Qu-cuI"/>
-                                </connections>
-                            </button>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.23137254901960785" green="0.23137254901960785" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="1cl-hL-Fg4" secondAttribute="trailing" id="1ry-eq-VEI"/>
                             <constraint firstItem="UTu-Ex-aTk" firstAttribute="leading" secondItem="Kq2-OG-wVk" secondAttribute="leading" id="F15-Tc-DVS"/>
-                            <constraint firstItem="x1S-Yy-L2g" firstAttribute="top" secondItem="nUn-8X-UM0" secondAttribute="bottom" id="HH9-HQ-ZQs"/>
                             <constraint firstItem="x1S-Yy-L2g" firstAttribute="top" secondItem="UTu-Ex-aTk" secondAttribute="bottom" id="JIa-OK-Tzb"/>
-                            <constraint firstItem="nUn-8X-UM0" firstAttribute="centerX" secondItem="UTu-Ex-aTk" secondAttribute="centerX" id="K7M-Uc-UME"/>
+                            <constraint firstItem="1cl-hL-Fg4" firstAttribute="width" secondItem="UTu-Ex-aTk" secondAttribute="width" id="Q1h-as-B93"/>
+                            <constraint firstItem="x1S-Yy-L2g" firstAttribute="top" secondItem="1cl-hL-Fg4" secondAttribute="bottom" id="TwU-UU-FVj"/>
                             <constraint firstItem="UTu-Ex-aTk" firstAttribute="top" secondItem="wyG-ZW-W2w" secondAttribute="bottom" id="YdV-we-kgJ"/>
-                            <constraint firstItem="nUn-8X-UM0" firstAttribute="width" secondItem="UTu-Ex-aTk" secondAttribute="width" id="a8H-9e-hHd"/>
                             <constraint firstItem="UTu-Ex-aTk" firstAttribute="width" secondItem="Kq2-OG-wVk" secondAttribute="width" id="co7-SP-BmK"/>
-                            <constraint firstItem="nUn-8X-UM0" firstAttribute="height" secondItem="Kq2-OG-wVk" secondAttribute="height" id="dlV-1K-4nF"/>
                             <constraint firstItem="UTu-Ex-aTk" firstAttribute="centerX" secondItem="Kq2-OG-wVk" secondAttribute="centerX" id="hkd-ye-VDM"/>
-                            <constraint firstAttribute="trailing" secondItem="nUn-8X-UM0" secondAttribute="trailing" id="mya-44-15a"/>
+                            <constraint firstItem="1cl-hL-Fg4" firstAttribute="leading" secondItem="Kq2-OG-wVk" secondAttribute="leading" id="uEM-4d-AVt"/>
                             <constraint firstAttribute="trailing" secondItem="UTu-Ex-aTk" secondAttribute="trailing" id="vZP-qT-2lB"/>
-                            <constraint firstItem="nUn-8X-UM0" firstAttribute="leading" secondItem="Kq2-OG-wVk" secondAttribute="leading" id="xHn-fO-adb"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="a8H-9e-hHd"/>
-                                <exclude reference="dlV-1K-4nF"/>
+                                <exclude reference="Q1h-as-B93"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="løper" id="Jqs-ZA-Jet">
                         <barButtonItem key="backBarButtonItem" title=" " id="y5m-Pa-iVW">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        </barButtonItem>
-                        <barButtonItem key="leftBarButtonItem" image="runner-0" id="oGF-Ig-y5V">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="pastRunsButtonTapped:" destination="SLS-Xv-c4M" id="8kf-dP-mIq"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -459,7 +469,7 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="satellite" translatesAutoresizingMaskIntoConstraints="NO" id="BnQ-Fw-XQ5">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BnQ-Fw-XQ5">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="375"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="337" id="vLG-Ks-FNH"/>
@@ -637,7 +647,4 @@
             <point key="canvasLocation" x="844" y="-669"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="runner-0" width="25" height="25"/>
-    </resources>
 </document>

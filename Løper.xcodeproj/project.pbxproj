@@ -36,7 +36,6 @@
 		82B476CE1D47B8C200A81A4D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284C9C01D342AF500A08EEF /* HomeViewController.swift */; };
 		82BE7C551D490D3700E35A9E /* PhoneSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BE7C541D490D3700E35A9E /* PhoneSession.swift */; };
 		82BE7C581D49443800E35A9E /* CheckMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 82BE7C571D49443800E35A9E /* CheckMark.png */; };
-		82F2E1721D4A5B1D008D513D /* XMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F2E1711D4A5B1D008D513D /* XMark.png */; };
 		82F2E1741D4BAD55008D513D /* RunTrackerInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F2E1731D4BAD55008D513D /* RunTrackerInterfaceController.swift */; };
 		F0B6AAA6E938E116F3649F6E /* Pods_L_per.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB44BEE256B38A0A01EBE055 /* Pods_L_per.framework */; };
 /* End PBXBuildFile section */
@@ -119,7 +118,6 @@
 		82B476BC1D46B5DF00A81A4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82BE7C541D490D3700E35A9E /* PhoneSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneSession.swift; sourceTree = "<group>"; };
 		82BE7C571D49443800E35A9E /* CheckMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckMark.png; sourceTree = "<group>"; };
-		82F2E1711D4A5B1D008D513D /* XMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = XMark.png; sourceTree = "<group>"; };
 		82F2E1731D4BAD55008D513D /* RunTrackerInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunTrackerInterfaceController.swift; sourceTree = "<group>"; };
 		CB44BEE256B38A0A01EBE055 /* Pods_L_per.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_L_per.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC97581B2C061E153DF6306 /* Pods-Løper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Løper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Løper/Pods-Løper.release.xcconfig"; sourceTree = "<group>"; };
@@ -209,7 +207,6 @@
 				821067031D3D249D00694447 /* RunDataCell.swift */,
 				8284C9B21D34290000A08EEF /* Main.storyboard */,
 				8284C9B51D34290000A08EEF /* Assets.xcassets */,
-				82F2E1711D4A5B1D008D513D /* XMark.png */,
 				82BE7C571D49443800E35A9E /* CheckMark.png */,
 				8284C9B71D34290000A08EEF /* LaunchScreen.storyboard */,
 				8284C9BA1D34290000A08EEF /* Info.plist */,
@@ -380,7 +377,6 @@
 			files = (
 				8284C9B91D34290000A08EEF /* LaunchScreen.storyboard in Resources */,
 				82BE7C581D49443800E35A9E /* CheckMark.png in Resources */,
-				82F2E1721D4A5B1D008D513D /* XMark.png in Resources */,
 				8284C9B61D34290000A08EEF /* Assets.xcassets in Resources */,
 				8284C9B41D34290000A08EEF /* Main.storyboard in Resources */,
 			);

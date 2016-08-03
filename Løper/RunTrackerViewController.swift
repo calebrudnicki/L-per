@@ -108,18 +108,19 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
 //MARK: Conversion Functions
     
     //This function converts distance and time values from meters and seconds to miles and minutes
-    func convertUnitsRunning(distance: Double, time: Double) -> (distance: String, time: String, pace: String) {
+    func convertUnitsRunning(distance: Double, runTime: Double, stallTime: Double) -> (distance: String, runTime: String, pace: String, stallTime: String) {
         let distance = distance * 0.000621371
         let distanceRounded = String(Double(round(100 * distance) / 100))
-        let timeRounded = secondsToClockFormat(time)
+        let runTimeRounded = secondsToClockFormat(runTime)
         let paceRounded: String!
-        if time > 0 {
-            let pace = (time / 60) / distance
+        if runTime > 0 {
+            let pace = (runTime / 60) / distance
             paceRounded = minutesToClockFormat(pace)
         } else {
             paceRounded = "0:00"
         }
-        return (distanceRounded, timeRounded, paceRounded)
+        let stallTimeRounded = secondsToClockFormat(stallTime)
+        return (distanceRounded, runTimeRounded, paceRounded, stallTimeRounded)
     }
     
     //This function converts seconds into an hour:minute:second format
@@ -181,17 +182,6 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         popupViewController.didMoveToParentViewController(self)
     }
     
-    //This function shows a popup confirming that the run was not saved
-    func callCancelPopup() {
-        let popupViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PopupViewController") as! PopupViewController
-        self.addChildViewController(popupViewController)
-        popupViewController.view.frame = self.view.bounds
-        popupViewController.userChoiceImage.image = UIImage(named: "XMark.png")
-        popupViewController.userChoiceLabel.text = "Ok. Your run was not saved."
-        self.view.addSubview(popupViewController.view)
-        popupViewController.didMoveToParentViewController(self)
-    }
-    
     
 //MARK: Segues
     
@@ -210,10 +200,11 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     //This function saves a run object (newRun) and a locations object (savedLocations) to Core Data
     func saveRunToCoreData() {
         let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-        let (d, t, p) = self.convertUnitsRunning(distance, time: runTime)
+        let (d, rt, p, st) = self.convertUnitsRunning(distance, runTime: runTime, stallTime: stallTime)
         finalDistance = d
-        finalRunTime = t
+        finalRunTime = rt
         finalPace = p
+        finalStallTime = st
         let newRun = NSEntityDescription.insertNewObjectForEntityForName("Run",inManagedObjectContext: managedObjectContext) as! Run
         newRun.pace = finalPace
         newRun.distance = finalDistance
@@ -264,7 +255,8 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
 
     //This function changes the tint of the map depending on whether the user is running or stationary
     func locationManager(manager: LKLocationManager, willChangeActivityMode mode: LKActivityMode) {
-        if (mode == LKActivityMode.Stationary) {
+        if mode == LKActivityMode.Stationary {
+            mapView.tintColor = UIColor.redColor()
             testLabel.text = "Standing"
             runningTimer.invalidate()
             dispatch_async(dispatch_get_main_queue()) {
@@ -337,16 +329,18 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     func eachSecondRunning(timer: NSTimer) {
         runTime = runTime + 1
         mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveRoads)
-        (distanceDisplay!, runTimeDisplay!, paceDisplay!) = self.convertUnitsRunning(distance, time: runTime)
+        (distanceDisplay!, runTimeDisplay!, paceDisplay!, stallTimeDisplay!) = self.convertUnitsRunning(distance, runTime: runTime, stallTime: stallTime)
         PhoneSession.sharedInstance.giveWatchRunData(distanceDisplay, runTime: runTimeDisplay, pace: paceDisplay, stallTime: stallTimeDisplay)
         distanceLabel.text = "\(distanceDisplay) mi"
         runTimeLabel.text = runTimeDisplay
         averagePaceLabel.text = "\(paceDisplay) min/mi"
+        stallTimeLabel.text = stallTimeDisplay
     }
     
     //This function runs every second the user is standing
     func eachSecondStanding(timer: NSTimer) {
         stallTime = stallTime + 1
+        mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveRoads)
         stallTimeDisplay = secondsToClockFormat(stallTime)
         PhoneSession.sharedInstance.giveWatchRunData(distanceDisplay, runTime: runTimeDisplay, pace: paceDisplay, stallTime: stallTimeDisplay)
         stallTimeLabel.text = stallTimeDisplay
