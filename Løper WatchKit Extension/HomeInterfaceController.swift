@@ -25,5 +25,28 @@ class HomeInterfaceController: WKInterfaceController {
     override func didDeactivate() {
         super.didDeactivate()
     }
+    
+    
+//MARK: Actions
+    
+    @IBAction func startRunButtonTapped() {
+        print("run button tapped")
+    }
+    
+    
+    
+//MARK: Segues
+    
+//    override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
+//        if let identifier = segue.identifier {
+//            if identifier == "startRunSegue" {
+//                let runTrackerInterfaceController = segue.destinationViewController as! RunTrackerInterfaceController
+//            }
+//        }
+//    }
+    
+    //This function can be connected to by another view controller to unwind a segue
+//    @IBAction func unwindToHomeInterfaceController(segue: UIStoryboardSegue) {
+//    }
 
 }

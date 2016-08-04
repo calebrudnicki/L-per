@@ -41,6 +41,9 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         locationManager.debug = true
         locationManager.advancedDelegate = self
         let setting = LKSetting(type: .High)
+        ///
+        locationManager.useCMMotionActivityManager = true
+        ///
         locationManager.setOperationMode(setting)
         return locationManager
     }()

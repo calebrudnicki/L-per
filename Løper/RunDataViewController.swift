@@ -25,6 +25,7 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
     var run: Run!
     var coordinates: [CLLocationCoordinate2D] = []
     var annotations: [MKPointAnnotation] = []
+    var selectedRow: NSIndexPath!
    
     
 //MARK: Boilerplate Functions
@@ -52,10 +53,21 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
 //MARK: Actions
     
     @IBAction func deleteRun(sender: AnyObject) {
-        print("Trash it")
+        self.performSegueWithIdentifier("returnToList", sender: self)
     }
     
-
+    
+//MARK: Segues
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            if identifier == "returnToList" {
+                let listRunsTableViewController = segue.destinationViewController as! ListRunsTableViewController
+                listRunsTableViewController.selectedRow = self.selectedRow
+            }
+        }
+    }
+    
     
 //MARK: Map Functions
     

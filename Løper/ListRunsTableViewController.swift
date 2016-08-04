@@ -16,6 +16,8 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
     
     var runs: [Run] = []
     let formatter = NSDateFormatter()
+    var selectedRow = NSIndexPath!()
+    var isDeleted = false
     
     
 //MARK: Boilerplate Functions
@@ -99,9 +101,18 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
             if identifier == "displayRunSegue" {
                 let runDataViewController = segue.destinationViewController as! RunDataViewController
                 let selectedRun = runs[(tableView.indexPathForSelectedRow?.row)!]
+                runDataViewController.selectedRow = (tableView.indexPathForSelectedRow)!
                 runDataViewController.run = selectedRun
             }
         }
+    }
+    
+    @IBAction func unwindToListRunsViewController(segue: UIStoryboardSegue) {
+        isDeleted = true
+        self.deleteFromCoreData(selectedRow)
+        runs.removeAtIndex(selectedRow.row)
+        tableView.deleteRowsAtIndexPaths([selectedRow], withRowAnimation: .Automatic)
+        tableView.reloadData()
     }
 
     
@@ -123,7 +134,8 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
         cell.distanceLabel.text = String(runs[indexPath.row].distance!) + " mi"
         formatter.dateStyle = NSDateFormatterStyle.LongStyle
         let date = formatter.stringFromDate(runs[indexPath.row].date!)
-        cell.dateLabel.text = String(date)  
+        cell.dateLabel.text = String(date)
+        isDeleted = false
         return cell
     }
     
