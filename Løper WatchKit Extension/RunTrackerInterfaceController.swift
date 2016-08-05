@@ -32,23 +32,20 @@ class RunTrackerInterfaceController: WKInterfaceController {
         WatchSession.sharedInstance.startSession()
         WatchSession.sharedInstance.makePhoneStartRun()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RunTrackerInterfaceController.receivedGiveRunDataNotification(_:)), name:"giveRunDataToWatch", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RunTrackerInterfaceController.receivedStopRunNotification(_:)), name:"stopRunToWatch", object: nil)
     }
 
     //This function removes the observer from the NSNotication sender when the view disappears
     override func didDeactivate() {
         super.didDeactivate()
+        WatchSession.sharedInstance.makePhoneStopRun()
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    
-//MARK: Actions
-    
-    //This functions calls makePhoneStopRun() as a shared instance when the stop run button is tapped
-    @IBAction func stopRunButtonTapped() {
-        WatchSession.sharedInstance.makePhoneStopRun()
+    //This functions sets the title of the interface
+    override init () {
+        super.init ()
+        self.setTitle("Stop")
     }
-    
     
     
 //MARK: Info Collectors
@@ -57,11 +54,6 @@ class RunTrackerInterfaceController: WKInterfaceController {
     func receivedGiveRunDataNotification(notification: NSNotification) {
         let runDataDict = notification.object as? [String : AnyObject]
         self.displayLabels(runDataDict!)
-    }
-    
-    //This functions is called when a stopRunToWatch notification is posted and turns the button black
-    func receivedStopRunNotification(notification: NSNotification) {
-        stopRunButton.setBackgroundColor(UIColor.blackColor())
     }
     
     //This functions sets the labels of the interface controller

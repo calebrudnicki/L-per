@@ -41,12 +41,12 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         locationManager.debug = true
         locationManager.advancedDelegate = self
         let setting = LKSetting(type: .High)
-        ///
         locationManager.useCMMotionActivityManager = true
-        ///
         locationManager.setOperationMode(setting)
         return locationManager
     }()
+//    let activityManager = CMMotionActivityManager()
+    let motionManager: CMMotionManager! = CMMotionManager()
     
     //Variables for labels and run info in the view
     var distance: Double! = 0.0
@@ -76,6 +76,7 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         PhoneSession.sharedInstance.startSession()
         self.mapView.delegate = self
         locations.removeAll(keepCapacity: false)
+        motionManager.startAccelerometerUpdates()
         self.viewControllerLayoutChanges()
         self.startLocationUpdates()
     }
@@ -168,7 +169,6 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     //This function 
     func recievedStopRunSegueNotifaction(notification: NSNotification) {
         self.saveRunToCoreData()
-        PhoneSession.sharedInstance.makeWatchStopRun()
         self.performSegueWithIdentifier("exitSegue", sender: self)
     }
 
@@ -258,7 +258,7 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
 
     //This function changes the tint of the map depending on whether the user is running or stationary
     func locationManager(manager: LKLocationManager, willChangeActivityMode mode: LKActivityMode) {
-        if mode == LKActivityMode.Stationary {
+        if mode == LKActivityMode.Stationary && (motionManager.accelerometerData?.acceleration.x < 0 || motionManager.accelerometerData?.acceleration.y < 0) {
             mapView.tintColor = UIColor.redColor()
             testLabel.text = "Standing"
             runningTimer.invalidate()
@@ -330,6 +330,10 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     
     //This function runs every second that the user is running
     func eachSecondRunning(timer: NSTimer) {
+        print("RUNING")
+        print("X: \(motionManager.accelerometerData?.acceleration.x)")
+        print("Y: \(motionManager.accelerometerData?.acceleration.y)")
+        print("")
         runTime = runTime + 1
         mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveRoads)
         (distanceDisplay!, runTimeDisplay!, paceDisplay!, stallTimeDisplay!) = self.convertUnitsRunning(distance, runTime: runTime, stallTime: stallTime)
@@ -342,6 +346,10 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     
     //This function runs every second the user is standing
     func eachSecondStanding(timer: NSTimer) {
+        print("STANDING")
+        print("X: \(motionManager.accelerometerData?.acceleration.x)")
+        print("Y: \(motionManager.accelerometerData?.acceleration.y)")
+        print("")
         stallTime = stallTime + 1
         mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveRoads)
         stallTimeDisplay = secondsToClockFormat(stallTime)

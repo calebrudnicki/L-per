@@ -15,9 +15,9 @@
                                 <button width="1" height="182" alignment="left" title="Start Run" id="UK9-tY-qR1">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" red="0.054901960780000002" green="0.63137254899999995" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" type="system" pointSize="26"/>
                                     <connections>
                                         <action selector="startRunButtonTapped" destination="AgC-eL-Hgc" id="xnu-cV-0kS"/>
-                                        <segue destination="lXv-p0-hsI" kind="modal" identifier="startRunSegue" id="Xbl-t2-Y2j"/>
                                     </connections>
                                 </button>
                             </items>
@@ -30,39 +30,28 @@
             </objects>
             <point key="canvasLocation" x="235" y="347"/>
         </scene>
-        <!--Run Tracker Interface Controller-->
+        <!--runTrackerInterfaceController-->
         <scene sceneID="T4Z-jO-A7h">
             <objects>
-                <controller id="lXv-p0-hsI" customClass="RunTrackerInterfaceController" customModule="Løper_WatchKit_Extension">
+                <controller identifier="runTrackerInterfaceController" id="lXv-p0-hsI" customClass="RunTrackerInterfaceController" customModule="Løper_WatchKit_Extension">
                     <items>
                         <label width="1" height="0.29999999999999999" alignment="center" text="0.00 mi" textAlignment="center" id="vpB-MP-s7l">
-                            <fontDescription key="font" type="system" pointSize="26"/>
+                            <fontDescription key="font" type="system" pointSize="36"/>
                         </label>
-                        <separator width="80" alignment="center" id="sU1-c4-q66"/>
+                        <separator width="30" alignment="center" id="sU1-c4-q66"/>
                         <label width="136" alignment="left" text="00:00:00" textAlignment="center" id="1hk-iy-7Kk">
-                            <fontDescription key="font" type="system" pointSize="19"/>
+                            <fontDescription key="font" type="system" pointSize="24"/>
                         </label>
-                        <separator width="80" alignment="center" id="H8k-73-K5k"/>
-                        <group width="112" alignment="center" spacing="0.0" id="vyJ-ah-Wjn">
-                            <items>
-                                <label width="72" alignment="right" text="00:00:00" textAlignment="center" id="kpI-AR-9oc"/>
-                                <label width="41" alignment="left" text="0:00 min/mi" textAlignment="center" id="aWn-ue-5Ej"/>
-                            </items>
-                        </group>
-                        <button width="1" alignment="center" verticalAlignment="bottom" title="Stop" id="cRR-t6-y2f">
-                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <color key="backgroundColor" red="0.63137254899999995" green="0.1176470588" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="stopRunButtonTapped" destination="lXv-p0-hsI" id="EiS-RX-eUD"/>
-                            </connections>
-                        </button>
+                        <separator width="30" alignment="center" id="H8k-73-K5k"/>
+                        <label width="1" alignment="left" text="0:00 min/mi" textAlignment="center" id="aWn-ue-5Ej"/>
+                        <separator width="30" alignment="center" id="QjV-bX-4uj"/>
+                        <label width="1" alignment="right" text="00:00:00" textAlignment="center" id="kpI-AR-9oc"/>
                     </items>
                     <connections>
                         <outlet property="distanceLabel" destination="vpB-MP-s7l" id="C06-X8-Phx"/>
                         <outlet property="paceLabel" destination="aWn-ue-5Ej" id="U6F-CA-XxM"/>
                         <outlet property="runTimeLabel" destination="1hk-iy-7Kk" id="M7w-6J-f1r"/>
                         <outlet property="stallTimeLabel" destination="kpI-AR-9oc" id="E1J-ea-UuJ"/>
-                        <outlet property="stopRunButton" destination="cRR-t6-y2f" id="EDK-k4-L4j"/>
                     </connections>
                 </controller>
             </objects>

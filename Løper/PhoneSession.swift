@@ -40,14 +40,6 @@ class PhoneSession: NSObject, WCSessionDelegate {
         }
     }
     
-    //This function sends a message to the WatchSession with a dictionary containing a stopRunToWatch value
-    func makeWatchStopRun() {
-        let actionDictFromPhone = ["Action": "stopRunToWatch"]
-        session.sendMessage(actionDictFromPhone, replyHandler: nil) { (error: NSError) in
-            print(error)
-        }
-    }
-    
     
 //MARK: Data Getters
     
