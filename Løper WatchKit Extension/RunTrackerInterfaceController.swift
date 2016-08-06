@@ -58,9 +58,9 @@ class RunTrackerInterfaceController: WKInterfaceController {
     
     //This functions sets the labels of the interface controller
     func displayLabels(dataDict: [String : AnyObject]) {
-        distanceLabel.setText(String(dataDict["Distance"]!))
+        distanceLabel.setText(String(dataDict["Distance"]!) + " mi")
         runTimeLabel.setText(String(dataDict["RunTime"]!))
-        paceLabel.setText(String(dataDict["Pace"]!))
+        paceLabel.setText(String(dataDict["Pace"]!) + " min/mi")
         stallTimeLabel.setText(String(dataDict["StallTime"]!))
     }
 

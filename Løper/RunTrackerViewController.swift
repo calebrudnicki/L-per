@@ -88,6 +88,12 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RunTrackerViewController.recievedStopRunSegueNotifaction(_:)), name:"stopRunToPhone", object: nil)
     }
     
+    //This functions invalidates the times when the view disappears
+    override func viewDidDisappear(animated: Bool) {
+        runningTimer.invalidate()
+        standingTimer.invalidate()
+    }
+    
     //This function removes the observer from the NSNotication sender when the view disappears
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -258,18 +264,20 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
 
     //This function changes the tint of the map depending on whether the user is running or stationary
     func locationManager(manager: LKLocationManager, willChangeActivityMode mode: LKActivityMode) {
-        if mode == LKActivityMode.Stationary && (motionManager.accelerometerData?.acceleration.x < 0 || motionManager.accelerometerData?.acceleration.y < 0) {
-            mapView.tintColor = UIColor.redColor()
-            testLabel.text = "Standing"
-            runningTimer.invalidate()
+        var avAcc = ((motionManager.accelerometerData?.acceleration.x)! + (motionManager.accelerometerData?.acceleration.y)!) / 2
+        var avVel = avAcc * (runTime + stallTime)
+        if mode == LKActivityMode.Stationary && avAcc <= 0 {
             dispatch_async(dispatch_get_main_queue()) {
+                self.mapView.tintColor = UIColor.redColor()
+                self.testLabel.text = "Standing"
+                self.runningTimer.invalidate()
                 self.standingTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondStanding(_:)), userInfo: nil, repeats: true)
             }
         } else {
-            mapView.tintColor = UIColor.greenColor()
-            testLabel.text = "Running"
-            standingTimer.invalidate()
             dispatch_async(dispatch_get_main_queue()) {
+                self.mapView.tintColor = UIColor.greenColor()
+                self.testLabel.text = "Running"
+                self.standingTimer.invalidate()
                 self.runningTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondRunning(_:)), userInfo: nil, repeats: true)
             }
         }
@@ -330,9 +338,10 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     
     //This function runs every second that the user is running
     func eachSecondRunning(timer: NSTimer) {
-        print("RUNING")
-        print("X: \(motionManager.accelerometerData?.acceleration.x)")
-        print("Y: \(motionManager.accelerometerData?.acceleration.y)")
+        var avAcc = ((motionManager.accelerometerData?.acceleration.x)! + (motionManager.accelerometerData?.acceleration.y)!) / 2
+        var avVel = avAcc * (runTime + stallTime)
+        print("RUNNING: \(avAcc)")
+        print("RUNNING: \(avVel)")
         print("")
         runTime = runTime + 1
         mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveRoads)
@@ -346,9 +355,10 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     
     //This function runs every second the user is standing
     func eachSecondStanding(timer: NSTimer) {
-        print("STANDING")
-        print("X: \(motionManager.accelerometerData?.acceleration.x)")
-        print("Y: \(motionManager.accelerometerData?.acceleration.y)")
+        var avAcc = ((motionManager.accelerometerData?.acceleration.x)! + (motionManager.accelerometerData?.acceleration.y)!) / 2
+        var avVel = avAcc * (runTime + stallTime)
+        print("STANDING: \(avAcc)")
+        print("STANDING: \(avVel)")
         print("")
         stallTime = stallTime + 1
         mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveRoads)
