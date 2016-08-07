@@ -265,7 +265,6 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     //This function changes the tint of the map depending on whether the user is running or stationary
     func locationManager(manager: LKLocationManager, willChangeActivityMode mode: LKActivityMode) {
         var avAcc = ((motionManager.accelerometerData?.acceleration.x)! + (motionManager.accelerometerData?.acceleration.y)!) / 2
-        var avVel = avAcc * (runTime + stallTime)
         if mode == LKActivityMode.Stationary && avAcc <= 0 {
             dispatch_async(dispatch_get_main_queue()) {
                 self.mapView.tintColor = UIColor.redColor()
@@ -339,9 +338,7 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     //This function runs every second that the user is running
     func eachSecondRunning(timer: NSTimer) {
         var avAcc = ((motionManager.accelerometerData?.acceleration.x)! + (motionManager.accelerometerData?.acceleration.y)!) / 2
-        var avVel = avAcc * (runTime + stallTime)
         print("RUNNING: \(avAcc)")
-        print("RUNNING: \(avVel)")
         print("")
         runTime = runTime + 1
         mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveRoads)
@@ -356,9 +353,7 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     //This function runs every second the user is standing
     func eachSecondStanding(timer: NSTimer) {
         var avAcc = ((motionManager.accelerometerData?.acceleration.x)! + (motionManager.accelerometerData?.acceleration.y)!) / 2
-        var avVel = avAcc * (runTime + stallTime)
         print("STANDING: \(avAcc)")
-        print("STANDING: \(avVel)")
         print("")
         stallTime = stallTime + 1
         mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveRoads)

@@ -25,8 +25,6 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
 //MARK: Variables
     
     var locationManager = CLLocationManager()
-    var randAltitude: Double!
-    var randAngle: Double!
     
     
 //MARK: Boilerplate Functions
@@ -38,16 +36,14 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
+        self.checkLocationAuthorizationStatus()
+        self.viewControllerLayoutChanges()
     }
     
     //This function establishes the class as an observer of the NSNotificationSender
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.recievedStartRunSegueNotifaction(_:)), name:"startRunToPhone", object: nil)
-        randAltitude = Double(arc4random_uniform(350) + 50)
-        randAngle = Double(arc4random_uniform(360))
-        self.viewControllerLayoutChanges()
-        self.checkLocationAuthorizationStatus()
     }
     
     //This function removes the observer from the NSNotication sender when the view disappears
@@ -65,17 +61,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
     
     //This function changes preset properties of the view controller
     func viewControllerLayoutChanges() {
-        mapView.tintColor = UIColor.greenColor()
-        let backgroundUserCoords = locationManager.location?.coordinate
-        let backgroundUserPoint = CLLocationCoordinate2DMake((backgroundUserCoords?.latitude)!, (backgroundUserCoords?.longitude)!)
-        mapView.region = MKCoordinateRegionMakeWithDistance(backgroundUserPoint, 1000,1000)
-        mapView.mapType = MKMapType.SatelliteFlyover
-        let mapCamera = MKMapCamera()
-        mapCamera.centerCoordinate = backgroundUserPoint
-        mapCamera.pitch = 45
-        mapCamera.altitude = randAltitude
-        mapCamera.heading = randAngle
-        self.mapView.camera = mapCamera
+        mapView.tintColor = UIColor(red: 0.59, green: 0.59, blue: 0.59, alpha: 1)
     }
     
     
@@ -95,6 +81,14 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
         let userLocation: CLLocation = locations[0]
         let coord2D = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let coordinateRegion = MKCoordinateRegion(center: coord2D, span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
+        mapView.setRegion(coordinateRegion, animated: false)
+        mapView.mapType = MKMapType.SatelliteFlyover
+        let mapCamera = MKMapCamera()
+        mapCamera.centerCoordinate = coord2D
+        mapCamera.pitch = 45
+        mapCamera.altitude = 100
+        mapCamera.heading = 0
+        self.mapView.camera = mapCamera
     }
     
     

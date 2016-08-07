@@ -16,7 +16,6 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
     
     var runs: [Run] = []
     let formatter = NSDateFormatter()
-    var selectedRow = NSIndexPath!()
     var isDeleted = false
     
     
@@ -34,14 +33,6 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         self.loadFromCoreData()
-    }
-    
-
-//MARK: Actions
-    
-    //This function calls clearAllFromCoreData() when the clear button is tapped
-    @IBAction func clearAllButtonsTapped(sender: AnyObject) {
-        self.clearAllFromCoreData()
     }
     
     
@@ -75,23 +66,7 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
             fatalError("Failed to delete run: \(error)")
         }
     }
-    
-    //This function deletes all runs from Core Data
-    func clearAllFromCoreData() {
-        let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-        for run in runs {
-            let previousRun = run
-            managedObjectContext.deleteObject(previousRun)
-        }
-        do {
-            try managedObjectContext.save()
-            runs.removeAll()
-            tableView.reloadData()
-        } catch let error as NSError {
-            fatalError("Failed to delete run: \(error)")
-        }
-    }
-    
+
     
 //MARK: Segues
     
@@ -101,18 +76,9 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
             if identifier == "displayRunSegue" {
                 let runDataViewController = segue.destinationViewController as! RunDataViewController
                 let selectedRun = runs[(tableView.indexPathForSelectedRow?.row)!]
-                runDataViewController.selectedRow = (tableView.indexPathForSelectedRow)!
                 runDataViewController.run = selectedRun
             }
         }
-    }
-    
-    @IBAction func unwindToListRunsViewController(segue: UIStoryboardSegue) {
-        isDeleted = true
-        self.deleteFromCoreData(selectedRow)
-        runs.removeAtIndex(selectedRow.row)
-        tableView.deleteRowsAtIndexPaths([selectedRow], withRowAnimation: .Automatic)
-        tableView.reloadData()
     }
 
     

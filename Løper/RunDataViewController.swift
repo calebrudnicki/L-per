@@ -50,25 +50,6 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
     }
     
     
-//MARK: Actions
-    
-    @IBAction func deleteRun(sender: AnyObject) {
-        self.performSegueWithIdentifier("returnToList", sender: self)
-    }
-    
-    
-//MARK: Segues
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let identifier = segue.identifier {
-            if identifier == "returnToList" {
-                let listRunsTableViewController = segue.destinationViewController as! ListRunsTableViewController
-                listRunsTableViewController.selectedRow = self.selectedRow
-            }
-        }
-    }
-    
-    
 //MARK: Map Functions
     
     //This function shows the map, calls addOverlay(), and calls mapRegion()
@@ -102,20 +83,29 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
     
 //MARK: Path Drawing
     
-    //This function loops through the locations array and appends each location to an array of CLLocationCoordinate2D called coords
+    //This function loops through the locations array and appends each location to an array of CLLocationCoordinate2D called coords while also checking for the first and last point location to call addPinToMap() on
     func polyline() -> MKPolyline {
         var coords = [CLLocationCoordinate2D]()
         let locations = run.locations
+        var count = 0
         for location in locations! {
             if let location = location as? Location {
+                if count == 0 {
+                    self.addPinToMap(CLLocationCoordinate2D(latitude: location.latitude!.doubleValue,
+                        longitude:location.longitude!.doubleValue), color: UIColor.greenColor())
+                } else if count == (locations!.count - 1) {
+                    self.addPinToMap(CLLocationCoordinate2D(latitude: location.latitude!.doubleValue,
+                        longitude:location.longitude!.doubleValue), color: UIColor.redColor())
+                }
                 coords.append(CLLocationCoordinate2D(latitude: location.latitude!.doubleValue,
                 longitude:location.longitude!.doubleValue))
             }
+            count = count + 1
         }
         return MKPolyline(coordinates: &coords, count: locations!.count)
     }
     
-    // This function draws the line for the path of the run
+    //This function draws the line for the path of the run
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         if !overlay.isKindOfClass(MKPolyline) {
             return MKPolylineRenderer()
@@ -125,6 +115,14 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
         renderer.strokeColor = UIColor(red: 0.59, green: 0.59, blue: 0.59, alpha: 1.0)
         renderer.lineWidth = 5
         return renderer
+    }
+    
+    //This function adds a pin to the map
+    func addPinToMap(coordinates: CLLocationCoordinate2D, color: UIColor) {
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinates
+        mapView.addAnnotation(annotation)
+        mapView.showAnnotations([annotation], animated: true)
     }
 
 }
