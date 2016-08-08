@@ -28,6 +28,7 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     @IBOutlet weak var stallTimeLabel: UILabel!
     @IBOutlet weak var stopRunButton: UIButton!
     @IBOutlet weak var testLabel: UILabel!
+
     
 //MARK: Variables
     

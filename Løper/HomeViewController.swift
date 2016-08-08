@@ -25,6 +25,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
 //MARK: Variables
     
     var locationManager = CLLocationManager()
+    var randAltitude: Double!
+    var randAngle: Double!
     
     
 //MARK: Boilerplate Functions
@@ -43,6 +45,9 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
     //This function establishes the class as an observer of the NSNotificationSender
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        print("View did appear")
+        randAltitude = Double(arc4random_uniform(350) + 50)
+        randAngle = Double(arc4random_uniform(360))
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.recievedStartRunSegueNotifaction(_:)), name:"startRunToPhone", object: nil)
     }
     
@@ -86,8 +91,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
         let mapCamera = MKMapCamera()
         mapCamera.centerCoordinate = coord2D
         mapCamera.pitch = 45
-        mapCamera.altitude = 100
-        mapCamera.heading = 0
+        mapCamera.altitude = randAltitude
+        mapCamera.heading = randAngle
         self.mapView.camera = mapCamera
     }
     

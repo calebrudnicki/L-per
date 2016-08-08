@@ -30,7 +30,6 @@ class HomeInterfaceController: WKInterfaceController {
 //MARK: Actions
     
     @IBAction func startRunButtonTapped() {
-        print("run button tapped")
         self.presentControllerWithName("RunTrackerInterfaceController", context: nil)
     }
 
