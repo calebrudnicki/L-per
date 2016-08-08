@@ -5,9 +5,7 @@
 //  Created by Caleb Rudnicki on 7/11/16.
 //  Copyright © 2016 Caleb Rudnicki. All rights reserved.
 //
-//  Runner icon in top left corner of HomeViewController was created by Freepik at http://www.freepik.com
 //  Check mark icon in the PopupViewController was created Huu Nguyen at https://thenounproject.com/huu/
-//  X mark icon in PopupViewController was created by Huu Nguyen at https://thenounproject.com/huu/
 //
 
 import UIKit
@@ -31,7 +29,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
     
 //MARK: Boilerplate Functions
     
-    //This function creates a shared instance of PhoneSession, establishes the locationManager settings, and calls checkLocationAuthorizationStatus() and viewControllerLayoutChanges() before it starts updating location
+    //This function creates a shared instance of PhoneSession, establishes the locationManager settings, and calls checkLocationAuthorizationStatus() and viewControllerLayoutChanges()
     override func viewDidLoad() {
         super.viewDidLoad()
         PhoneSession.sharedInstance.startSession()
@@ -42,10 +40,9 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
         self.viewControllerLayoutChanges()
     }
     
-    //This function establishes the class as an observer of the NSNotificationSender
+    //This function generates two random integers each time the view appears and also establishes the class as an observer of the NSNotificationSender
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        print("View did appear")
         randAltitude = Double(arc4random_uniform(350) + 50)
         randAngle = Double(arc4random_uniform(360))
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.recievedStartRunSegueNotifaction(_:)), name:"startRunToPhone", object: nil)
@@ -104,7 +101,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
         self.startRunSegue()
     }
     
-    //This function for the running man icon segues to the ListRunsTableViewController
+    //This function for the folder icon calls seeListSegue()
     @IBAction func pastRunsButtonTapped(sender: AnyObject) {
         self.seeListSegue()
     }
@@ -131,9 +128,9 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             if identifier == "seeListSegue" {
-                let listRunsTableViewController = segue.destinationViewController as! ListRunsTableViewController
+                _ = segue.destinationViewController as! ListRunsTableViewController
             } else if identifier == "startRunSegue" {
-                let runTrackerViewController = segue.destinationViewController as! RunTrackerViewController
+                _ = segue.destinationViewController as! RunTrackerViewController
             }
         }
     }

@@ -14,7 +14,6 @@ import CoreMotion
 import HealthKit
 import CoreData
 import LocationKit
-import AudioToolbox
 
 class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationManagerDelegate, UIPopoverPresentationControllerDelegate {
     
@@ -27,7 +26,6 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     @IBOutlet weak var averagePaceLabel: UILabel!
     @IBOutlet weak var stallTimeLabel: UILabel!
     @IBOutlet weak var stopRunButton: UIButton!
-    @IBOutlet weak var testLabel: UILabel!
 
     
 //MARK: Variables
@@ -46,7 +44,6 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         locationManager.setOperationMode(setting)
         return locationManager
     }()
-//    let activityManager = CMMotionActivityManager()
     let motionManager: CMMotionManager! = CMMotionManager()
     
     //Variables for labels and run info in the view
@@ -71,10 +68,9 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     
 //MARK: Boilerplate Functions
     
-    //This function sets the map delegate, clears all the array of locations, and calls viewControllerLayoutChanges() and startLocationUpdates()
+    //This function sets the map delegate, clears all the array of locations, starts the acceleration updates, and calls viewControllerLayoutChanges() and startLocationUpdates()
     override func viewDidLoad() {
         super.viewDidLoad()
-        PhoneSession.sharedInstance.startSession()
         self.mapView.delegate = self
         locations.removeAll(keepCapacity: false)
         motionManager.startAccelerometerUpdates()
@@ -156,7 +152,7 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     
 //MARK: Actions
     
-    //This function that runs when the stop button is tapped stops locating the user, invalidates the timer, and calls stopRunAlert()
+    //This function that runs when the stop button is tapped calls stopRunPopup()
     @IBAction func stopRunButtonTapped(sender: AnyObject) {
         self.stopRunPopup()
     }
@@ -164,16 +160,18 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     
 //MARK: Alerts
     
-    //This function stops locating the user, invalidates both timers, and calls both saveRunToCoreData() and callSavedPopup()
+    //This function stops locating the user, invalidates both timers, and calls both saveRunToCoreData() and callSavedPopup() if the locations array has at least one location
     func stopRunPopup() {
         userLocationManager.stopUpdatingLocation()
         runningTimer.invalidate()
         standingTimer.invalidate()
-        self.saveRunToCoreData()
+        if self.locations.count > 0 {
+            self.saveRunToCoreData()
+        }
         self.callSavedPopup()
     }
     
-    //This function 
+    //This functions is called when a stopRunToPhone notification is posted and calls saveRunToCoreData() before calling for the exitSegue segue
     func recievedStopRunSegueNotifaction(notification: NSNotification) {
         self.saveRunToCoreData()
         self.performSegueWithIdentifier("exitSegue", sender: self)
@@ -199,7 +197,7 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             if identifier == "exitSegue" {
-                let homeViewController = segue.destinationViewController as! HomeViewController
+                _ = segue.destinationViewController as! HomeViewController
             }
         }
     }
@@ -263,20 +261,18 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         self.pathCorrector()
     }
 
-    //This function changes the tint of the map depending on whether the user is running or stationary
+    //This function changes the tint of the map and the timer that runs depending on whether the user is running or stationary
     func locationManager(manager: LKLocationManager, willChangeActivityMode mode: LKActivityMode) {
-        var avAcc = ((motionManager.accelerometerData?.acceleration.x)! + (motionManager.accelerometerData?.acceleration.y)!) / 2
+        let avAcc = ((motionManager.accelerometerData?.acceleration.x)! + (motionManager.accelerometerData?.acceleration.y)!) / 2
         if mode == LKActivityMode.Stationary && avAcc <= 0 {
             dispatch_async(dispatch_get_main_queue()) {
                 self.mapView.tintColor = UIColor.redColor()
-                self.testLabel.text = "Standing"
                 self.runningTimer.invalidate()
                 self.standingTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondStanding(_:)), userInfo: nil, repeats: true)
             }
         } else {
             dispatch_async(dispatch_get_main_queue()) {
                 self.mapView.tintColor = UIColor.greenColor()
-                self.testLabel.text = "Running"
                 self.standingTimer.invalidate()
                 self.runningTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondRunning(_:)), userInfo: nil, repeats: true)
             }
@@ -338,9 +334,6 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     
     //This function runs every second that the user is running
     func eachSecondRunning(timer: NSTimer) {
-        var avAcc = ((motionManager.accelerometerData?.acceleration.x)! + (motionManager.accelerometerData?.acceleration.y)!) / 2
-        print("RUNNING: \(avAcc)")
-        print("")
         runTime = runTime + 1
         mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveRoads)
         (distanceDisplay!, runTimeDisplay!, paceDisplay!, stallTimeDisplay!) = self.convertUnitsRunning(distance, runTime: runTime, stallTime: stallTime)
@@ -353,9 +346,6 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     
     //This function runs every second the user is standing
     func eachSecondStanding(timer: NSTimer) {
-        var avAcc = ((motionManager.accelerometerData?.acceleration.x)! + (motionManager.accelerometerData?.acceleration.y)!) / 2
-        print("STANDING: \(avAcc)")
-        print("")
         stallTime = stallTime + 1
         mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveRoads)
         stallTimeDisplay = secondsToClockFormat(stallTime)

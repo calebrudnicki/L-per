@@ -51,7 +51,7 @@ class PopupViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             if identifier == "exitSegue" {
-                let homeViewController = segue.destinationViewController as! HomeViewController
+                _ = segue.destinationViewController as! HomeViewController
             }
         }
     }
