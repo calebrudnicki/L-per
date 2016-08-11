@@ -21,8 +21,10 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
     
 //MARK: Boilerplate Functions
     
+    //This functions establishes the class as an observer of the startRunToPhone notification
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.recievedStartRunSegueNotifaction(_:)), name:"startRunToPhone", object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -33,6 +35,25 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         self.loadFromCoreData()
+    }
+    
+    //This function removes the observer from the NSNotication sender when the view disappears
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    
+//MARK: Notifications
+    
+    //This functions is called when a startRunToPhone notification is posted and calls startRunSegue()
+    func recievedStartRunSegueNotifaction(notification: NSNotification) {
+        self.startRunSegue()
+    }
+    
+    //This function segues to the RunTrackerViewController
+    func startRunSegue() {
+        self.performSegueWithIdentifier("startRunSegue", sender: self)
     }
     
     
@@ -70,13 +91,15 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
     
 //MARK: Segues
     
-    //This function allows the run object selected in the table view to pass its data through to the RunDataViewController
+    //This function allows the run object selected in the table view to pass its data through to the RunDataViewController or the RunTrackerViewController
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             if identifier == "displayRunSegue" {
                 let runDataViewController = segue.destinationViewController as! RunDataViewController
                 let selectedRun = runs[(tableView.indexPathForSelectedRow?.row)!]
                 runDataViewController.run = selectedRun
+            } else if identifier == "startRunSegue" {
+                _ = segue.destinationViewController as! RunTrackerViewController
             }
         }
     }

@@ -167,13 +167,17 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         standingTimer.invalidate()
         if self.locations.count > 0 {
             self.saveRunToCoreData()
+            self.callSavedPopup()
+        } else {
+            self.callDeletedPopup()
         }
-        self.callSavedPopup()
     }
     
     //This functions is called when a stopRunToPhone notification is posted and calls saveRunToCoreData() before calling for the exitSegue segue
     func recievedStopRunSegueNotifaction(notification: NSNotification) {
-        self.saveRunToCoreData()
+        if self.locations.count > 0 {
+            self.saveRunToCoreData()
+        }
         self.performSegueWithIdentifier("exitSegue", sender: self)
     }
 
@@ -186,6 +190,17 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         popupViewController.view.frame = self.view.bounds
         popupViewController.userChoiceImage.image = UIImage(named: "CheckMark.png")
         popupViewController.userChoiceLabel.text = "Congrats! Your run was saved!"
+        self.view.addSubview(popupViewController.view)
+        popupViewController.didMoveToParentViewController(self)
+    }
+    
+    //this functions shows a popup confirming that the run was not saved
+    func callDeletedPopup() {
+        let popupViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PopupViewController") as! PopupViewController
+        self.addChildViewController(popupViewController)
+        popupViewController.view.frame = self.view.bounds
+        popupViewController.userChoiceImage.image = UIImage(named: "XMark.png")
+        popupViewController.userChoiceLabel.text = "Your run was trashed!"
         self.view.addSubview(popupViewController.view)
         popupViewController.didMoveToParentViewController(self)
     }
@@ -347,7 +362,7 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     //This function runs every second the user is standing
     func eachSecondStanding(timer: NSTimer) {
         stallTime = stallTime + 1
-        mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveRoads)
+        //mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveRoads)
         stallTimeDisplay = secondsToClockFormat(stallTime)
         PhoneSession.sharedInstance.giveWatchRunData(distanceDisplay, runTime: runTimeDisplay, pace: paceDisplay, stallTime: stallTimeDisplay)
         stallTimeLabel.text = stallTimeDisplay

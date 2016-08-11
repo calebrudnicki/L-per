@@ -15,6 +15,7 @@
 		821067101D3D591D00694447 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210670C1D3D591D00694447 /* Location+CoreDataProperties.swift */; };
 		821067111D3D591D00694447 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210670D1D3D591D00694447 /* Location.swift */; };
 		822688231D48000700BCFD46 /* WatchSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822688221D48000700BCFD46 /* WatchSession.swift */; };
+		8235D4641D5B6AF100E6CC88 /* XMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8235D4631D5B6AF100E6CC88 /* XMark.png */; };
 		8249EFC01D466A4C002D033E /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8249EFBF1D466A4C002D033E /* PopupViewController.swift */; };
 		8249EFC21D469BBF002D033E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8249EFC11D469BBF002D033E /* MapKit.framework */; };
 		8284C9AF1D34290000A08EEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284C9AE1D34290000A08EEF /* AppDelegate.swift */; };
@@ -93,6 +94,7 @@
 		8210670C1D3D591D00694447 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8210670D1D3D591D00694447 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		822688221D48000700BCFD46 /* WatchSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSession.swift; sourceTree = "<group>"; };
+		8235D4631D5B6AF100E6CC88 /* XMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = XMark.png; sourceTree = "<group>"; };
 		8249EFBF1D466A4C002D033E /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		8249EFC11D469BBF002D033E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8284C9AB1D34290000A08EEF /* Løper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Løper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +210,7 @@
 				8284C9B21D34290000A08EEF /* Main.storyboard */,
 				8284C9B51D34290000A08EEF /* Assets.xcassets */,
 				82BE7C571D49443800E35A9E /* CheckMark.png */,
+				8235D4631D5B6AF100E6CC88 /* XMark.png */,
 				8284C9B71D34290000A08EEF /* LaunchScreen.storyboard */,
 				8284C9BA1D34290000A08EEF /* Info.plist */,
 			);
@@ -377,6 +380,7 @@
 			files = (
 				8284C9B91D34290000A08EEF /* LaunchScreen.storyboard in Resources */,
 				82BE7C581D49443800E35A9E /* CheckMark.png in Resources */,
+				8235D4641D5B6AF100E6CC88 /* XMark.png in Resources */,
 				8284C9B61D34290000A08EEF /* Assets.xcassets in Resources */,
 				8284C9B41D34290000A08EEF /* Main.storyboard in Resources */,
 			);

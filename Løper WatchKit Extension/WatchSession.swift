@@ -50,10 +50,17 @@ class WatchSession: NSObject, WCSessionDelegate {
     
 //MARK: Data Getters
     
-    //This function receives a message from the phone and then posts a notifiction with the value of the Action key and an object with value of the Payload key
-    func session(session: WCSession, didReceiveMessage actionDictFromPhone: [String : AnyObject]) {
+    //This function receives data from a sendMessage format
+    func session(session: WCSession, didReceiveMessage message: [String : AnyObject]) {
         dispatch_async(dispatch_get_main_queue()) {
-            NSNotificationCenter.defaultCenter().postNotificationName(actionDictFromPhone["Action"]! as! String, object: actionDictFromPhone["Payload"])
+            NSNotificationCenter.defaultCenter().postNotificationName(message["Action"]! as! String, object: message["Payload"])
+        }
+    }
+    
+    //This function receives data from a transferUserInfo format
+    func session(session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject]) {
+        dispatch_async(dispatch_get_main_queue()) {
+            NSNotificationCenter.defaultCenter().postNotificationName(userInfo["Action"]! as! String, object: userInfo["Payload"])
         }
     }
 

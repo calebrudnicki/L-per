@@ -6,6 +6,7 @@
 //  Copyright © 2016 Caleb Rudnicki. All rights reserved.
 //
 //  Check mark icon in the PopupViewController was created Huu Nguyen at https://thenounproject.com/huu/
+//  X mark icon the PopupViewController was created by Huu Nguyen at https://thenounproject.com/huu/
 //
 
 import UIKit
@@ -117,6 +118,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
     //This function segues to the RunTrackerViewController
     func startRunSegue() {
         self.performSegueWithIdentifier("startRunSegue", sender: self)
+        //
     }
     
     //This functions segues to the ListRunsTableView

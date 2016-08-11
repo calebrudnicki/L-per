@@ -31,12 +31,16 @@ class PhoneSession: NSObject, WCSessionDelegate {
     
 //MARK: Data Senders
 
-    //This function sends a message to the WatchSession with a dictionary containing a giveRunDataToWatch and payloadDictFromPhone value
+    //This functions either transfers or sends a message to WatchSession with the key giveRunDataToWatch depending on whether the watch face is on or off
     func giveWatchRunData(distance: String, runTime: String, pace: String, stallTime: String) {
         let payloadDictFromPhone = ["Distance": distance, "RunTime": runTime, "Pace": pace, "StallTime": stallTime]
         let actionDictFromPhone = ["Action": "giveRunDataToWatch", "Payload": payloadDictFromPhone]
-        session.sendMessage(actionDictFromPhone as! [String : AnyObject], replyHandler: nil) { (error: NSError) in
-            print(error)
+        if session.activationState == .Activated {
+            session.sendMessage(actionDictFromPhone as! [String : AnyObject], replyHandler: nil) { (error: NSError) in
+                print(error)
+            }
+        } else {
+            session.transferUserInfo(actionDictFromPhone as! [String : AnyObject])
         }
     }
     
