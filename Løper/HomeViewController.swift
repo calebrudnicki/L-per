@@ -5,6 +5,7 @@
 //  Created by Caleb Rudnicki on 7/11/16.
 //  Copyright © 2016 Caleb Rudnicki. All rights reserved.
 //
+//  Icon adapted from a design created by Parma at https://thenounproject.com/parma/
 //  Check mark icon in the PopupViewController was created Huu Nguyen at https://thenounproject.com/huu/
 //  X mark icon the PopupViewController was created by Huu Nguyen at https://thenounproject.com/huu/
 //

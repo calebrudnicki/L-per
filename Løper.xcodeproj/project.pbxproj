@@ -17,7 +17,6 @@
 		822688231D48000700BCFD46 /* WatchSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822688221D48000700BCFD46 /* WatchSession.swift */; };
 		8235D4641D5B6AF100E6CC88 /* XMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8235D4631D5B6AF100E6CC88 /* XMark.png */; };
 		8249EFC01D466A4C002D033E /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8249EFBF1D466A4C002D033E /* PopupViewController.swift */; };
-		8249EFC21D469BBF002D033E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8249EFC11D469BBF002D033E /* MapKit.framework */; };
 		8284C9AF1D34290000A08EEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284C9AE1D34290000A08EEF /* AppDelegate.swift */; };
 		8284C9B41D34290000A08EEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8284C9B21D34290000A08EEF /* Main.storyboard */; };
 		8284C9B61D34290000A08EEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8284C9B51D34290000A08EEF /* Assets.xcassets */; };
@@ -96,7 +95,6 @@
 		822688221D48000700BCFD46 /* WatchSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSession.swift; sourceTree = "<group>"; };
 		8235D4631D5B6AF100E6CC88 /* XMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = XMark.png; sourceTree = "<group>"; };
 		8249EFBF1D466A4C002D033E /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
-		8249EFC11D469BBF002D033E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8284C9AB1D34290000A08EEF /* Løper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Løper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8284C9AE1D34290000A08EEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8284C9B31D34290000A08EEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -137,7 +135,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8249EFC21D469BBF002D033E /* MapKit.framework in Frameworks */,
 				F0B6AAA6E938E116F3649F6E /* Pods_L_per.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,7 +252,6 @@
 		89F44B51CAF1C81EEA23A349 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8249EFC11D469BBF002D033E /* MapKit.framework */,
 				CB44BEE256B38A0A01EBE055 /* Pods_L_per.framework */,
 			);
 			name = Frameworks;
@@ -333,23 +329,23 @@
 				TargetAttributes = {
 					8284C9AA1D34290000A08EEF = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = FNL2LKL956;
+						DevelopmentTeam = 92DETN2MKQ;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
 							com.apple.Maps.iOS = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
 					82B4769C1D46B5DF00A81A4D = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = FNL2LKL956;
+						DevelopmentTeam = 92DETN2MKQ;
 					};
 					82B476A81D46B5DF00A81A4D = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = FNL2LKL956;
+						DevelopmentTeam = 92DETN2MKQ;
 					};
 				};
 			};
@@ -619,9 +615,10 @@
 			baseConfigurationReference = 7E806B3241EAF30B9A1944F4 /* Pods-Løper.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Løper/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.L-per";
+				PRODUCT_BUNDLE_IDENTIFIER = com.calebrudnicki.Loper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -631,9 +628,10 @@
 			baseConfigurationReference = CEC97581B2C061E153DF6306 /* Pods-Løper.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Løper/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.L-per";
+				PRODUCT_BUNDLE_IDENTIFIER = com.calebrudnicki.Loper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -642,10 +640,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = L_per_WatchKit_Extension;
 				INFOPLIST_FILE = "Løper WatchKit/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.L-per.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = com.calebrudnicki.Loper.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -658,10 +657,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = L_per_WatchKit_Extension;
 				INFOPLIST_FILE = "Løper WatchKit/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.L-per.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = com.calebrudnicki.Loper.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -674,9 +674,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Løper WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.L-per.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = com.calebrudnicki.Loper.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -689,9 +690,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Løper WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.L-per.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = com.calebrudnicki.Loper.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;

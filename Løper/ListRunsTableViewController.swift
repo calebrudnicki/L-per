@@ -24,7 +24,6 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
     //This functions establishes the class as an observer of the startRunToPhone notification
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.recievedStartRunSegueNotifaction(_:)), name:"startRunToPhone", object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -37,23 +36,8 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
         self.loadFromCoreData()
     }
     
-    //This function removes the observer from the NSNotication sender when the view disappears
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    
-//MARK: Notifications
-    
-    //This functions is called when a startRunToPhone notification is posted and calls startRunSegue()
-    func recievedStartRunSegueNotifaction(notification: NSNotification) {
-        self.startRunSegue()
-    }
-    
-    //This function segues to the RunTrackerViewController
-    func startRunSegue() {
-        self.performSegueWithIdentifier("startRunSegue", sender: self)
     }
     
     
@@ -61,6 +45,7 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
     
     //This function loads the runs from Core Data and appends it to the array of Run objects called runs
     func loadFromCoreData() {
+        self.runs = []
         let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
         let runFetch = NSFetchRequest(entityName: "Run")
         do {
@@ -98,8 +83,6 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
                 let runDataViewController = segue.destinationViewController as! RunDataViewController
                 let selectedRun = runs[(tableView.indexPathForSelectedRow?.row)!]
                 runDataViewController.run = selectedRun
-            } else if identifier == "startRunSegue" {
-                _ = segue.destinationViewController as! RunTrackerViewController
             }
         }
     }
@@ -131,9 +114,11 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
     //This function allows the user to delete a run from the table view and also from Core Data
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            self.deleteFromCoreData(indexPath)
+            print(indexPath.row)
             runs.removeAtIndex(indexPath.row)
+            self.deleteFromCoreData(indexPath)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+
         }
     }
     
