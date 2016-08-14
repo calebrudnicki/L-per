@@ -14,6 +14,7 @@ import CoreMotion
 import HealthKit
 import CoreData
 import LocationKit
+import AudioToolbox
 
 class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationManagerDelegate, UIPopoverPresentationControllerDelegate {
     
@@ -26,7 +27,7 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     @IBOutlet weak var averagePaceLabel: UILabel!
     @IBOutlet weak var stallTimeLabel: UILabel!
     @IBOutlet weak var stopRunButton: UIButton!
-
+    
     
 //MARK: Variables
     
@@ -278,8 +279,9 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
 
     //This function changes the tint of the map and the timer that runs depending on whether the user is running or stationary
     func locationManager(manager: LKLocationManager, willChangeActivityMode mode: LKActivityMode) {
-        let avAcc = ((motionManager.accelerometerData?.acceleration.x)! + (motionManager.accelerometerData?.acceleration.y)!) / 2
-        if mode == LKActivityMode.Stationary && avAcc <= 0 {
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        let currentSpeed = Int(String(self.locations[self.locations.count - 1].speed))
+        if mode == LKActivityMode.Stationary && currentSpeed <= 0 {
             dispatch_async(dispatch_get_main_queue()) {
                 self.mapView.tintColor = UIColor.redColor()
                 self.runningTimer.invalidate()

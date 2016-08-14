@@ -114,7 +114,6 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
     //This function allows the user to delete a run from the table view and also from Core Data
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            print(indexPath.row)
             runs.removeAtIndex(indexPath.row)
             self.deleteFromCoreData(indexPath)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
