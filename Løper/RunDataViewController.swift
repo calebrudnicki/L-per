@@ -105,6 +105,16 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
         return MKPolyline(coordinates: &coords, count: locations!.count)
     }
     
+    //This function adds a pin to the map
+    func addPinToMap(coordinates: CLLocationCoordinate2D, color: UIColor) {
+        let annotation = ColorPointAnnotation(pinColor: color)
+        annotation.coordinate = coordinates
+        self.mapView.addAnnotation(annotation)
+    }
+    
+
+//MARK: MapView Delegate Functions
+    
     //This function draws the line for the path of the run
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         if !overlay.isKindOfClass(MKPolyline) {
@@ -117,12 +127,22 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
         return renderer
     }
     
-    //This function adds a pin to the map
-    func addPinToMap(coordinates: CLLocationCoordinate2D, color: UIColor) {
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = coordinates
-        mapView.addAnnotation(annotation)
-        mapView.showAnnotations([annotation], animated: true)
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        }
+        let reuseId = "pin"
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            let colorPointAnnotation = annotation as! ColorPointAnnotation
+            pinView?.pinTintColor = colorPointAnnotation.pinColor
+        }
+        else {
+            pinView?.annotation = annotation
+        }
+        return pinView
     }
 
 }

@@ -354,7 +354,6 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         runTime = runTime + 1
         mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveRoads)
         (distanceDisplay!, runTimeDisplay!, paceDisplay!, stallTimeDisplay!) = self.convertUnitsRunning(distance, runTime: runTime, stallTime: stallTime)
-        PhoneSession.sharedInstance.giveWatchRunData(distanceDisplay, runTime: runTimeDisplay, pace: paceDisplay, stallTime: stallTimeDisplay)
         distanceLabel.text = "\(distanceDisplay) mi"
         runTimeLabel.text = runTimeDisplay
         averagePaceLabel.text = "\(paceDisplay) min/mi"
@@ -364,9 +363,7 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     //This function runs every second the user is standing
     func eachSecondStanding(timer: NSTimer) {
         stallTime = stallTime + 1
-        //mapView.addOverlay(polyline(), level: MKOverlayLevel.AboveRoads)
         stallTimeDisplay = secondsToClockFormat(stallTime)
-        PhoneSession.sharedInstance.giveWatchRunData(distanceDisplay, runTime: runTimeDisplay, pace: paceDisplay, stallTime: stallTimeDisplay)
         stallTimeLabel.text = stallTimeDisplay
     }
     

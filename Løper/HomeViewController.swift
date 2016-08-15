@@ -34,7 +34,6 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
     //This function creates a shared instance of PhoneSession, establishes the locationManager settings, and calls checkLocationAuthorizationStatus() and viewControllerLayoutChanges()
     override func viewDidLoad() {
         super.viewDidLoad()
-        PhoneSession.sharedInstance.startSession()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
