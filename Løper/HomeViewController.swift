@@ -107,6 +107,11 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
         self.seeListSegue()
     }
     
+    @IBAction func settingsButtonTapped(sender: AnyObject) {
+        self.seeSettingsSegue()
+    }
+    
+    
     
 //MARK: Segues
     
@@ -118,12 +123,16 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
     //This function segues to the RunTrackerViewController
     func startRunSegue() {
         self.performSegueWithIdentifier("startRunSegue", sender: self)
-        //
     }
     
     //This functions segues to the ListRunsTableView
     func seeListSegue() {
         self.performSegueWithIdentifier("seeListSegue", sender: self)
+    }
+    
+    //
+    func seeSettingsSegue() {
+        self.performSegueWithIdentifier("seeSettingsSegue", sender: self)
     }
     
     //This function recognizes the segue called in code based on the user's action and segues to the appropriate view controller
@@ -133,6 +142,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
                 _ = segue.destinationViewController as! ListRunsTableViewController
             } else if identifier == "startRunSegue" {
                 _ = segue.destinationViewController as! RunTrackerViewController
+            } else if identifier == "seeSettingsSegue" {
+                _ = segue.destinationViewController as! SettingsViewController
             }
         }
     }

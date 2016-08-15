@@ -92,10 +92,10 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
             if let location = location as? Location {
                 if count == 0 {
                     self.addPinToMap(CLLocationCoordinate2D(latitude: location.latitude!.doubleValue,
-                        longitude:location.longitude!.doubleValue), color: UIColor.greenColor())
+                        longitude:location.longitude!.doubleValue), color: UIColor(red: 14/255, green: 161/255, blue: 87/255, alpha: 1))
                 } else if count == (locations!.count - 1) {
                     self.addPinToMap(CLLocationCoordinate2D(latitude: location.latitude!.doubleValue,
-                        longitude:location.longitude!.doubleValue), color: UIColor.redColor())
+                        longitude:location.longitude!.doubleValue), color: UIColor(red: 161/255, green: 30/255, blue: 14/255, alpha: 1))
                 }
                 coords.append(CLLocationCoordinate2D(latitude: location.latitude!.doubleValue,
                 longitude:location.longitude!.doubleValue))

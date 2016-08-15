@@ -15,6 +15,7 @@ import HealthKit
 import CoreData
 import LocationKit
 import AudioToolbox
+import AVFoundation
 
 class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationManagerDelegate, UIPopoverPresentationControllerDelegate {
     
@@ -46,6 +47,7 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         return locationManager
     }()
     let motionManager: CMMotionManager! = CMMotionManager()
+    let movementStatus = AVSpeechSynthesizer()
     
     //Variables for labels and run info in the view
     var distance: Double! = 0.0
@@ -83,7 +85,7 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         mapView.showsUserLocation = true
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RunTrackerViewController.recievedStopRunSegueNotifaction(_:)), name:"stopRunToPhone", object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RunTrackerViewController.recievedStopRunSegueNotifaction(_:)), name:"stopRunToPhone", object: nil)
     }
     
     //This functions invalidates the times when the view disappears
@@ -166,7 +168,7 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         userLocationManager.stopUpdatingLocation()
         runningTimer.invalidate()
         standingTimer.invalidate()
-        if self.locations.count > 0 {
+        if Int(finalDistance) > 0 {
             self.saveRunToCoreData()
             self.callSavedPopup()
         } else {
@@ -175,12 +177,12 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     }
     
     //This functions is called when a stopRunToPhone notification is posted and calls saveRunToCoreData() before calling for the exitSegue segue
-    func recievedStopRunSegueNotifaction(notification: NSNotification) {
-        if self.locations.count > 0 {
-            self.saveRunToCoreData()
-        }
-        self.performSegueWithIdentifier("exitSegue", sender: self)
-    }
+//    func recievedStopRunSegueNotifaction(notification: NSNotification) {
+//        if distance > 0.0 {
+//            self.saveRunToCoreData()
+//        }
+//        self.performSegueWithIdentifier("exitSegue", sender: self)
+//    }
 
 //MARK: Popup Functions
     
@@ -283,13 +285,17 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         let currentSpeed = Int(String(self.locations[self.locations.count - 1].speed))
         if mode == LKActivityMode.Stationary && currentSpeed <= 0 {
             dispatch_async(dispatch_get_main_queue()) {
-                self.mapView.tintColor = UIColor.redColor()
+                let stationaryNotice = AVSpeechUtterance(string: "Your run was paused")
+                self.movementStatus.speakUtterance(stationaryNotice)
+                self.mapView.tintColor = UIColor(red: 161/255, green: 30/255, blue: 14/255, alpha: 1)
                 self.runningTimer.invalidate()
                 self.standingTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondStanding(_:)), userInfo: nil, repeats: true)
             }
         } else {
             dispatch_async(dispatch_get_main_queue()) {
-                self.mapView.tintColor = UIColor.greenColor()
+                let movingNotice = AVSpeechUtterance(string: "Run resumed")
+                self.movementStatus.speakUtterance(movingNotice)
+                self.mapView.tintColor = UIColor(red: 14/255, green: 161/255, blue: 87/255, alpha: 1)
                 self.standingTimer.invalidate()
                 self.runningTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondRunning(_:)), userInfo: nil, repeats: true)
             }
@@ -359,6 +365,7 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         averagePaceLabel.text = "\(paceDisplay) min/mi"
         stallTimeLabel.text = stallTimeDisplay
     }
+
     
     //This function runs every second the user is standing
     func eachSecondStanding(timer: NSTimer) {
