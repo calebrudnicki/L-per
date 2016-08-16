@@ -74,10 +74,10 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
             maxLng = max(maxLng, location.longitude!.doubleValue)
         }
         return MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: (minLat + maxLat)/2,
-                longitude: (minLng + maxLng)/2),
-            span: MKCoordinateSpan(latitudeDelta: (maxLat - minLat)*1.1,
-                longitudeDelta: (maxLng - minLng)*1.1))
+            center: CLLocationCoordinate2D(latitude: (minLat + maxLat) / 2,
+                longitude: (minLng + maxLng) / 2),
+            span: MKCoordinateSpan(latitudeDelta: (maxLat - minLat) * 1.1,
+                longitudeDelta: (maxLng - minLng) * 1.1))
     }
     
     
@@ -105,7 +105,7 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
         return MKPolyline(coordinates: &coords, count: locations!.count)
     }
     
-    //This function adds a pin to the map
+    //This function adds a pin to the map with the correct color
     func addPinToMap(coordinates: CLLocationCoordinate2D, color: UIColor) {
         let annotation = ColorPointAnnotation(pinColor: color)
         annotation.coordinate = coordinates
@@ -127,7 +127,7 @@ class RunDataViewController: UIViewController, MKMapViewDelegate {
         return renderer
     }
     
-    
+    //This functions allows the starting pin to be green and the ending pin to be red
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
             return nil

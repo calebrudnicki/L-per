@@ -24,7 +24,6 @@
 		82B476C91D46E0E800A81A4D /* RunDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821067051D3D489300694447 /* RunDataViewController.swift */; };
 		82B476CB1D47B51400A81A4D /* RunDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821067031D3D249D00694447 /* RunDataCell.swift */; };
 		82B476CE1D47B8C200A81A4D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8284C9C01D342AF500A08EEF /* HomeViewController.swift */; };
-		82BC791D1D624FF100913BBC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC791C1D624FF100913BBC /* SettingsViewController.swift */; };
 		82BE7C581D49443800E35A9E /* CheckMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 82BE7C571D49443800E35A9E /* CheckMark.png */; };
 		F0B6AAA6E938E116F3649F6E /* Pods_L_per.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB44BEE256B38A0A01EBE055 /* Pods_L_per.framework */; };
 /* End PBXBuildFile section */
@@ -63,7 +62,6 @@
 		8284C9BA1D34290000A08EEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8284C9C01D342AF500A08EEF /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8284C9C21D358DE600A08EEF /* RunTrackerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunTrackerViewController.swift; sourceTree = "<group>"; };
-		82BC791C1D624FF100913BBC /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		82BE7C571D49443800E35A9E /* CheckMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckMark.png; sourceTree = "<group>"; };
 		CB44BEE256B38A0A01EBE055 /* Pods_L_per.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_L_per.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC97581B2C061E153DF6306 /* Pods-Løper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Løper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Løper/Pods-Løper.release.xcconfig"; sourceTree = "<group>"; };
@@ -126,7 +124,6 @@
 				821067071D3D562600694447 /* Løper.xcdatamodeld */,
 				8284C9AE1D34290000A08EEF /* AppDelegate.swift */,
 				8284C9C01D342AF500A08EEF /* HomeViewController.swift */,
-				82BC791C1D624FF100913BBC /* SettingsViewController.swift */,
 				8284C9C21D358DE600A08EEF /* RunTrackerViewController.swift */,
 				8249EFBF1D466A4C002D033E /* PopupViewController.swift */,
 				820132771D36E15A003B1C2C /* ListRunsTableViewController.swift */,
@@ -294,7 +291,6 @@
 				82B476CB1D47B51400A81A4D /* RunDataCell.swift in Sources */,
 				8210670F1D3D591D00694447 /* Run.swift in Sources */,
 				821067091D3D562600694447 /* Løper.xcdatamodeld in Sources */,
-				82BC791D1D624FF100913BBC /* SettingsViewController.swift in Sources */,
 				8210670E1D3D591D00694447 /* Run+CoreDataProperties.swift in Sources */,
 				821067111D3D591D00694447 /* Location.swift in Sources */,
 				8284C9C31D358DE600A08EEF /* RunTrackerViewController.swift in Sources */,

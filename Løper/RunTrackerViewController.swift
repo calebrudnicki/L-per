@@ -15,7 +15,6 @@ import HealthKit
 import CoreData
 import LocationKit
 import AudioToolbox
-import AVFoundation
 
 class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationManagerDelegate, UIPopoverPresentationControllerDelegate {
     
@@ -47,7 +46,6 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         return locationManager
     }()
     let motionManager: CMMotionManager! = CMMotionManager()
-    let movementStatus = AVSpeechSynthesizer()
     
     //Variables for labels and run info in the view
     var distance: Double! = 0.0
@@ -81,11 +79,10 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         self.startLocationUpdates()
     }
     
-    //This function sets the showing of the user's location to true upon the view appearing and establishes the class as an observer of the NSNotificationSender
+    //This function sets the showing of the user's location to true upon the view appearing
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         mapView.showsUserLocation = true
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RunTrackerViewController.recievedStopRunSegueNotifaction(_:)), name:"stopRunToPhone", object: nil)
     }
     
     //This functions invalidates the times when the view disappears
@@ -94,10 +91,8 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         standingTimer.invalidate()
     }
     
-    //This function removes the observer from the NSNotication sender when the view disappears
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     
@@ -168,21 +163,14 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         userLocationManager.stopUpdatingLocation()
         runningTimer.invalidate()
         standingTimer.invalidate()
-        if Int(finalDistance) > 0 {
+        if Double(distanceDisplay) > 0.0 {
             self.saveRunToCoreData()
             self.callSavedPopup()
         } else {
             self.callDeletedPopup()
         }
     }
-    
-    //This functions is called when a stopRunToPhone notification is posted and calls saveRunToCoreData() before calling for the exitSegue segue
-//    func recievedStopRunSegueNotifaction(notification: NSNotification) {
-//        if distance > 0.0 {
-//            self.saveRunToCoreData()
-//        }
-//        self.performSegueWithIdentifier("exitSegue", sender: self)
-//    }
+
 
 //MARK: Popup Functions
     
@@ -197,7 +185,7 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         popupViewController.didMoveToParentViewController(self)
     }
     
-    //this functions shows a popup confirming that the run was not saved
+    //this functions shows a popup confirming that the run was trashed
     func callDeletedPopup() {
         let popupViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PopupViewController") as! PopupViewController
         self.addChildViewController(popupViewController)
@@ -282,19 +270,20 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
     //This function changes the tint of the map and the timer that runs depending on whether the user is running or stationary
     func locationManager(manager: LKLocationManager, willChangeActivityMode mode: LKActivityMode) {
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-        let currentSpeed = Int(String(self.locations[self.locations.count - 1].speed))
-        if mode == LKActivityMode.Stationary && currentSpeed <= 0 {
+        var currentSpeed: Int!
+        if self.locations.count == 0 {
+            currentSpeed = 0
+        } else {
+            currentSpeed = Int(String(self.locations[self.locations.count - 1].speed))
+        }
+        if mode == LKActivityMode.Stationary && currentSpeed == nil {
             dispatch_async(dispatch_get_main_queue()) {
-                let stationaryNotice = AVSpeechUtterance(string: "Your run was paused")
-                self.movementStatus.speakUtterance(stationaryNotice)
                 self.mapView.tintColor = UIColor(red: 161/255, green: 30/255, blue: 14/255, alpha: 1)
                 self.runningTimer.invalidate()
                 self.standingTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondStanding(_:)), userInfo: nil, repeats: true)
             }
         } else {
             dispatch_async(dispatch_get_main_queue()) {
-                let movingNotice = AVSpeechUtterance(string: "Run resumed")
-                self.movementStatus.speakUtterance(movingNotice)
                 self.mapView.tintColor = UIColor(red: 14/255, green: 161/255, blue: 87/255, alpha: 1)
                 self.standingTimer.invalidate()
                 self.runningTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondRunning(_:)), userInfo: nil, repeats: true)

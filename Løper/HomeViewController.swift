@@ -12,9 +12,8 @@
 
 import UIKit
 import MapKit
-import WatchConnectivity
 
-class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSessionDelegate {
+class HomeViewController: UIViewController, CLLocationManagerDelegate {
 
 //MARK: Outlets
     
@@ -31,7 +30,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
     
 //MARK: Boilerplate Functions
     
-    //This function creates a shared instance of PhoneSession, establishes the locationManager settings, and calls checkLocationAuthorizationStatus() and viewControllerLayoutChanges()
+    //This function establishes the locationManager settings and calls checkLocationAuthorizationStatus() and viewControllerLayoutChanges()
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.delegate = self
@@ -41,18 +40,11 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
         self.viewControllerLayoutChanges()
     }
     
-    //This function generates two random integers each time the view appears and also establishes the class as an observer of the NSNotificationSender
+    //This function generates two random integers each time the view appears
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         randAltitude = Double(arc4random_uniform(350) + 50)
         randAngle = Double(arc4random_uniform(360))
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.recievedStartRunSegueNotifaction(_:)), name:"startRunToPhone", object: nil)
-    }
-    
-    //This function removes the observer from the NSNotication sender when the view disappears
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -107,18 +99,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
         self.seeListSegue()
     }
     
-    @IBAction func settingsButtonTapped(sender: AnyObject) {
-        self.seeSettingsSegue()
-    }
-    
-    
     
 //MARK: Segues
-    
-    //This functions is called when a startRunToPhone notification is posted and calls startRunSegue()
-    func recievedStartRunSegueNotifaction(notification: NSNotification) {
-        self.startRunSegue()
-    }
     
     //This function segues to the RunTrackerViewController
     func startRunSegue() {
@@ -130,11 +112,6 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
         self.performSegueWithIdentifier("seeListSegue", sender: self)
     }
     
-    //
-    func seeSettingsSegue() {
-        self.performSegueWithIdentifier("seeSettingsSegue", sender: self)
-    }
-    
     //This function recognizes the segue called in code based on the user's action and segues to the appropriate view controller
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
@@ -142,8 +119,6 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, WCSession
                 _ = segue.destinationViewController as! ListRunsTableViewController
             } else if identifier == "startRunSegue" {
                 _ = segue.destinationViewController as! RunTrackerViewController
-            } else if identifier == "seeSettingsSegue" {
-                _ = segue.destinationViewController as! SettingsViewController
             }
         }
     }

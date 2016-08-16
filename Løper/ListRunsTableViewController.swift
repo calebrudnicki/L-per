@@ -36,16 +36,11 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
         self.loadFromCoreData()
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
     
 //MARK: Core Data Functions
     
     //This function loads the runs from Core Data and appends it to the array of Run objects called runs
     func loadFromCoreData() {
-        self.runs = []
         let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
         let runFetch = NSFetchRequest(entityName: "Run")
         do {
@@ -114,10 +109,9 @@ class ListRunsTableViewController: UITableViewController, CLLocationManagerDeleg
     //This function allows the user to delete a run from the table view and also from Core Data
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            runs.removeAtIndex(indexPath.row)
             self.deleteFromCoreData(indexPath)
+            runs.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-
         }
     }
     
