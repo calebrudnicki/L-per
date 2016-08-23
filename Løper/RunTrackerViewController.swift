@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 import Foundation
 import MapKit
 import CoreLocation
@@ -46,6 +47,7 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         return locationManager
     }()
     let motionManager: CMMotionManager! = CMMotionManager()
+    let speechSynthesizer = AVSpeechSynthesizer()
     
     //Variables for labels and run info in the view
     var distance: Double! = 0.0
@@ -127,7 +129,7 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         let stallTimeRounded = secondsToClockFormat(stallTime)
         return (distanceRounded, runTimeRounded, paceRounded, stallTimeRounded)
     }
-    
+        
     //This function converts seconds into an hour:minute:second format
     func secondsToClockFormat(seconds: Double) -> String {
         let hourPlace = Int(floor(seconds * 3600) % 60)
@@ -278,12 +280,16 @@ class RunTrackerViewController: UIViewController, MKMapViewDelegate, LKLocationM
         }
         if mode == LKActivityMode.Stationary && currentSpeed == nil {
             dispatch_async(dispatch_get_main_queue()) {
+                let stationaryNotice = AVSpeechUtterance(string: "Run paused")
+                self.speechSynthesizer.speakUtterance(stationaryNotice)
                 self.mapView.tintColor = UIColor(red: 161/255, green: 30/255, blue: 14/255, alpha: 1)
                 self.runningTimer.invalidate()
                 self.standingTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondStanding(_:)), userInfo: nil, repeats: true)
             }
         } else {
             dispatch_async(dispatch_get_main_queue()) {
+                let runningNotice = AVSpeechUtterance(string: "Run resumed")
+                self.speechSynthesizer.speakUtterance(runningNotice)
                 self.mapView.tintColor = UIColor(red: 14/255, green: 161/255, blue: 87/255, alpha: 1)
                 self.standingTimer.invalidate()
                 self.runningTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(RunTrackerViewController.eachSecondRunning(_:)), userInfo: nil, repeats: true)

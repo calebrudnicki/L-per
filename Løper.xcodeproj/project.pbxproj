@@ -13,6 +13,7 @@
 		8210670F1D3D591D00694447 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210670B1D3D591D00694447 /* Run.swift */; };
 		821067101D3D591D00694447 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210670C1D3D591D00694447 /* Location+CoreDataProperties.swift */; };
 		821067111D3D591D00694447 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210670D1D3D591D00694447 /* Location.swift */; };
+		8212DEA91D6D13440074DFBF /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8212DEA81D6D13440074DFBF /* PreferencesViewController.swift */; };
 		8220CB1E1D6023DD0081497A /* ColorPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8220CB1D1D6023DD0081497A /* ColorPointAnnotation.swift */; };
 		8235D4641D5B6AF100E6CC88 /* XMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8235D4631D5B6AF100E6CC88 /* XMark.png */; };
 		8249EFC01D466A4C002D033E /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8249EFBF1D466A4C002D033E /* PopupViewController.swift */; };
@@ -51,6 +52,7 @@
 		8210670B1D3D591D00694447 /* Run.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
 		8210670C1D3D591D00694447 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8210670D1D3D591D00694447 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		8212DEA81D6D13440074DFBF /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		8220CB1D1D6023DD0081497A /* ColorPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPointAnnotation.swift; sourceTree = "<group>"; };
 		8235D4631D5B6AF100E6CC88 /* XMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = XMark.png; sourceTree = "<group>"; };
 		8249EFBF1D466A4C002D033E /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				821067071D3D562600694447 /* Løper.xcdatamodeld */,
 				8284C9AE1D34290000A08EEF /* AppDelegate.swift */,
 				8284C9C01D342AF500A08EEF /* HomeViewController.swift */,
+				8212DEA81D6D13440074DFBF /* PreferencesViewController.swift */,
 				8284C9C21D358DE600A08EEF /* RunTrackerViewController.swift */,
 				8249EFBF1D466A4C002D033E /* PopupViewController.swift */,
 				820132771D36E15A003B1C2C /* ListRunsTableViewController.swift */,
@@ -287,6 +290,7 @@
 				821067101D3D591D00694447 /* Location+CoreDataProperties.swift in Sources */,
 				8220CB1E1D6023DD0081497A /* ColorPointAnnotation.swift in Sources */,
 				820132781D36E15A003B1C2C /* ListRunsTableViewController.swift in Sources */,
+				8212DEA91D6D13440074DFBF /* PreferencesViewController.swift in Sources */,
 				8249EFC01D466A4C002D033E /* PopupViewController.swift in Sources */,
 				82B476CB1D47B51400A81A4D /* RunDataCell.swift in Sources */,
 				8210670F1D3D591D00694447 /* Run.swift in Sources */,

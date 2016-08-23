@@ -6,10 +6,10 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Preferences View Controller-->
         <scene sceneID="xT3-of-3Fq">
             <objects>
-                <viewController id="cuB-6A-XBB" sceneMemberID="viewController">
+                <viewController id="cuB-6A-XBB" customClass="PreferencesViewController" customModule="Løper" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NyL-NP-QoS"/>
                         <viewControllerLayoutGuide type="bottom" id="bPc-ez-Nci"/>
@@ -19,11 +19,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5ty-s3-ONB">
-                                <rect key="frame" x="220.5" y="254" width="159" height="29"/>
+                                <rect key="frame" x="242.5" y="254" width="115" height="29"/>
                                 <segments>
                                     <segment title="Miles"/>
-                                    <segment title="Kilometers"/>
+                                    <segment title="Meters"/>
                                 </segments>
+                                <connections>
+                                    <action selector="changeUnits:" destination="cuB-6A-XBB" eventType="valueChanged" id="4UO-Wh-EEM"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -32,6 +35,9 @@
                             <constraint firstItem="5ty-s3-ONB" firstAttribute="centerY" secondItem="xSS-w9-1tf" secondAttribute="centerY" id="6Oq-MC-fWb"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="unitsController" destination="5ty-s3-ONB" id="DpC-sH-Nou"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ekv-B2-v6p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
